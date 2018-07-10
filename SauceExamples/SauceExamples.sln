@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppiumMsTest", "SauceExampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumOnDotNetFramework", "AppiumOnDotNetFramework\AppiumOnDotNetFramework.csproj", "{44B81F22-100A-4DF4-9473-26582250CF25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{44B81F22-100A-4DF4-9473-26582250CF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44B81F22-100A-4DF4-9473-26582250CF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44B81F22-100A-4DF4-9473-26582250CF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
