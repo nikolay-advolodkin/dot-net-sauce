@@ -26,6 +26,7 @@ namespace AppiumOnDotNetFramework
             capabilities.SetCapability("name", MethodBase.GetCurrentMethod().Name);
 
             var rdcUrl = "https://us1.appium.testobject.com/wd/hub";
+            //TODO should be interchangeable to run on Windows/Mac
             var sauceUser = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
             var sauceKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
             var sauceUlr =
