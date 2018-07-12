@@ -9,18 +9,18 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 namespace SeleniumNunit.Steps
 {
     [Binding]
-    public class HomePageSteps
+    public class BlogPageSteps
     {
         public IWebDriver Driver;
-        [When(@"the user opens Ultimate QA home page")]
-        public void WhenTheUserOpensUltimateQAHomePage()
+        [When(@"the user opens Ultimate QA blog page")]
+        public void WhenTheUserOpensUltimateQABlogPage()
         {
-            Driver = new WebDriverFactory().CreateSauceDriver("SimpleBddTest");
-            Driver.Navigate().GoToUrl("https://www.ultimateqa.com");
+            Driver = new WebDriverFactory().CreateSauceDriver("BlogTest");
+            Driver.Navigate().GoToUrl("https://www.ultimateqa.com/blog");
         }
         
-        [Then(@"the home page loads successfully")]
-        public void ThenTheHomePageLoadsSuccessfully()
+        [Then(@"the blog page loads successfully")]
+        public void ThenTheBlogPageLoadsSuccessfully()
         {
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("main-content")))

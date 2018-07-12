@@ -12,7 +12,7 @@ namespace Common
     {
         public IWebDriver CreateSauceDriver(string testCaseName)
         {
-            var capabilities =  new DesiredCapabilities();
+            var capabilities = new DesiredCapabilities();
             capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
             capabilities.SetCapability(CapabilityType.Version, "latest");
             capabilities.SetCapability(CapabilityType.Platform, "Windows 10");
