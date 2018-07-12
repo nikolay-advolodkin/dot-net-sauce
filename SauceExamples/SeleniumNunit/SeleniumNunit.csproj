@@ -68,6 +68,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\HomePage2.feature.cs">
+      <DependentUpon>HomePage2.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ParallelizedTests.cs" />
+    <Compile Include="ReusableTests.cs" />
     <Compile Include="Steps\BlogPageSteps.cs" />
     <Compile Include="Features\BlogPage.feature.cs">
       <AutoGen>True</AutoGen>
@@ -87,6 +94,10 @@
     <None Include="Features\BlogPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BlogPage.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\HomePage2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>HomePage2.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\HomePage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
