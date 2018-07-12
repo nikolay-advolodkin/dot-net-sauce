@@ -25,6 +25,8 @@ namespace Common
             var sauceUlr =
                 $"https://{sauceUser}:{sauceKey}@ondemand.saucelabs.com:443/wd/hub";
             var driver = new AndroidDriver<IWebElement>(new Uri(rdcUrl), capabilities);
+            var logEntries = driver.Manage().Logs.GetLog("driver");
+            Console.WriteLine(logEntries);
             driver.Quit();
         }
     }
