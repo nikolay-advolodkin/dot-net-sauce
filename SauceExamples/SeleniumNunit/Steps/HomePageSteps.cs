@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Common;
 using FluentAssertions;
 using OpenQA.Selenium;
@@ -17,6 +18,8 @@ namespace SeleniumNunit.Steps
         {
             Driver = new WebDriverFactory().CreateSauceDriver("SimpleBddTest");
             Driver.Navigate().GoToUrl("https://www.ultimateqa.com");
+            Thread.Sleep(20000);    //purely for demonstration purposes, this is a bad practice
+
         }
         
         [Then(@"the home page loads successfully")]
