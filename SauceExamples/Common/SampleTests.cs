@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Remote;
@@ -18,8 +18,6 @@ namespace Common
             capabilities.SetCapability("deviceOrientation", "portrait");
             capabilities.SetCapability("name", testName);
             capabilities.SetCapability("newCommandTimeout", 90);
-
-
             var rdcUrl = "https://us1.appium.testobject.com/wd/hub";
             //TODO should be interchangeable to run on Windows/Mac
             var sauceUser = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
@@ -30,6 +28,8 @@ namespace Common
             //var logEntries = driver.Manage().Logs.GetLog("driver");
             driver.Navigate().GoToUrl("https://www.ultimateqa.com");
             Console.WriteLine("");
+            var logEntries = driver.Manage().Logs.GetLog("driver");
+            Console.WriteLine(logEntries);
             driver.Quit();
         }
     }
