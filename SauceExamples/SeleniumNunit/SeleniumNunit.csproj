@@ -56,6 +56,8 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -91,6 +93,8 @@
     <Compile Include="ParallelizedTests.cs" />
     <Compile Include="ReusableTests.cs" />
     <Compile Include="Selenium4.cs" />
+    <Compile Include="ParallelizedTests.cs" />
+    <Compile Include="ReusableTests.cs" />
     <Compile Include="Steps\BlogPageSteps.cs" />
     <Compile Include="Features\BlogPage.feature.cs">
       <AutoGen>True</AutoGen>
