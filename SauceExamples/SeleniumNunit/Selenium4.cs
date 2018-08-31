@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -9,6 +10,7 @@ using OpenQA.Selenium.Remote;
 namespace SeleniumNunit
 {
     [TestFixture]
+    [Category("Selenium 4 tests")]
     public class Selenium4
     {
         IWebDriver Driver;
@@ -27,13 +29,12 @@ namespace SeleniumNunit
                 PlatformName = "Windows 10"
             };
 
-            var sauceOptions = new JObject
-            {
-                ["username"] = sauceUserName,
-                ["accessKey"] = sauceAccessKey,
-                ["name"] = TestContext.CurrentContext.Test.Name
-            };
-            options.AddAdditionalCapability("sauce:options", sauceOptions.ToString());
+            var sauceOptions = new Dictionary<string, object>();
+            sauceOptions["username"] = sauceUserName;
+            sauceOptions["accessKey"] = sauceAccessKey;
+            sauceOptions["name"] = TestContext.CurrentContext.Test.Name;
+
+            options.AddAdditionalCapability("sauce:options", sauceOptions);
 
             Driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));

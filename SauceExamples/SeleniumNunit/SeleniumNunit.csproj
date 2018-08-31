@@ -88,13 +88,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="GettingStartedTest.cs" />
+    <Compile Include="SimpleSauceTest.cs" />
+    <Compile Include="SauceConnectTests.cs" />
     <Compile Include="LoggingWithSauce.cs" />
-    <Compile Include="ParallelizedTests.cs" />
+    <Compile Include="ParallelTestsAtClassLevel.cs" />
     <Compile Include="ReusableTests.cs" />
     <Compile Include="Selenium4.cs" />
-    <Compile Include="ParallelizedTests.cs" />
-    <Compile Include="ReusableTests.cs" />
     <Compile Include="Steps\BlogPageSteps.cs" />
     <Compile Include="Features\BlogPage.feature.cs">
       <AutoGen>True</AutoGen>
