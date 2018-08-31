@@ -40,7 +40,6 @@ namespace SeleniumNunit
                 TimeSpan.FromSeconds(600));
             Driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
-
         }
 
         [TearDown]

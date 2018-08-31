@@ -8,16 +8,11 @@ using System;
 namespace SeleniumNunit
 {
     [TestFixture]
-    public class GettingStartedTest
+    public class SimpleSauceTest
     {
         IWebDriver Driver;
-        /// <summary>
-        /// This is a simple Sauce Labs test to help you get started.
-        /// This does NOT follow the recommeded best practices for test automation.
-        /// </summary>
-        ///
         [Test]
-        public void SampleSauceTest()
+        public void SauceConnectTest()
         {
             //TODO please supply your Sauce Labs user name in an environment variable
             var sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
@@ -30,6 +25,7 @@ namespace SeleniumNunit
             options.AddAdditionalCapability("username", sauceUserName, true);
             options.AddAdditionalCapability("accessKey", sauceAccessKey, true);
             options.AddAdditionalCapability("name", TestContext.CurrentContext.Test.Name, true);
+            options.AddAdditionalCapability("tunnelIdentifier", "nikolaysTunnel", true);
 
             Driver =  new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));
@@ -42,8 +38,7 @@ namespace SeleniumNunit
         {
             var passed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
             ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
-            if(Driver != null)
-                Driver.Quit();
+            Driver?.Quit();
         }
     }
 }
