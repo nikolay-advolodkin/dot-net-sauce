@@ -78,6 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BestPractices\BaseTest.cs" />
+    <Compile Include="BestPractices\UltimateQAHomePage.cs" />
     <Compile Include="Features\HomePage3.feature.cs">
       <DependentUpon>HomePage3.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -88,6 +90,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="BestPractices\ParallelTestsWithBestPractices.cs" />
     <Compile Include="SimpleSauceTest.cs" />
     <Compile Include="SauceConnectTests.cs" />
     <Compile Include="LoggingWithSauce.cs" />
