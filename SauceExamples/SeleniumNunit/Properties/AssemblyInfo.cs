@@ -14,6 +14,7 @@ using NUnit.Framework;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: Parallelizable(ParallelScope.Fixtures)]
+[assembly: LevelOfParallelism(10)]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from

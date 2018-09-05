@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace SeleniumNunit
 {
@@ -9,6 +8,7 @@ namespace SeleniumNunit
     class ParallelTestsAtClassLevel
     {
         [Test]
+        [Repeat(5)]
         public void Test1()
         {
             new ReusableTests().OpenBlogPage();
