@@ -37,17 +37,6 @@ namespace SeleniumNunit
             //How long can the browser wait before a new command?
             desiredCaps.SetCapability("idleTimeout", 1000);
             _driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), desiredCaps, TimeSpan.FromSeconds(600));
-
-            //ChromeOptions options = new ChromeOptions();
-            //options.AddAdditionalCapability(CapabilityType.Version, "latest", true);
-            //options.AddAdditionalCapability(CapabilityType.Platform, "Windows 10", true);
-            //options.AddAdditionalCapability("username", sauceUserName, true);
-            //options.AddAdditionalCapability("accessKey", sauceAccessKey, true);
-            //options.AddAdditionalCapability("name", TestContext.CurrentContext.Test.Name, true);
-            //desiredCaps.SetCapability("tunnelIdentifier", "NikolaysTunnel");
-            //_driver =  new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), options.ToCapabilities(),
-            //    TimeSpan.FromSeconds(600));
-
             _driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
         }

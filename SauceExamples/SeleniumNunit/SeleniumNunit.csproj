@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BestPractices\BaseTest.cs" />
+    <Compile Include="BestPractices\LocalWebApp\ParallelTestsOnLocalhostWithBestPractices.cs" />
     <Compile Include="BestPractices\UltimateQAHomePage.cs" />
     <Compile Include="Features\HomePage3.feature.cs">
       <DependentUpon>HomePage3.feature</DependentUpon>
