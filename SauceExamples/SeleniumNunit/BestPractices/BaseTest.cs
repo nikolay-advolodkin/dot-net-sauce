@@ -17,7 +17,7 @@ namespace SeleniumNunit.BestPractices
         [TearDown]
         public void CleanUpAfterEveryTestMethod()
         {
-            LogTestStatusWithJavascript();
+            new SauceJavaScriptExecutor(Driver).LogTestStatus(TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed);
             //LogTestStatusWithApi();
             Driver?.Quit();
         }
@@ -27,12 +27,7 @@ namespace SeleniumNunit.BestPractices
             new SauceREST(SauceUser.Name, SauceUser.AccessKey);
         }
 
-        private void LogTestStatusWithJavascript()
-        {
-            var passed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            ((IJavaScriptExecutor)Driver).
-                ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
-        }
+
 
         public IWebDriver Driver { get; set; }
     }
