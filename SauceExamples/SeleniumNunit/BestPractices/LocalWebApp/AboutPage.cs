@@ -27,7 +27,7 @@ namespace SeleniumNunit.BestPractices.LocalWebApp
 
         public AboutPage Open()
         {
-            _driver.Navigate().GoToUrl("https://localhost:44304/about");
+            _driver.Navigate().GoToUrl("http://localhost:8080/about");
             return this;
         }
     }

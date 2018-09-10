@@ -22,11 +22,12 @@ namespace Common
         {
             capabilities.SetCapability("username", SauceUser.Name);
             capabilities.SetCapability("accessKey", SauceUser.AccessKey);
+            
             //CUSTOM SAUCE CAPABILITIES
             //capabilities.SetCapability("extendedDebugging", true);
             capabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
             capabilities.SetCapability("captureHtml", true);
-            //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
+            capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             //How long is a test allowed to run?
             capabilities.SetCapability("maxDuration", 3600);
             //Selenium crash might hang a command, this is the max time allowed to wait for a Selenium command
