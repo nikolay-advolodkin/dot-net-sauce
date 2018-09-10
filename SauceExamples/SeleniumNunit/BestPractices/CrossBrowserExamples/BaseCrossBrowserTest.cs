@@ -11,6 +11,7 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         private string _browser;
         private string _browserVersion;
         private string _osPlatform;
+        private SauceJavaScriptExecutor _sauceReporter;
 
         public BaseCrossBrowserTest(string browser, string browserVersion, string osPlatform)
         {
@@ -22,6 +23,8 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         public void ExecuteBeforeEveryTestMethod()
         {
             Driver = new WebDriverFactory().CreateSauceDriver(_browser, _browserVersion, _osPlatform);
+            _sauceReporter = new SauceJavaScriptExecutor(Driver);
+            _sauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
         }
 
         public IWebDriver Driver { get; set; }
@@ -29,10 +32,9 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         [TearDown]
         public void CleanUpAfterEveryTestMethod()
         {
-            var sauceLogger = new SauceJavaScriptExecutor(Driver);
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            sauceLogger.LogTestStatus(isPassed);
-            sauceLogger.LogMessage(TestContext.CurrentContext.Result.Message);
+            _sauceReporter.LogTestStatus(isPassed);
+            _sauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
             Driver?.Quit();
         }
     }

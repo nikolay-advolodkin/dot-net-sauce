@@ -24,7 +24,7 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         [Test]
         public void SaucePageOpens()
         {
-            new SauceJavaScriptExecutor(Driver).SetTestName(TestContext.CurrentContext.Test.Name);
+
             new SauceLabsPage(Driver).Open().IsVisible.Should().BeTrue();
         }
     }

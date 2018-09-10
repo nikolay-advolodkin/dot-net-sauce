@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 
@@ -22,8 +23,8 @@ namespace Common
             capabilities.SetCapability("username", SauceUser.Name);
             capabilities.SetCapability("accessKey", SauceUser.AccessKey);
             //CUSTOM SAUCE CAPABILITIES
-            capabilities.SetCapability("extendedDebugging", true);
-            capabilities.SetCapability("build", "withDebugging2");
+            //capabilities.SetCapability("extendedDebugging", true);
+            capabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
             capabilities.SetCapability("captureHtml", true);
             //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             //How long is a test allowed to run?
@@ -50,22 +51,7 @@ namespace Common
 
         private IWebDriver SetSauceCapabilities(DesiredCapabilities capabilities)
         {
-            capabilities.SetCapability("username", SauceUser.Name);
-            capabilities.SetCapability("accessKey", SauceUser.AccessKey);
-            //CUSTOM SAUCE CAPABILITIES
-            //capabilities.SetCapability("extendedDebugging", true);
-            capabilities.SetCapability("build", "withDebugging2");
-            capabilities.SetCapability("captureHtml", true);
-            //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
-            //How long is a test allowed to run?
-            capabilities.SetCapability("maxDuration", 3600);
-            //Selenium crash might hang a command, this is the max time allowed to wait for a Selenium command
-            capabilities.SetCapability("commandTimeout", 600);
-            //How long can the browser wait before a new command?
-            capabilities.SetCapability("idleTimeout", 1000);
-            var driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
-                capabilities, TimeSpan.FromSeconds(600));
-            return driver;
+            return SetSauceCapabilities("", capabilities);
         }
     }
 }
