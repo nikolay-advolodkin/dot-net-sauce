@@ -10,17 +10,20 @@ namespace Common
         {
             var capabilities = new DesiredCapabilities();
             capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
+            //will run on the latest version of the browser
             capabilities.SetCapability(CapabilityType.Version, "latest");
             capabilities.SetCapability(CapabilityType.Platform, "Windows 10");
             capabilities.SetCapability("deviceName", "");
             capabilities.SetCapability("deviceOrientation", "");
-            capabilities.SetCapability("username", 
-                Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User));
-            capabilities.SetCapability("accessKey", 
-                Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User));
+            capabilities.SetCapability("username", SauceUser.Name);
+            capabilities.SetCapability("accessKey", SauceUser.AccessKey);
 
-            capabilities.SetCapability("extendedDebugging", true);
-            capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
+
+            //CUSTOM SAUCE CAPABILITIES
+            //capabilities.SetCapability("extendedDebugging", true);
+            capabilities.SetCapability("build", "withoutDebugging");
+            capabilities.SetCapability("captureHtml", true);
+            //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             //How long is a test allowed to run?
             capabilities.SetCapability("maxDuration", 3600);
             //Selenium crash might hang a command, this is the max time allowed to wait for a Selenium command

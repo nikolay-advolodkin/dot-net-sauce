@@ -5,6 +5,7 @@ namespace SeleniumNunit.BestPractices
 {
     [TestFixture]
     [Parallelizable]
+    [Category("Parallel selenium tests at the class level using best practices")]
     class ParallelTestsWithBestPractices : BaseTest
     {
         [Test]
@@ -15,6 +16,7 @@ namespace SeleniumNunit.BestPractices
     }
     [TestFixture]
     [Parallelizable]
+    [Category("Parallel selenium tests at the class level using best practices")]
     class ParallelTestsWithBestPractices2 : BaseTest
     {
         [Test]
@@ -25,6 +27,7 @@ namespace SeleniumNunit.BestPractices
     }
     [TestFixture]
     [Parallelizable]
+    [Category("Parallel selenium tests at the class level using best practices")]
     class ParallelTestsWithBestPractices3 : BaseTest
     {
         [Test]
@@ -35,6 +38,7 @@ namespace SeleniumNunit.BestPractices
     }
     [TestFixture]
     [Parallelizable]
+    [Category("Parallel selenium tests at the class level using best practices")]
     class ParallelTestsWithBestPractices4 : BaseTest
     {
         [Test]

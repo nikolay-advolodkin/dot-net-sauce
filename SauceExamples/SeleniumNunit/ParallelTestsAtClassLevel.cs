@@ -8,7 +8,6 @@ namespace SeleniumNunit
     class ParallelTestsAtClassLevel
     {
         [Test]
-        [Repeat(5)]
         public void Test1()
         {
             new ReusableTests().OpenBlogPage();
