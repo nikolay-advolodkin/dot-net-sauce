@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
-using System;
 
-namespace SeleniumNunit
+namespace SeleniumNunit.SimpleExamples
 {
     [TestFixture]
     public class SauceConnectTests
@@ -13,7 +12,7 @@ namespace SeleniumNunit
         IWebDriver _driver;
 
         [Test]
-        public void SampleSauceTestWithDesiredCaps()
+        public void SauceTestUsingTunnelIdentifier()
         {
             //TODO please supply your Sauce Labs user name in an environment variable
             var sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
@@ -28,7 +27,8 @@ namespace SeleniumNunit
             desiredCaps.SetCapability("username", sauceUserName);
             desiredCaps.SetCapability("accessKey", sauceAccessKey);
             desiredCaps.SetCapability("name", TestContext.CurrentContext.Test.Name);
-            desiredCaps.SetCapability("extendedDebugging", true);
+            
+            //This line of code lets Sauce Labs know which Sauce Connect tunnel to use for the test
             desiredCaps.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             //How long is a test allowed to run?
             desiredCaps.SetCapability("maxDuration", 3600);

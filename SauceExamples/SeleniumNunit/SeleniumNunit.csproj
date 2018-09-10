@@ -98,12 +98,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="BestPractices\ParallelTestsWithBestPractices.cs" />
-    <Compile Include="SimpleSauceTest.cs" />
-    <Compile Include="SauceConnectTests.cs" />
+    <Compile Include="SimpleExamples\SimpleSauceTest.cs" />
+    <Compile Include="SimpleExamples\SauceConnectTests.cs" />
     <Compile Include="LoggingWithSauce.cs" />
     <Compile Include="ParallelTestsAtClassLevel.cs" />
     <Compile Include="ReusableTests.cs" />
-    <Compile Include="Selenium4.cs" />
+    <Compile Include="SimpleExamples\Selenium4.cs" />
     <Compile Include="Steps\BlogPageSteps.cs" />
     <Compile Include="Features\BlogPage.feature.cs">
       <AutoGen>True</AutoGen>

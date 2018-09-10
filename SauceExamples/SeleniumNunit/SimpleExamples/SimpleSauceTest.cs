@@ -1,41 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 
-namespace SeleniumNunit
+namespace SeleniumNunit.SimpleExamples
 {
     [TestFixture]
-    [Category("Selenium 4 tests")]
-    public class Selenium4
+    public class SimpleSauceTest
     {
         IWebDriver Driver;
         [Test]
-        public void SimpleSelenium4Example()
+        public void SauceConnectTest()
         {
-
             //TODO please supply your Sauce Labs user name in an environment variable
             var sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
             //TODO please supply your own Sauce Labs access Key in an environment variable
             var sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
 
-            var options = new EdgeOptions()
-            {
-                BrowserVersion = "latest",
-                PlatformName = "Windows 10"
-            };
+            ChromeOptions options = new ChromeOptions();
+            options.AddAdditionalCapability(CapabilityType.Version, "latest", true);
+            options.AddAdditionalCapability(CapabilityType.Platform, "Windows 10", true);
+            options.AddAdditionalCapability("username", sauceUserName, true);
+            options.AddAdditionalCapability("accessKey", sauceAccessKey, true);
+            options.AddAdditionalCapability("name", TestContext.CurrentContext.Test.Name, true);
+            options.AddAdditionalCapability("tunnelIdentifier", "nikolaysTunnel", true);
 
-            var sauceOptions = new Dictionary<string, object>();
-            sauceOptions["username"] = sauceUserName;
-            sauceOptions["accessKey"] = sauceAccessKey;
-            sauceOptions["name"] = TestContext.CurrentContext.Test.Name;
-
-            options.AddAdditionalCapability("sauce:options", sauceOptions);
-
-            Driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), options.ToCapabilities(),
+            Driver =  new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));
             Driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
