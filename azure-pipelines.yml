@@ -25,7 +25,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
    
-- powershell: [Environment]::SetEnvironmentVariable("SAUCE_USERNAME", $(sauce.userName), "User")
+- powershell: [Environment]::SetEnvironmentVariable("SAUCE_USERNAME", $env:SAUCE_USERNAME, "User")
 - powershell: Write-Host $(sauce.userName)
 - powershell: Write-Host $BUILD_SOURCESDIRECTORY
 
