@@ -26,11 +26,11 @@ steps:
     configuration: '$(buildConfiguration)'
 
 #below line doesn't work
-#- powershell: [Environment]::SetEnvironmentVariable("SAUCE_USERNAME", $env:SAUCE_USERNAME, "User")
-- powershell: Write-Host $(sauce.userName)
-- powershell: Write-Host $env:SAUCE_USERNAME + "a"
-#This line doesn't work:
-#- powershell: Write-Host $BUILD_SOURCESDIRECTORY
+- powershell: ${{ [Environment]::SetEnvironmentVariable("SAUCE_USERNAME", $env:SAUCE_USERNAME, "User") }}
+
+#reading the variables below works
+#- powershell: Write-Host $(sauce.userName)
+#- powershell: Write-Host $env:SAUCE_USERNAME + "a"
   
   env:
     SAUCE_USERNAME: $(sauce.userName)
