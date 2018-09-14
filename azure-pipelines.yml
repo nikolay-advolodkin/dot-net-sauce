@@ -25,7 +25,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
    
-- powershell: Write-Host $env:AGENT_HOMEDIRECTORY
+- powershell: [Environment]::SetEnvironmentVariable("SAUCE_USERNAME", $(sauce.userName), "User")
+- powershell: Write-Host $(sauce.userName)
 - powershell: Write-Host $BUILD_SOURCESDIRECTORY
 
 - task: VSTest@2
