@@ -8,11 +8,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumOnDotNetFramework", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumNunit", "SeleniumNunit\SeleniumNunit.csproj", "{D0544BBB-85D0-4BD0-82E2-2AC1C6BBBCF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumNunitTests", "SeleniumNunit\SeleniumNunitTests.csproj", "{D0544BBB-85D0-4BD0-82E2-2AC1C6BBBCF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelTestMethods", "ParallelTestMethods\ParallelTestMethods.csproj", "{41B877D5-F778-46B1-AE39-2AE2C86D000D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{0744708F-410B-468C-9AE4-856AC986F091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{0744708F-410B-468C-9AE4-856AC986F091}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

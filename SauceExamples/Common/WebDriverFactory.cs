@@ -22,12 +22,18 @@ namespace Common
         {
             capabilities.SetCapability("username", SauceUser.Name);
             capabilities.SetCapability("accessKey", SauceUser.AccessKey);
-            
+
             //CUSTOM SAUCE CAPABILITIES
+            //These capabilities are excellent for debugging and make it much easier.
+            //However, if your tests are pretty stable and you want faster tests, disable all the debugging features
             //capabilities.SetCapability("extendedDebugging", true);
+            //capabilities.SetCapability("recordVideo", false);
+            //capabilities.SetCapability("videoUploadOnPass", false);
+            //capabilities.SetCapability("recordScreenshots", false);
+
             capabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
             capabilities.SetCapability("captureHtml", true);
-            capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
+            //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             //How long is a test allowed to run?
             capabilities.SetCapability("maxDuration", 3600);
             //Selenium crash might hang a command, this is the max time allowed to wait for a Selenium command
