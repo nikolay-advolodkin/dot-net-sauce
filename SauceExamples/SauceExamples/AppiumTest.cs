@@ -25,8 +25,6 @@ namespace AppiumMsTest
             var rdcUrl = "https://us1.appium.testobject.com/wd/hub";
             var sauceUser = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
             var sauceKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
-            var sauceUlr =
-                $"https://{sauceUser}:{sauceKey}@ondemand.saucelabs.com:443/wd/hub";
             var driver = new AndroidDriver<IWebElement>(new Uri(rdcUrl), capabilities);
             driver.Quit();
         }
