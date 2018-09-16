@@ -2,11 +2,11 @@
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using saucelabs.saucerest;
 
 namespace SeleniumNunit.BestPractices
 {
     [TestFixture()]
-    [Category("Parallel selenium tests at the class level using best practices")]
     public class BaseTest
     {
         [SetUp]
@@ -17,10 +17,18 @@ namespace SeleniumNunit.BestPractices
         [TearDown]
         public void CleanUpAfterEveryTestMethod()
         {
-            var passed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+            new SauceJavaScriptExecutor(Driver).LogTestStatus(TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed);
+            //LogTestStatusWithApi();
             Driver?.Quit();
         }
+
+        private void LogTestStatusWithApi()
+        {
+            new SauceREST(SauceUser.Name, SauceUser.AccessKey);
+        }
+
+
+
         public IWebDriver Driver { get; set; }
     }
 }

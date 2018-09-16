@@ -6,11 +6,12 @@ namespace SeleniumNunit.BestPractices
     internal class UltimateQAHomePage
     {
         private readonly IWebDriver _driver;
-        private IWebElement StartHereButton => _driver.FindElement(By.LinkText("Start learning now"));
+        private IWebElement StartHereButton => 
+            _driver.FindElement(By.LinkText("Start learning now"));
 
         public UltimateQAHomePage(IWebDriver driver)
         {
-            this._driver = driver;
+            _driver = driver;
         }
 
         public bool IsVisible
@@ -27,11 +28,6 @@ namespace SeleniumNunit.BestPractices
                 }
             }
         }
-
-        private IWebElement StartHere => 
-            _driver.FindElement(
-                By.XPath(
-                    "//*[@class='et_pb_more_button et_pb_button et_pb_button_one et_pb_custom_button_icon']"));
 
         internal UltimateQAHomePage Open()
         {

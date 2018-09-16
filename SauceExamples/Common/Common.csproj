@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="SampleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SauceJavaScriptExecutor.cs" />
+    <Compile Include="SauceUser.cs" />
     <Compile Include="WebDriverFactory.cs" />
   </ItemGroup>
   <ItemGroup>
