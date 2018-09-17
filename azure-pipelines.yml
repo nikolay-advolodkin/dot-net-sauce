@@ -1,0 +1,41 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core web applications targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/languages/dotnet-core
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+#below line doesn't work
+- powershell: ${{ [Environment]::SetEnvironmentVariable("SAUCE_USERNAME", $env:SAUCE_USERNAME, "User") }}
+
+#reading the variables below works
+#- powershell: Write-Host $(sauce.userName)
+#- powershell: Write-Host $env:SAUCE_USERNAME + "a"
+  
+  env:
+    SAUCE_USERNAME: $(sauce.userName)
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
