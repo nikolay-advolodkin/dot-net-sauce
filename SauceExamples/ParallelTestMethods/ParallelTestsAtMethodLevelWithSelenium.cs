@@ -30,7 +30,7 @@ namespace ParallelTestMethods
         [Parallelizable]
         public void SeleniumTest1()
         {
-            PerformTestSteps();
+            //PerformTestSteps();
         }
 
         private void PerformTestSteps()
@@ -44,21 +44,21 @@ namespace ParallelTestMethods
         [Parallelizable]
         public void SeleniumTest2()
         {
-            PerformTestSteps();
+            //PerformTestSteps();
 
         }
         [Test]
         [Parallelizable]
         public void SeleniumTest3()
         {
-            PerformTestSteps();
+            //PerformTestSteps();
 
         }
         [Test]
         [Parallelizable]
         public void SeleniumTest4()
         {
-            PerformTestSteps();
+            //PerformTestSteps();
         }
     }
 }
