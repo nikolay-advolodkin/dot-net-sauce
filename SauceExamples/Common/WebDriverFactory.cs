@@ -32,7 +32,6 @@ namespace Common
             //capabilities.SetCapability("recordScreenshots", false);
 
             capabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
-            capabilities.SetCapability("captureHtml", true);
             //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             //How long is a test allowed to run?
             capabilities.SetCapability("maxDuration", 3600);
