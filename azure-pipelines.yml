@@ -32,8 +32,22 @@ steps:
 #- powershell: Write-Host $(sauce.userName)
 #- powershell: Write-Host $env:SAUCE_USERNAME + "a"
   
-  env:
-    SAUCE_USERNAME: $(sauce.userName)
+# Create a secret variable
+- powershell: |
+Write-Host '##vso[task.setvariable variable=sauce.userName;issecret=true]abc'
+
+# Attempt to output the value in various ways
+- powershell: |
+# Using an input-macro:
+Write-Host "This works: $(sauce.userName)"
+
+# Using the env var directly:
+Write-Host "This does not work: $env:SAUCE_USERNAME"
+
+# Using the mapped env var:
+Write-Host "This works: $env:SAUCE_USERNAME"
+env:
+SAUCE_USERNAME: $(sauce.userName)
 
 - task: VSTest@2
   inputs:
