@@ -19,18 +19,6 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
     [TestFixture("Safari", "10.0", "OS X 10.11")]
     [TestFixture("MicrosoftEdge", "latest-2", "Windows 10")]
     [TestFixture("Firefox", "latest-2", "Windows 10")]
-    [TestFixture("Chrome", "latest", "Windows 10")]
-    [TestFixture("Safari", "latest", "macOS 10.13")]
-    [TestFixture("MicrosoftEdge", "latest", "Windows 10")]
-    [TestFixture("Firefox", "latest", "Windows 10")]
-    [TestFixture("Chrome", "latest-1", "Windows 10")]
-    [TestFixture("Safari", "latest-1", "macOS 10.12")]
-    [TestFixture("MicrosoftEdge", "latest-1", "Windows 10")]
-    [TestFixture("Firefox", "latest-1", "Windows 10")]
-    [TestFixture("Chrome", "latest-2", "Windows 10")]
-    [TestFixture("Safari", "10.0", "OS X 10.11")]
-    [TestFixture("MicrosoftEdge", "latest-2", "Windows 10")]
-    [TestFixture("Firefox", "latest-2", "Windows 10")]
     class CrossBrowserTests : BaseCrossBrowserTest
     {
         public CrossBrowserTests(string browser, string browserVersion, string osPlatform) :
@@ -40,7 +28,6 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         [Test]
         public void SaucePageOpens()
         {
-
             new SauceLabsPage(Driver).Open().IsVisible.Should().BeTrue();
         }
     }
@@ -48,18 +35,6 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
     [Category("Cross browser tests")]
     [Category("PBI123")]
     [Category("FeatureTest")]
-    [TestFixture("Chrome", "latest", "Windows 10")]
-    [TestFixture("Safari", "latest", "macOS 10.13")]
-    [TestFixture("MicrosoftEdge", "latest", "Windows 10")]
-    [TestFixture("Firefox", "latest", "Windows 10")]
-    [TestFixture("Chrome", "latest-1", "Windows 10")]
-    [TestFixture("Safari", "latest-1", "macOS 10.12")]
-    [TestFixture("MicrosoftEdge", "latest-1", "Windows 10")]
-    [TestFixture("Firefox", "latest-1", "Windows 10")]
-    [TestFixture("Chrome", "latest-2", "Windows 10")]
-    [TestFixture("Safari", "10.0", "OS X 10.11")]
-    [TestFixture("MicrosoftEdge", "latest-2", "Windows 10")]
-    [TestFixture("Firefox", "latest-2", "Windows 10")]
     [TestFixture("Chrome", "latest", "Windows 10")]
     [TestFixture("Safari", "latest", "macOS 10.13")]
     [TestFixture("MicrosoftEdge", "latest", "Windows 10")]
@@ -87,18 +62,6 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
     }
 
     [Category("Cross browser tests")]
-    [TestFixture("Chrome", "latest", "Windows 10")]
-    [TestFixture("Safari", "latest", "macOS 10.13")]
-    [TestFixture("MicrosoftEdge", "latest", "Windows 10")]
-    [TestFixture("Firefox", "latest", "Windows 10")]
-    [TestFixture("Chrome", "latest-1", "Windows 10")]
-    [TestFixture("Safari", "latest-1", "macOS 10.12")]
-    [TestFixture("MicrosoftEdge", "latest-1", "Windows 10")]
-    [TestFixture("Firefox", "latest-1", "Windows 10")]
-    [TestFixture("Chrome", "latest-2", "Windows 10")]
-    [TestFixture("Safari", "10.0", "OS X 10.11")]
-    [TestFixture("MicrosoftEdge", "latest-2", "Windows 10")]
-    [TestFixture("Firefox", "latest-2", "Windows 10")]
     [TestFixture("Chrome", "latest", "Windows 10")]
     [TestFixture("Safari", "latest", "macOS 10.13")]
     [TestFixture("MicrosoftEdge", "latest", "Windows 10")]

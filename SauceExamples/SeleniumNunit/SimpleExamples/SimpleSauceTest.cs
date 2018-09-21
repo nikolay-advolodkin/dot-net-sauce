@@ -25,7 +25,6 @@ namespace SeleniumNunit.SimpleExamples
             options.AddAdditionalCapability("username", sauceUserName, true);
             options.AddAdditionalCapability("accessKey", sauceAccessKey, true);
             options.AddAdditionalCapability("name", TestContext.CurrentContext.Test.Name, true);
-            options.AddAdditionalCapability("tunnelIdentifier", "nikolaysTunnel", true);
 
             Driver =  new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));
