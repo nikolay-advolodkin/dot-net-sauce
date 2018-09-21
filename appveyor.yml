@@ -1,6 +1,6 @@
 version: 1.0.{build}
 before_build:
-  - nuget restore .\SauceExamples\SeleniumNunit
+  - nuget restore .\SauceExamples\SeleniumNunit -PackagesDirectory
   - dotnet restore
 build:
   verbosity: minimal
