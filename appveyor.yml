@@ -1,5 +1,6 @@
 version: 1.0.{build}
 before_build:
   - nuget restore -SolutionDirectory .\SauceExamples\
+  - dotnet restore
 build:
   verbosity: minimal
