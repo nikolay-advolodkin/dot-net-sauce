@@ -1,5 +1,5 @@
 version: 1.0.{build}
 before_build:
-  - nuget restore .\SauceExamples\SeleniumNunit\
+  - nuget restore -SolutionDirectory .\SauceExamples\
 build:
   verbosity: minimal
