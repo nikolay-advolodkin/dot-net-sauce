@@ -33,7 +33,7 @@ steps:
   inputs:
     testAssemblyVer2: |
      **\$(BuildConfiguration)\*test*.dll
-     **\$(BuildConfiguration)\SeleniumNunitTests.dll
+     **\$(BuildConfiguration)\*.dll
      !**\obj\**
 
 #    testFiltercriteria: '/TestCaseFilter:"Category=acceptance"'
@@ -42,7 +42,3 @@ steps:
 
     configuration: '$(BuildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
