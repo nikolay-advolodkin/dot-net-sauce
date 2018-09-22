@@ -1,4 +1,9 @@
-﻿[Environment]::SetEnvironmentVariable("SAUCE_USERNAME", "$(sauce.userName)", "User")
-Write-Host "sauce.userName=>$(sauce.userName)"
-[Environment]::SetEnvironmentVariable("SAUCE_ACCESS_KEY", "$(sauce.accessKey)", "User")
-Write-Host "sauce.accessKey=>$(sauce.accessKey)"
+Param(
+[string]$sauceUserName,
+[string]$sauceAccessKey
+)
+Write-Host "sauce.userName that was passed in from Azure DevOps=>$sauceUserName"
+Write-Host "sauce.accessKey that was passed in from Azure DevOps=>$sauceAccessKey"
+
+[Environment]::SetEnvironmentVariable("SAUCE_USERNAME", "$sauceUserName", "User")
+[Environment]::SetEnvironmentVariable("SAUCE_ACCESS_KEY", "$sauceAccessKey)", "User")
