@@ -8,6 +8,7 @@ namespace AppiumOnDotNetFramework
     public class Rdc
     {
         [TestMethod]
+        [TestCategory("AppiumTest")]
         public void SimpleTest()
         {
             new SampleTests().TestNativeAndroidApp(MethodBase.GetCurrentMethod().Name);
