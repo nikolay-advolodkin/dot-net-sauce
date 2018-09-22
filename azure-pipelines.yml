@@ -36,7 +36,7 @@ steps:
      **\$(BuildConfiguration)\*.dll
      !**\obj\**
 
-    testFiltercriteria: '/TestCaseFilter:"Category=AcceptanceTests"'
+#    testFiltercriteria: '/TestCaseFilter:"Category=AcceptanceTests"'
 
     platform: '$(BuildPlatform)'
 
