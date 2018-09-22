@@ -33,6 +33,7 @@ steps:
   inputs:
     testAssemblyVer2: |
      **\$(BuildConfiguration)\*test*.dll
+     **\$(BuildConfiguration)\SeleniumNunitTests.dll
      !**\obj\**
 
 #    testFiltercriteria: '/TestCaseFilter:"Category=acceptance"'
