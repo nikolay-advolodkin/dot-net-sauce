@@ -25,7 +25,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- powershell: ./setEnvironmentVariables.ps1 
+- powershell: ./setEnvironmentVariables.ps1 $env:SAUCE_USERNAME $env:SAUCE_ACCESSKEY
   displayName: 'PowerShell Script'
 
 #below line doesn't work
