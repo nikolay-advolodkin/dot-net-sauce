@@ -33,8 +33,8 @@ steps:
 #- powershell: Write-Host $env:SAUCE_USERNAME + "a"
   
 # Create a secret variable
-- powershell: |
-Write-Host '##vso[task.setvariable variable=sauce.userName;issecret=true]abc'
+#- powershell: |
+#Write-Host '##vso[task.setvariable variable=sauce.userName;issecret=true]abc'
 
 # Attempt to output the value in various ways
 - powershell: |
