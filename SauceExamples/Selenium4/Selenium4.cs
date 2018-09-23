@@ -9,6 +9,7 @@ using OpenQA.Selenium.Remote;
 namespace Selenium4
 {
     [TestFixture]
+    [Category("SimpleTest")]
     public class Selenium4
     {
         IWebDriver Driver;
