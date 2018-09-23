@@ -34,6 +34,7 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         {
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
             _sauceReporter.LogTestStatus(isPassed);
+            _sauceReporter.LogMessage("Test finished execution");
             _sauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
             Driver?.Quit();
         }

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SeleniumNunit.Features
+namespace SeleniumNunit.SpecFlow.Features
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,21 @@ namespace SeleniumNunit.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.3.2.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("HomePage3")]
-    public partial class HomePage3Feature
+    [NUnit.Framework.DescriptionAttribute("BlogPage")]
+    public partial class BlogPageFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "HomePage3.feature"
+#line 1 "BlogPage.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "HomePage3", "\tThe UltimateQA home page is the main page of the website.\r\n\tIt should work accor" +
-                    "dingly.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BlogPage", "\tThe BlogPath of Ultimate QA should be visible\r\n\tAnd easy to browse for the user." +
+                    "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,16 +65,18 @@ namespace SeleniumNunit.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Open home page")]
-        public virtual void OpenHomePage()
+        [NUnit.Framework.DescriptionAttribute("Open Blog page")]
+        [NUnit.Framework.CategoryAttribute("mytag")]
+        public virtual void OpenBlogPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Open home page", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Open Blog page", new string[] {
+                        "mytag"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.When("the user opens Ultimate QA home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the user opens Ultimate QA blog page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("the home page loads successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the blog page loads successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -82,5 +84,3 @@ this.ScenarioSetup(scenarioInfo);
 }
 #pragma warning restore
 #endregion
-
-
