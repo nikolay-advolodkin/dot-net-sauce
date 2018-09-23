@@ -84,6 +84,7 @@
     <Compile Include="BestPractices\BaseTest.cs" />
     <Compile Include="BestPractices\CrossBrowserExamples\BaseCrossBrowserTest.cs" />
     <Compile Include="BestPractices\CrossBrowserExamples\CrossBrowserTests.cs" />
+    <Compile Include="BestPractices\CrossBrowserExamples\SauceLabsPage.cs" />
     <Compile Include="BestPractices\LocalWebApp\AboutPage.cs" />
     <Compile Include="BestPractices\LocalWebApp\ParallelTestsOnLocalhostWithBestPractices.cs" />
     <Compile Include="BestPractices\UltimateQAHomePage.cs" />

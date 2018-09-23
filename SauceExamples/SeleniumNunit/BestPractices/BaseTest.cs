@@ -18,17 +18,8 @@ namespace SeleniumNunit.BestPractices
         public void CleanUpAfterEveryTestMethod()
         {
             new SauceJavaScriptExecutor(Driver).LogTestStatus(TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed);
-            //LogTestStatusWithApi();
             Driver?.Quit();
         }
-
-        private void LogTestStatusWithApi()
-        {
-            new SauceREST(SauceUser.Name, SauceUser.AccessKey);
-        }
-
-
-
         public IWebDriver Driver { get; set; }
     }
 }
