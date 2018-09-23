@@ -8,6 +8,7 @@ using OpenQA.Selenium.Remote;
 namespace SeleniumNunit.SimpleExamples
 {
     [TestFixture]
+    [Category("SimpleTest")]
     public class SimpleSauceTest
     {
         IWebDriver Driver;
