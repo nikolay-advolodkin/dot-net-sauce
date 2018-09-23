@@ -28,9 +28,10 @@ namespace ParallelTestMethods
         //This will default to the number of processors that a laptop has and will run that many threads at the same time
         [Test]
         [Parallelizable]
+        [Ignore("don't need")]
         public void SeleniumTest1()
         {
-            //PerformTestSteps();
+            PerformTestSteps();
         }
 
         private void PerformTestSteps()
@@ -42,23 +43,28 @@ namespace ParallelTestMethods
 
         [Test]
         [Parallelizable]
+        [Ignore("don't need")]
         public void SeleniumTest2()
         {
-            //PerformTestSteps();
+            PerformTestSteps();
 
         }
         [Test]
         [Parallelizable]
+        [Ignore("don't need")]
+
         public void SeleniumTest3()
         {
-            //PerformTestSteps();
+            PerformTestSteps();
 
         }
         [Test]
         [Parallelizable]
+        [Ignore("don't need")]
+
         public void SeleniumTest4()
         {
-            //PerformTestSteps();
+            PerformTestSteps();
         }
     }
 }

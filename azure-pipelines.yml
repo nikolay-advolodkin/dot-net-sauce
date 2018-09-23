@@ -25,31 +25,20 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-#below line doesn't work
-#- powershell: ${{ [Environment]::SetEnvironmentVariable("SAUCE_USERNAME", $env:SAUCE_USERNAME, "User") }}
-
-#reading the variables below works
-#- powershell: Write-Host $(sauce.userName)
-#- powershell: Write-Host $env:SAUCE_USERNAME + "a"
-  
-# Create a secret variable
-- powershell: |
-Write-Host '##vso[task.setvariable variable=sauce.userName;issecret=true]abc'
-
-# Attempt to output the value in various ways
-- powershell: |
-# Using an input-macro:
-Write-Host "This works: $(sauce.userName)"
-
-# Using the env var directly:
-Write-Host "This does not work: $env:SAUCE_USERNAME"
-
-# Using the mapped env var:
-Write-Host "This works: $env:SAUCE_USERNAME"
-env:
-SAUCE_USERNAME: $(sauce.userName)
+- powershell: ./setEnvironmentVariables.ps1 $env:SAUCE_USERNAME $env:SAUCE_ACCESSKEY
+  displayName: 'PowerShell Script'
 
 - task: VSTest@2
+  displayName: 'Run UI tests'
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    testAssemblyVer2: |
+     **\$(BuildConfiguration)\*test*.dll
+     **\$(BuildConfiguration)\*.dll
+     !**\obj\**
+
+#    testFiltercriteria: '/TestCaseFilter:"Category=AcceptanceTests"'
+
+    platform: '$(BuildPlatform)'
+
+    configuration: '$(BuildConfiguration)'
+
