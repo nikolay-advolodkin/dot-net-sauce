@@ -30,9 +30,11 @@ namespace Common
             //capabilities.SetCapability("recordVideo", false);
             //capabilities.SetCapability("videoUploadOnPass", false);
             //capabilities.SetCapability("recordScreenshots", false);
-
             capabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
+            
             //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
+
+            //SAUCE TIMEOUT CAPABILITIES
             //How long is a test allowed to run?
             capabilities.SetCapability("maxDuration", 3600);
             //Selenium crash might hang a command, this is the max time allowed to wait for a Selenium command
@@ -41,7 +43,7 @@ namespace Common
             capabilities.SetCapability("idleTimeout", 1000);
             var driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
                 capabilities, TimeSpan.FromSeconds(600));
-            ((IJavaScriptExecutor)driver).ExecuteScript($"sauce:job-name={testCaseName}");
+            new SauceJavaScriptExecutor(driver).SetTestName(testCaseName);
             return driver;
         }
 

@@ -60,7 +60,6 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             new SauceLabsPage(Driver).Open().IsVisible.Should().BeTrue();
         }
     }
-
     [Category("Cross browser tests")]
     [TestFixture("Chrome", "latest", "Windows 10")]
     [TestFixture("Safari", "latest", "macOS 10.13")]

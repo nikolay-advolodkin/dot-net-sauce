@@ -88,16 +88,6 @@
     <Compile Include="BestPractices\LocalWebApp\AboutPage.cs" />
     <Compile Include="BestPractices\LocalWebApp\ParallelTestsOnLocalhostWithBestPractices.cs" />
     <Compile Include="BestPractices\UltimateQAHomePage.cs" />
-    <Compile Include="Features\HomePage3.feature.cs">
-      <DependentUpon>HomePage3.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Features\HomePage2.feature.cs">
-      <DependentUpon>HomePage2.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="BestPractices\ParallelTestsWithBestPractices.cs" />
     <Compile Include="SimpleExamples\SimpleSauceTest.cs" />
     <Compile Include="SimpleExamples\SauceConnectTests.cs" />
@@ -105,37 +95,29 @@
     <Compile Include="ParallelTestsAtClassLevel.cs" />
     <Compile Include="ReusableTests.cs" />
     <Compile Include="SimpleExamples\Selenium4.cs" />
-    <Compile Include="Steps\BlogPageSteps.cs" />
-    <Compile Include="Features\BlogPage.feature.cs">
+    <Compile Include="SpecFlow\Steps\BlogPageSteps.cs" />
+    <Compile Include="SpecFlow\Features\BlogPage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BlogPage.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\HomePage.feature.cs">
+    <Compile Include="SpecFlow\Features\HomePage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HomePage.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\HomePageSteps.cs" />
+    <Compile Include="SpecFlow\Steps\HomePageSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\BlogPage.feature">
+    <None Include="SpecFlow\Features\BlogPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BlogPage.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\HomePage3.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>HomePage3.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\HomePage2.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>HomePage2.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\HomePage.feature">
+    <None Include="SpecFlow\Features\HomePage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>HomePage.feature.cs</LastGenOutput>
     </None>
