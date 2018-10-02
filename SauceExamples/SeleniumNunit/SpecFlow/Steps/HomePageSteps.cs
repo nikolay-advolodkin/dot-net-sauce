@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace SeleniumNunit.Steps
+namespace SeleniumNunit.SpecFlow.Steps
 {
     [Binding]
     public class HomePageSteps

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Globalization;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
@@ -7,21 +9,30 @@ namespace Common
 {
     public class WebDriverFactory
     {
+        private static SauceLabsCapabilities _sauceCustomCapabilities;
+        private static DesiredCapabilities _desiredCapabilities;
+
+        public WebDriverFactory()
+        {
+            _sauceCustomCapabilities = new SauceLabsCapabilities();
+            _desiredCapabilities = new DesiredCapabilities();
+        }
+
         public IWebDriver CreateSauceDriver(string testCaseName)
         {
-            var capabilities = new DesiredCapabilities();
-            capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
+            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, "chrome");
             //will run on the latest browserVersion of the browser
-            capabilities.SetCapability(CapabilityType.Version, "latest");
-            capabilities.SetCapability(CapabilityType.Platform, "Windows 10");
+            _desiredCapabilities.SetCapability(CapabilityType.Version, "latest");
+            _desiredCapabilities.SetCapability(CapabilityType.Platform, "Windows 10");
 
-            return SetSauceCapabilities(testCaseName, capabilities);
+            return SetSauceCapabilities(testCaseName, _desiredCapabilities);
         }
 
         private static IWebDriver SetSauceCapabilities(string testCaseName, DesiredCapabilities capabilities)
         {
-            capabilities.SetCapability("username", SauceUser.Name);
-            capabilities.SetCapability("accessKey", SauceUser.AccessKey);
+            _desiredCapabilities = capabilities;
+            _desiredCapabilities.SetCapability("username", SauceUser.Name);
+            _desiredCapabilities.SetCapability("accessKey", SauceUser.AccessKey);
 
             //CUSTOM SAUCE CAPABILITIES
             //These capabilities are excellent for debugging and make it much easier.
@@ -30,36 +41,76 @@ namespace Common
             //capabilities.SetCapability("recordVideo", false);
             //capabilities.SetCapability("videoUploadOnPass", false);
             //capabilities.SetCapability("recordScreenshots", false);
-            capabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
-            
+            _desiredCapabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
+            var tags = new List<string> {"withDebugging", "automationGroupName1", "automationGroupName2"};
+            _desiredCapabilities.SetCapability("tags", tags);
             //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
 
             //SAUCE TIMEOUT CAPABILITIES
             //How long is a test allowed to run?
-            capabilities.SetCapability("maxDuration", 3600);
+            _desiredCapabilities.SetCapability("maxDuration", 3600);
             //Selenium crash might hang a command, this is the max time allowed to wait for a Selenium command
-            capabilities.SetCapability("commandTimeout", 600);
+            _desiredCapabilities.SetCapability("commandTimeout", 600);
             //How long can the browser wait before a new command?
-            capabilities.SetCapability("idleTimeout", 1000);
+            _desiredCapabilities.SetCapability("idleTimeout", 1000);
             var driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
-                capabilities, TimeSpan.FromSeconds(600));
+                _desiredCapabilities, TimeSpan.FromSeconds(600));
             new SauceJavaScriptExecutor(driver).SetTestName(testCaseName);
             return driver;
         }
-
-        public IWebDriver CreateSauceDriver(string browser, string browserVersion, string osPlatform)
+        public IWebDriver CreateSauceDriver(string browser, string browserVersion, string osPlatform, bool isDebuggingOn)
         {
-            var capabilities = new DesiredCapabilities();
-            capabilities.SetCapability(CapabilityType.BrowserName, browser);
-            capabilities.SetCapability(CapabilityType.Version, browserVersion);
-            capabilities.SetCapability(CapabilityType.Platform, osPlatform);
+            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
+            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
+            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
 
-            return SetSauceCapabilities(capabilities);
+            _sauceCustomCapabilities = new SauceLabsCapabilities {IsDebuggingEnabled = isDebuggingOn};
+            return SetSauceCapabilities(_desiredCapabilities);
         }
 
         private IWebDriver SetSauceCapabilities(DesiredCapabilities capabilities)
         {
-            return SetSauceCapabilities("", capabilities);
+            _desiredCapabilities = capabilities;
+            _desiredCapabilities.SetCapability("username", SauceUser.Name);
+            _desiredCapabilities.SetCapability("accessKey", SauceUser.AccessKey);
+
+            //CUSTOM SAUCE CAPABILITIES
+            _desiredCapabilities  = SetDebuggingCapabilities(_desiredCapabilities);
+            _desiredCapabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
+            _desiredCapabilities.SetCapability("tags", _sauceCustomCapabilities.Tags);
+            //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
+
+            //SAUCE TIMEOUT CAPABILITIES
+            //How long is a test allowed to run?
+            _desiredCapabilities.SetCapability("maxDuration", 3600);
+            //Selenium crash might hang a command, this is the max time allowed to wait for a Selenium command
+            _desiredCapabilities.SetCapability("commandTimeout", 600);
+            //How long can the browser wait before a new command?
+            _desiredCapabilities.SetCapability("idleTimeout", 1000);
+            var driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
+                _desiredCapabilities, TimeSpan.FromSeconds(600));
+            return driver;
+        }
+
+        private static DesiredCapabilities SetDebuggingCapabilities(DesiredCapabilities capabilities)
+        {
+            //These capabilities are excellent for debugging and make it much easier.
+            //However, if your tests are pretty stable and you want faster tests, disable all the debugging features
+            if (_sauceCustomCapabilities.IsDebuggingEnabled)
+            {
+                capabilities.SetCapability("extendedDebugging", true);
+                capabilities.SetCapability("recordVideo", true);
+                capabilities.SetCapability("videoUploadOnPass", true);
+                capabilities.SetCapability("recordScreenshots", true);
+                _sauceCustomCapabilities.Tags.Add("withDebuggingEnabled");
+                return capabilities;
+            }
+
+            capabilities.SetCapability("extendedDebugging", false);
+            capabilities.SetCapability("recordVideo", false);
+            capabilities.SetCapability("videoUploadOnPass", false);
+            capabilities.SetCapability("recordScreenshots", false);
+            return capabilities;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         private string _browserVersion;
         private string _osPlatform;
         private SauceJavaScriptExecutor _sauceReporter;
+        private bool _isDebuggingOn;
 
         public BaseCrossBrowserTest(string browser, string browserVersion, string osPlatform)
         {
@@ -19,10 +20,19 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             _browserVersion = browserVersion;
             _osPlatform = osPlatform;
         }
+
+        protected BaseCrossBrowserTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn)
+        {
+            _browser = browser;
+            _browserVersion = browserVersion;
+            _osPlatform = osPlatform;
+            _isDebuggingOn = isDebuggingOn;
+        }
+
         [SetUp]
         public void ExecuteBeforeEveryTestMethod()
         {
-            Driver = new WebDriverFactory().CreateSauceDriver(_browser, _browserVersion, _osPlatform);
+            Driver = new WebDriverFactory().CreateSauceDriver(_browser, _browserVersion, _osPlatform, _isDebuggingOn);
             _sauceReporter = new SauceJavaScriptExecutor(Driver);
             _sauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
         }
