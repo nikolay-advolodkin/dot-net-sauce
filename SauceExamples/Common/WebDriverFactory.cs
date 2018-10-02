@@ -9,8 +9,8 @@ namespace Common
 {
     public class WebDriverFactory
     {
-        private static SauceLabsCapabilities _sauceCustomCapabilities;
-        private static DesiredCapabilities _desiredCapabilities;
+        private SauceLabsCapabilities _sauceCustomCapabilities;
+        private DesiredCapabilities _desiredCapabilities;
 
         public WebDriverFactory()
         {
@@ -28,7 +28,7 @@ namespace Common
             return SetSauceCapabilities(testCaseName, _desiredCapabilities);
         }
 
-        private static IWebDriver SetSauceCapabilities(string testCaseName, DesiredCapabilities capabilities)
+        private IWebDriver SetSauceCapabilities(string testCaseName, DesiredCapabilities capabilities)
         {
             _desiredCapabilities = capabilities;
             _desiredCapabilities.SetCapability("username", SauceUser.Name);
@@ -92,7 +92,7 @@ namespace Common
             return driver;
         }
 
-        private static DesiredCapabilities SetDebuggingCapabilities(DesiredCapabilities capabilities)
+        private DesiredCapabilities SetDebuggingCapabilities(DesiredCapabilities capabilities)
         {
             //These capabilities are excellent for debugging and make it much easier.
             //However, if your tests are pretty stable and you want faster tests, disable all the debugging features
