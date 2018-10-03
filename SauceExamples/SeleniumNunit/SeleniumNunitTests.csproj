@@ -89,6 +89,7 @@
     <Compile Include="BestPractices\LocalWebApp\ParallelTestsOnLocalhostWithBestPractices.cs" />
     <Compile Include="BestPractices\UltimateQAHomePage.cs" />
     <Compile Include="BestPractices\ParallelTestsWithBestPractices.cs" />
+    <Compile Include="SaucePerformance\WithDebugging.cs" />
     <Compile Include="SimpleExamples\SimpleSauceTest.cs" />
     <Compile Include="SimpleExamples\SauceConnectTests.cs" />
     <Compile Include="LoggingWithSauce.cs" />
