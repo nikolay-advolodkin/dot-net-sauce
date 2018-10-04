@@ -1,4 +1,4 @@
-using Common;
+﻿using Common;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
