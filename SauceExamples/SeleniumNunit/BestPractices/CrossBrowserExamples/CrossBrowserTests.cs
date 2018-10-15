@@ -82,7 +82,6 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         [Test]
         public void SaucePageOpens()
         {
-
             new SauceLabsPage(Driver).Open().IsVisible.Should().BeTrue();
         }
     }
