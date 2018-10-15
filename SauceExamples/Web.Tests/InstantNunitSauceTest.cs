@@ -4,6 +4,8 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace Web.Tests
 {
@@ -39,11 +41,29 @@ namespace Web.Tests
             capabilities.SetCapability("username", sauceUserName);
             capabilities.SetCapability("accessKey", sauceAccessKey);
 
-            //here we create a new Remote driver that will allow your test to send
+            //create a new Remote driver that will allow your test to send
             //commands to the Sauce Labs grid so that Sauce can execute your tests
             _driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
                 capabilities, TimeSpan.FromSeconds(600));
-            _driver.Navigate().GoToUrl("https://www.saucelabs.com");
+            //navigate to the url of the Sauce Labs Sample app
+            _driver.Navigate().GoToUrl("https://dhaarfdu80ouz.cloudfront.net/index.html");
+
+            //Create an instance of a Selenium explicit wait so that we can dynamically wait for an element
+            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            //wait for the user name field to be visible and store that element into a variable
+            var userNameField = wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("[type='text']")));
+            //type the user name string into the user name field
+            userNameField.SendKeys("standard_user");
+            //type the password into the password field
+            _driver.FindElement(By.CssSelector("[type='password']")).SendKeys("secret_sauce");
+            //hit Login button
+            _driver.FindElement(By.CssSelector("[type='submit']")).Click();
+
+            //Synchronize on the next page and make sure it loads
+            var inventoryPageLocator =
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("inventory_container")));
+            //Assert that the inventory page displayed appropriately
+            Assert.IsTrue(inventoryPageLocator.Displayed);
         }
 
         /*
