@@ -76,8 +76,8 @@ namespace Common
 
             //CUSTOM SAUCE CAPABILITIES
             _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
-            //_desiredCapabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
-            _desiredCapabilities.SetCapability("build", $"SauceExamples-{_sauceCustomCapabilities.Tags[0]}");
+            _desiredCapabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
+            //_desiredCapabilities.SetCapability("build", $"SauceExamples-{_sauceCustomCapabilities.Tags[0]}");
             _desiredCapabilities.SetCapability("tags", _sauceCustomCapabilities.Tags);
             //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
 

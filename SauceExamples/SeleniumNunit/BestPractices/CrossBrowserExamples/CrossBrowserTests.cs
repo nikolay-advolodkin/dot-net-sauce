@@ -1,5 +1,7 @@
+using System;
 using FluentAssertions;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 
 namespace SeleniumNunit.BestPractices.CrossBrowserExamples
 {
@@ -29,6 +31,12 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         public void SaucePageOpens()
         {
             new SauceLabsPage(Driver).Open().IsVisible.Should().BeTrue();
+
+            var desiredCapabilities = new DesiredCapabilities();
+            desiredCapabilities.SetCapability("username", 
+                Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User));
+            desiredCapabilities.SetCapability("accessKey", 
+                Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User));
         }
     }
     //[Parallelizable]
@@ -82,7 +90,6 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         [Test]
         public void SaucePageOpens()
         {
-
             new SauceLabsPage(Driver).Open().IsVisible.Should().BeTrue();
         }
     }
