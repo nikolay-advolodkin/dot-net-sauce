@@ -1,5 +1,4 @@
 ﻿using System;
-using Common;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -10,7 +9,7 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 namespace Web.Tests
 {
     [TestFixture]
-    [Category("InstantNunitSauceTest"), Category("NUnit"), Category("Instant")]
+    [Category("InstantSauceTest"), Category("NUnit"), Category("Instant")]
     public class InstantNunitSauceTest
     {
         private IWebDriver _driver;
