@@ -19,16 +19,20 @@ namespace Web.Tests
         {
             //TODO You can find your Sauce Labs username and access key in the
             // User Profile > User Settings section of your Sauce Labs dashboard
-            //const string sauceUserName = "YOUR SAUCE USER NAME HERE";
-            //const string sauceAccessKey = "YOUR SAUCE API KEY HERE";
-            var sauceUserName = SauceUser.Name;
-            var sauceAccessKey = SauceUser.AccessKey;
+            var sauceUserName = 
+                Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
+            var sauceAccessKey =
+                Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
 
             /*
              * In this section, we will configure our test to run on some specific
              * browser/os combination in Sauce Labs
              */
             var capabilities = new DesiredCapabilities();
+            //set your user name and access key to run tests in Sauce
+            capabilities.SetCapability("username", sauceUserName);
+            //set your sauce labs access key
+            capabilities.SetCapability("accessKey", sauceAccessKey);
             //set browser to Safari
             capabilities.SetCapability("browserName", "Safari");
             //set operating system to macOS version 10.13
@@ -37,16 +41,13 @@ namespace Web.Tests
             capabilities.SetCapability("version", "11.1");
             //set your test case name so that it shows up in Sauce Labs
             capabilities.SetCapability("name", TestContext.CurrentContext.Test.Name);
-            //set your user name and access key to run tests in Sauce
-            capabilities.SetCapability("username", sauceUserName);
-            capabilities.SetCapability("accessKey", sauceAccessKey);
 
             //create a new Remote driver that will allow your test to send
             //commands to the Sauce Labs grid so that Sauce can execute your tests
             _driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
                 capabilities, TimeSpan.FromSeconds(600));
             //navigate to the url of the Sauce Labs Sample app
-            _driver.Navigate().GoToUrl("https://dhaarfdu80ouz.cloudfront.net/index.html");
+            _driver.Navigate().GoToUrl("https://www.saucedemo.com");
 
             //Create an instance of a Selenium explicit wait so that we can dynamically wait for an element
             var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
