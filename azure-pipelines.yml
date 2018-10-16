@@ -1,44 +1,111 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core web applications targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/vsts/pipelines/languages/dotnet-core
+resources:
+- repo: self
+queue:
+  name: Hosted VS2017
+  demands: 
+  - msbuild
+  - visualstudio
+  - vstest
 
-pool:
-  vmImage: 'VS2017-Win2016'
-
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-
+#Your build pipeline references an undefined variable named ‘Parameters.solution’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘Parameters.solution’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references the ‘BuildPlatform’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildPlatform’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildPlatform’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references an undefined variable named ‘Parameters.ArtifactName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 steps:
 - task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 4.4.1'
+  inputs:
+    versionSpec: 4.4.1
+
 
 - task: NuGetCommand@2
+  displayName: 'NuGet restore'
   inputs:
-    restoreSolution: '$(solution)'
+    restoreSolution: '$(Parameters.solution)'
+
 
 - task: VSBuild@1
+  displayName: 'Build solution'
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    solution: '$(Parameters.solution)'
 
-- powershell: ./setEnvironmentVariables.ps1 $env:SAUCE_USERNAME $env:SAUCE_ACCESSKEY
-  displayName: 'PowerShell Script'
-
-- task: VSTest@2
-  displayName: 'Run UI tests'
-  inputs:
-    testAssemblyVer2: |
-     **\$(BuildConfiguration)\*test*.dll
-     **\$(BuildConfiguration)\*.dll
-     !**\obj\**
-
-#    testFiltercriteria: '/TestCaseFilter:"Category=AcceptanceTests"'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactstagingdirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
 
     platform: '$(BuildPlatform)'
 
     configuration: '$(BuildConfiguration)'
+
+
+- powershell: ./ setEnvironmentVariables.ps1 
+  arguments: '$env:SAUCE_USERNAME $env:SAUCE_ACCESSKEY'
+
+  displayName: 'PowerShell Script'
+
+- powershell: |
+   Write-Host "Build.SourcesDirectory=>$env:BUILD_SOURCESDIRECTORY"
+   Write-Host "System.DefaultWorkingDirectory=>$env:SYSTEM_DEFAULTWORKINGDIRECTORY" 
+  displayName: 'Display variables'
+
+- task: VSTest@2
+  displayName: 'Simple Selenium Test'
+  inputs:
+    testAssemblyVer2: '**\$(BuildConfiguration)\**\Web.Tests.dll'
+
+    uiTests: true
+
+
+- task: VSTest@2
+  displayName: 'UI Tests'
+  inputs:
+    testAssemblyVer2: '**\$(BuildConfiguration)\**\SeleniumNunit.dll'
+
+    testFiltercriteria: '/TestCaseFilter:"Category=Cross browser tests"'
+
+    uiTests: true
+
+    runInParallel: false
+
+    platform: '$(BuildPlatform)'
+
+    configuration: '$(BuildConfiguration)'
+
+
+- task: VSTest@2
+  displayName: 'Unit Tests'
+  inputs:
+    testAssemblyVer2: '**\$(BuildConfiguration)\**\Unit.Tests.dll'
+
+    uiTests: true
+
+    runInParallel: false
+
+    platform: '$(BuildPlatform)'
+
+    configuration: '$(BuildConfiguration)'
+
+
+- task: PublishSymbols@2
+  displayName: 'Publish symbols path'
+  inputs:
+    SearchPattern: '**\bin\**\*.pdb'
+
+    PublishSymbols: false
+
+  continueOnError: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+
+    ArtifactName: '$(Parameters.ArtifactName)'
+
 
