@@ -16,20 +16,22 @@ namespace Web.Tests
         [Test]
         public void ShouldOpenOnSafari()
         {
-            //TODO You can find your Sauce Labs username and access key in the
-            // User Profile > User Settings section of your Sauce Labs dashboard
-            
             /*Easy Option For Sauce Authentication:
-            *You can hardcode the values like this example below, but the best practice is to use environment variables
-            *var sauceUserName = "YOUR USER NAME";
-            *var sauceAccessKey = "YOUR ACCESS KEY";
-            */
-            
-            /* here we are reading environment variables from your local machine and storing these
-            * values in the variables below. Doing this is a best practice.
-            * Not sure how to use env variables, follow this - 
-            * https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Environment+Variables+for+Authentication+Credentials
-            */
+             *
+             * You can hardcode the values like this example code below:
+             * var sauceUserName = "YOUR USER NAME";
+             * var sauceAccessKey = "YOUR ACCESS KEY";
+             *
+             * The recommended approach is using Env Variables like below.
+             */
+
+            /* Best Practices Method For Reading Sauce Authentication:
+             *
+             * Reading environment variables from your local machine and storing these
+             * values in the variables below. Doing this is a best practice.
+             * Not sure how to use env variables, follow this - 
+             * https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Environment+Variables+for+Authentication+Credentials
+             */
             var sauceUserName = 
                 Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
             var sauceAccessKey =
@@ -55,7 +57,7 @@ namespace Web.Tests
 
             //create a new Remote driver that will allow your test to send
             //commands to the Sauce Labs grid so that Sauce can execute your tests
-            _driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
+            _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"),
                 capabilities, TimeSpan.FromSeconds(600));
             //navigate to the url of the Sauce Labs Sample app
             _driver.Navigate().GoToUrl("https://www.saucedemo.com");

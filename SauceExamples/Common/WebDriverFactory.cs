@@ -11,6 +11,7 @@ namespace Common
     {
         private SauceLabsCapabilities _sauceCustomCapabilities;
         private DesiredCapabilities _desiredCapabilities;
+        private string SauceHubUrl => new SauceLabsData().SauceHubUrl;
 
         public WebDriverFactory()
         {
@@ -53,7 +54,7 @@ namespace Common
             _desiredCapabilities.SetCapability("commandTimeout", 600);
             //How long can the browser wait before a new command?
             _desiredCapabilities.SetCapability("idleTimeout", 1000);
-            var driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
+            var driver = new RemoteWebDriver(new Uri(SauceHubUrl),
                 _desiredCapabilities, TimeSpan.FromSeconds(600));
             new SauceJavaScriptExecutor(driver).SetTestName(testCaseName);
             return driver;
@@ -83,7 +84,7 @@ namespace Common
 
             //SAUCE TIMEOUT CAPABILITIES
             SetSauceTimeouts();
-            var driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),
+            var driver = new RemoteWebDriver(new Uri(SauceHubUrl),
                 _desiredCapabilities, TimeSpan.FromSeconds(600));
             return driver;
         }
