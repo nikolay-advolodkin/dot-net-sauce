@@ -54,20 +54,11 @@ namespace Common
             _desiredCapabilities.SetCapability("commandTimeout", 600);
             //How long can the browser wait before a new command?
             _desiredCapabilities.SetCapability("idleTimeout", 1000);
-            var driver = new RemoteWebDriver(new Uri(SauceHubUrl),
-                _desiredCapabilities, TimeSpan.FromSeconds(600));
+            var driver = GetSauceRemoteDriver();
             new SauceJavaScriptExecutor(driver).SetTestName(testCaseName);
             return driver;
         }
-        public IWebDriver CreateSauceDriver(string browser, string browserVersion, string osPlatform, bool isDebuggingOn)
-        {
-            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
-            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
-            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
 
-            _sauceCustomCapabilities = new SauceLabsCapabilities {IsDebuggingEnabled = isDebuggingOn};
-            return SetSauceCapabilities(_desiredCapabilities);
-        }
 
         private IWebDriver SetSauceCapabilities(DesiredCapabilities capabilities)
         {
@@ -84,9 +75,14 @@ namespace Common
 
             //SAUCE TIMEOUT CAPABILITIES
             SetSauceTimeouts();
-            var driver = new RemoteWebDriver(new Uri(SauceHubUrl),
-                _desiredCapabilities, TimeSpan.FromSeconds(600));
+            var driver = GetSauceRemoteDriver();
             return driver;
+        }
+
+        private RemoteWebDriver GetSauceRemoteDriver()
+        {
+            return new RemoteWebDriver(new Uri(SauceHubUrl),
+                _desiredCapabilities, TimeSpan.FromSeconds(600));
         }
 
         private void SetSauceTimeouts()
@@ -119,6 +115,24 @@ namespace Common
             capabilities.SetCapability("recordScreenshots", false);
             _sauceCustomCapabilities.Tags.Add("withDebuggingDisabled");
             return capabilities;
+        }
+        public IWebDriver CreateSauceDriver(string browser, string browserVersion, string osPlatform, bool isDebuggingOn)
+        {
+            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
+            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
+            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
+
+            _sauceCustomCapabilities = new SauceLabsCapabilities { IsDebuggingEnabled = isDebuggingOn };
+            return SetSauceCapabilities(_desiredCapabilities);
+        }
+        public RemoteWebDriver CreateSauceDriver(string browser, string browserVersion, string osPlatform, SauceLabsCapabilities sauceConfiguration)
+        {
+            _desiredCapabilities.SetCapability("username", SauceUser.Name);
+            _desiredCapabilities.SetCapability("accessKey", SauceUser.AccessKey);
+            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
+            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
+            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
+            return GetSauceRemoteDriver();
         }
     }
 }

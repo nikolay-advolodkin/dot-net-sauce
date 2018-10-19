@@ -19,5 +19,7 @@ namespace Common
             get => _tags;
             set => _tags = value;
         }
+
+        public string BuildName { get; set; }
     }
 }
