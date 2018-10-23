@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -16,24 +16,23 @@ namespace Web.Tests
         [Test]
         public void ShouldOpenOnSafari()
         {
-            //TODO You can find your Sauce Labs username and access key in the
-            // User Profile > User Settings section of your Sauce Labs dashboard
-            
             /*Easy Option For Sauce Authentication:
             *You can hardcode the values like this example below, but the best practice is to use environment variables
-            *var sauceUserName = "YOUR USER NAME";
-            *var sauceAccessKey = "YOUR ACCESS KEY";
             */
+            var sauceUserName = "YOUR USER NAME";
+            var sauceAccessKey = "YOUR ACCESS KEY";
+
             
             /* here we are reading environment variables from your local machine and storing these
             * values in the variables below. Doing this is a best practice.
+            *  var sauceUserName = 
+            *    Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
+            *  var sauceAccessKey =
+            *    Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
             * Not sure how to use env variables, follow this - 
             * https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Environment+Variables+for+Authentication+Credentials
             */
-            var sauceUserName = 
-                Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
-            var sauceAccessKey =
-                Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
+
 
             /*
              * In this section, we will configure our test to run on some specific
