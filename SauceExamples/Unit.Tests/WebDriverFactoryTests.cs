@@ -18,7 +18,6 @@ namespace Unit.Tests
             var testBuildName = "testBuildName";
             var factory = new WebDriverFactory();
             var sauceCapabilities = new SauceLabsCapabilities();
-            sauceCapabilities.BuildName = testBuildName;
             RemoteWebDriver driver = GetSauceDriver(factory, sauceCapabilities);
             driver.Should().NotBeNull();
         }
@@ -34,7 +33,6 @@ namespace Unit.Tests
             var testBuildName = "testBuildName";
             var factory = new WebDriverFactory();
             var sauceCapabilities = new SauceLabsCapabilities();
-            sauceCapabilities.BuildName = testBuildName;
             var driver = GetSauceDriver(factory, sauceCapabilities);
             driver.Capabilities.HasCapability("build").Should().BeTrue();
             driver.Capabilities.GetCapability("build").Should().BeEquivalentTo(testBuildName);

@@ -31,15 +31,13 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             _osPlatform = osPlatform;
             _isDebuggingOn = isDebuggingOn;
         }
-        [OneTimeSetUp]
-        public void ExecuteBeforeTestClass()
-        {
-            _sauceBuildName = $"CrossBrowserTests-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}";
-        }
+
         [SetUp]
         public void ExecuteBeforeEveryTestMethod()
         {
-            Driver = new WebDriverFactory().CreateSauceDriver(_browser, _browserVersion, _osPlatform, _isDebuggingOn);
+            var sauceConfig = new SauceLabsCapabilities();
+            sauceConfig.IsDebuggingEnabled = true;
+            Driver = new WebDriverFactory().CreateSauceDriver(_browser, _browserVersion, _osPlatform, sauceConfig);
             _sauceReporter = new SauceJavaScriptExecutor(Driver);
             _sauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
         }

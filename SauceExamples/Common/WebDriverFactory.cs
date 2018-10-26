@@ -132,6 +132,8 @@ namespace Common
             _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
             _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
             _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
+            _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
+            _desiredCapabilities.SetCapability("build", SauceLabsCapabilities.BuildName);
             return GetSauceRemoteDriver();
         }
     }

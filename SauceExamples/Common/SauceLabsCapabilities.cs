@@ -20,6 +20,6 @@ namespace Common
             set => _tags = value;
         }
 
-        public string BuildName { get; set; }
+        public static string BuildName { get; set; }
     }
 }
