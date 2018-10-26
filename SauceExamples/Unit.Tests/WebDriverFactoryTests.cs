@@ -12,13 +12,14 @@ namespace Unit.Tests
         private string _testBrowser = "chrome";
         private string _testBrowserVersion = "latest";
         private string _testOS = "Windows 10";
+        private string _testBuildName = "testBuildName";
+
         [TestMethod]
         public void ShouldReturnRemoteWebDriver()
         {
-            var testBuildName = "testBuildName";
             var factory = new WebDriverFactory();
             var sauceCapabilities = new SauceLabsCapabilities();
-            RemoteWebDriver driver = GetSauceDriver(factory, sauceCapabilities);
+            var driver = GetSauceDriver(factory, sauceCapabilities);
             driver.Should().NotBeNull();
         }
 
@@ -30,12 +31,12 @@ namespace Unit.Tests
         [TestMethod]
         public void ShouldReturnRemoteWebDriverWithBuildName()
         {
-            var testBuildName = "testBuildName";
             var factory = new WebDriverFactory();
             var sauceCapabilities = new SauceLabsCapabilities();
+            SauceLabsCapabilities.BuildName = _testBuildName;
             var driver = GetSauceDriver(factory, sauceCapabilities);
             driver.Capabilities.HasCapability("build").Should().BeTrue();
-            driver.Capabilities.GetCapability("build").Should().BeEquivalentTo(testBuildName);
+            driver.Capabilities.GetCapability("build").Should().BeEquivalentTo(_testBuildName);
         }
 
         [TestMethod]
