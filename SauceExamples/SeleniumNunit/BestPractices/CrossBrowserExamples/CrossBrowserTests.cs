@@ -21,16 +21,6 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
     //[TestFixture("Safari", "10.0", "OS X 10.11")]
     //[TestFixture("MicrosoftEdge", "latest-2", "Windows 10")]
     //[TestFixture("Firefox", "latest-2", "Windows 10")]
-
-    //[TestFixture("Chrome", "latest", "macOS 10.13")]
-    //[TestFixture("Safari", "latest", "macOS 10.13")]
-    //[TestFixture("Firefox", "latest", "macOS 10.13")]
-    //[TestFixture("Chrome", "latest-1", "macOS 10.13")]
-    //[TestFixture("Safari", "latest-1", "macOS 10.12")]
-    //[TestFixture("Firefox", "latest-1", "macOS 10.13")]
-    //[TestFixture("Chrome", "latest-2", "macOS 10.13")]
-    //[TestFixture("Safari", "10.0", "OS X 10.11")]
-    //[TestFixture("Firefox", "latest-2", "macOS 10.13")]
     [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
     class CrossBrowserTests : BaseCrossBrowserTest
     {
