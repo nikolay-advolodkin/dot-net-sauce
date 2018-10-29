@@ -47,12 +47,15 @@ steps:
 - powershell: ./ setEnvironmentVariables.ps1 
   arguments: '$env:SAUCE_USERNAME $env:SAUCE_ACCESSKEY'
 
-  displayName: 'PowerShell Script'
+  displayName: 'Set Sauce Labs Env Variables'
 
 - powershell: |
    Write-Host "Build.SourcesDirectory=>$env:BUILD_SOURCESDIRECTORY"
    Write-Host "System.DefaultWorkingDirectory=>$env:SYSTEM_DEFAULTWORKINGDIRECTORY" 
-  displayName: 'Display variables'
+  displayName: 'Display posh variables'
+  
+- script: dotnet test '**\$(BuildConfiguration)\**\SeleniumNunit.dll' --logger trx
+  displayName: 'Run UI tests with a filter'
 
 - task: VSTest@2
   displayName: 'Simple Selenium Test'
