@@ -10,7 +10,7 @@ namespace Web.Tests
 {
     [TestFixture]
     [Category("InstantSauceTest"), Category("NUnit"), Category("Instant")]
-    public class InstantNunitSauceTest
+    public class InstantSauceTest
     {
         private IWebDriver _driver;
         [Test]
