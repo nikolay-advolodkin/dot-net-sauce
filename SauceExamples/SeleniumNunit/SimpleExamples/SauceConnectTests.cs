@@ -1,4 +1,5 @@
 ﻿using System;
+using Common;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -36,7 +37,7 @@ namespace SeleniumNunit.SimpleExamples
             desiredCaps.SetCapability("commandTimeout", 600);
             //How long can the browser wait before a new command?
             desiredCaps.SetCapability("idleTimeout", 1000);
-            _driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), desiredCaps, TimeSpan.FromSeconds(600));
+            _driver = new RemoteWebDriver(new Uri(new SauceLabsData().SauceHubUrl), desiredCaps, TimeSpan.FromSeconds(600));
             _driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
         }

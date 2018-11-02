@@ -11,14 +11,16 @@ namespace SeleniumNunit.SimpleExamples
     [Category("SimpleTest")]
     public class SimpleSauceTest
     {
-        IWebDriver Driver;
+        IWebDriver _driver;
         [Test]
         public void SauceConnectTest()
         {
             //TODO please supply your Sauce Labs user name in an environment variable
-            var sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
+            var sauceUserName = Environment.GetEnvironmentVariable(
+                "SAUCE_USERNAME", EnvironmentVariableTarget.User);
             //TODO please supply your own Sauce Labs access Key in an environment variable
-            var sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
+            var sauceAccessKey = Environment.GetEnvironmentVariable(
+                "SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
 
             ChromeOptions options = new ChromeOptions();
             options.AddAdditionalCapability(CapabilityType.Version, "latest", true);
@@ -27,9 +29,9 @@ namespace SeleniumNunit.SimpleExamples
             options.AddAdditionalCapability("accessKey", sauceAccessKey, true);
             options.AddAdditionalCapability("name", TestContext.CurrentContext.Test.Name, true);
 
-            Driver =  new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), options.ToCapabilities(),
+            _driver =  new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));
-            Driver.Navigate().GoToUrl("https://www.google.com");
+            _driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
         }
 
@@ -37,8 +39,8 @@ namespace SeleniumNunit.SimpleExamples
         public void CleanUpAfterEveryTestMethod()
         {
             var passed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
-            Driver?.Quit();
+            ((IJavaScriptExecutor)_driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+            _driver?.Quit();
         }
     }
 }
