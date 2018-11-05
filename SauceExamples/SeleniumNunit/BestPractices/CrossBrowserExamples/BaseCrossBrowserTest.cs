@@ -1,4 +1,6 @@
-﻿using Common;
+﻿using System;
+using System.Globalization;
+using Common;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -13,6 +15,7 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         private string _osPlatform;
         private SauceJavaScriptExecutor _sauceReporter;
         private bool _isDebuggingOn;
+        private static string _sauceBuildName;
 
         public BaseCrossBrowserTest(string browser, string browserVersion, string osPlatform)
         {
@@ -32,7 +35,9 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         [SetUp]
         public void ExecuteBeforeEveryTestMethod()
         {
-            Driver = new WebDriverFactory().CreateSauceDriver(_browser, _browserVersion, _osPlatform, _isDebuggingOn);
+            var sauceConfig = new SauceLabsCapabilities();
+            sauceConfig.IsDebuggingEnabled = true;
+            Driver = new WebDriverFactory().CreateSauceDriver(_browser, _browserVersion, _osPlatform, sauceConfig);
             _sauceReporter = new SauceJavaScriptExecutor(Driver);
             _sauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
         }

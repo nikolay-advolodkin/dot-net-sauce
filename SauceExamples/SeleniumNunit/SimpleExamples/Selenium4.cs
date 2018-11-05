@@ -35,7 +35,7 @@ namespace SeleniumNunit.SimpleExamples
 
             options.AddAdditionalCapability("sauce:options", sauceOptions);
 
-            Driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), options.ToCapabilities(),
+            Driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));
             Driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
