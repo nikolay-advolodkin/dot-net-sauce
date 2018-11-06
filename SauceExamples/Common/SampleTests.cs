@@ -14,8 +14,8 @@ namespace Common
             capabilities.SetCapability("platformVersion", "7.1.1");
             //TODO first you must upload an app to Test Object so that you get your app key
             capabilities.SetCapability("testobject_api_key", "0D6C044F19D0442BA1E11C3FF087F6A6");
-            capabilities.SetCapability("deviceName", "Google Pixel");
-            capabilities.SetCapability("deviceOrientation", "portrait");
+            //capabilities.SetCapability("deviceName", "");
+            //capabilities.SetCapability("deviceOrientation", "");
             capabilities.SetCapability("name", testName);
             capabilities.SetCapability("newCommandTimeout", 90);
 
