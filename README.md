@@ -9,7 +9,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
 
 ## Setting Up a Selenium Project in Visual Studio 
 
-<<p>This procedure shows you how to set up a Selenium project in Visual Studio (VS).  Once you set up a project, you'll run a test script written in C#, which we provide, on Sauce Labs. In the future, you can use this script as a template for your own automated tests.</p>
+<p>This procedure shows you how to set up a Selenium project in Visual Studio (VS).  Once you set up a project, you'll run a test script written in C#, which we provide, on Sauce Labs. In the future, you can use this script as a template for your own automated tests.</p>
 <p>
   <ac:structured-macro ac:macro-id="f2192343-d438-4546-b9cc-b28263b49ba1" ac:name="toc" ac:schema-version="1"/>
 </p>
