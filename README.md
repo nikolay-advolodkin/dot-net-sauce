@@ -111,7 +111,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
 </p>
 <ol>
   <li style="list-style-type: decimal;">
-    <p>Download the test script from <ac:inline-comment-marker ac:ref="0996b794-fe62-4a7f-8aaa-8afb9938a8ad">[need direct link to simple demo script].</ac:inline-comment-marker>
+    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/InstantSauceTest.cs">https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/InstantSauceTest.cs</a>
     </p>
   </li>
   <li style="list-style-type: decimal;">
