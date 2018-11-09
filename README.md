@@ -9,12 +9,12 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
 
 ## Setting Up a Selenium Project in Visual Studio 
 
-<p>This procedure shows you how to set up a Selenium project in Visual Studio (VS).  Once you set up a project, you'll run a test script written in C#, which we provide, on Sauce Labs. In the future, you can use this script as a template for your own automated tests.</p>
+<<p>This procedure shows you how to set up a Selenium project in Visual Studio (VS).  Once you set up a project, you'll run a test script written in C#, which we provide, on Sauce Labs. In the future, you can use this script as a template for your own automated tests.</p>
 <p>
   <ac:structured-macro ac:macro-id="f2192343-d438-4546-b9cc-b28263b49ba1" ac:name="toc" ac:schema-version="1"/>
 </p>
-<h2>Installing Visual Studio Community Edition
-</h2>
+<h3>Installing Visual Studio Community Edition
+</h3>
 <p>In this step you download and install Visual Studio Community, the free version of Visual Studio. If you already have it installed, go to the next step, <strong>Creating a Test Project</strong>.
 </p>
 <ol>
@@ -51,8 +51,8 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     </p>
   </li>
 </ol>
-<h2>Creating a Test Project
-</h2>
+<h3>Creating a Test Project
+</h3>
 <p>In this step you create a basic test project.
 </p>
 <ol>
@@ -65,8 +65,8 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     </p>
   </li>
 </ol>
-<h2>Adding the NuGet Packages
-</h2>
+<h3>Adding the NuGet Packages
+</h3>
 <p>In this step, you add the NuGet packages you need to run your automated web tests on Sauce Labs.
 </p>
 <ol>
@@ -105,13 +105,13 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     <p>Close the NuGet window.</p>
   </li>
 </ol>
-<h2>Adding the Test Script
-</h2>
+<h3>Adding the Test Script
+</h3>
 <p>In this step, you download and run a C# test script from Sauce Labs. The script opens up the Sauce Labs sample web application (a simulated online store) and simulates a login with a sample user. 
 </p>
 <ol>
   <li style="list-style-type: decimal;">
-    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/InstantSauceTest.cs">https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/InstantSauceTest.cs</a>
+    <p>Download the test script from <ac:inline-comment-marker ac:ref="0996b794-fe62-4a7f-8aaa-8afb9938a8ad">[need direct link to simple demo script].</ac:inline-comment-marker>
     </p>
   </li>
   <li style="list-style-type: decimal;">
@@ -121,8 +121,8 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     <p>Save the file.</p>
   </li>
 </ol>
-<h2>Getting Your Access Code on Sauce Labs
-</h2>
+<h3>Getting Your Access Code on Sauce Labs
+</h3>
 <p>Before you can run your test on Sauce Labs, you need your user name and access key.
 </p>
 <ol>
@@ -144,8 +144,8 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     <p>Click the <strong>Copy </strong>icon.</p>
   </li>
 </ol>
-<h2>Updating Your Test Script
-</h2>
+<h3>Updating Your Test Script
+</h3>
 <p>You need to enter your Sauce Labs user name and access key into the test script. In VS, scroll down until you see:
 </p>
 <ac:structured-macro ac:macro-id="6a12c42a-7f9c-480d-b46e-58984b99fa95" ac:name="code" ac:schema-version="1">
@@ -154,8 +154,8 @@ var sauceAccessKey = "YOUR ACCESS KEY";]]></ac:plain-text-body>
 </ac:structured-macro>
 <p>Enter your own credentials inside the quotes. You should be able to paste in your access key.
 </p>
-<h2>Running Your Script on Sauce Labs
-</h2>
+<h3>Running Your Script on Sauce Labs
+</h3>
 <p>You’re now ready to run your test on Sauce Labs!
 </p>
 <ol>
@@ -185,4 +185,3 @@ var sauceAccessKey = "YOUR ACCESS KEY";]]></ac:plain-text-body>
   </li>
 </ol>
 <p>Congratulations, you've just run your first test on Sauce Labs! Now try using <a href="https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/">our Platform Configurator</a> to change the desired capabilities of your test to run it on different combinations of platform, operating system, and browser. </p>
-
