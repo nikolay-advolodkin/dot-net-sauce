@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InstantSauceTest3.cs" />
     <Compile Include="InstantSauceTest2.cs" />
     <Compile Include="InstantSauceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
