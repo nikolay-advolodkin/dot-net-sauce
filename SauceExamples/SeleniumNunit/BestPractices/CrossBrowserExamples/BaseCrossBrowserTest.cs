@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using Common;
+﻿using Common;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
