@@ -45,6 +45,7 @@ namespace Web.Tests.BestPractices
         {
             ((IJavaScriptExecutor)_driver).ExecuteScript("window.sessionStorage.setItem('session-username', 'standard-user')");
             ((IJavaScriptExecutor)_driver).ExecuteScript("window.sessionStorage.setItem('cart-contents', '[4,1]')");
+            _driver.Navigate().Refresh();
             return this;
         }
     }

@@ -9,11 +9,12 @@ namespace Web.Tests.BestPractices
 {
     [TestFixture]
     [Category("InstantSauceTest"), Category("NUnit"), Category("Instant")]
+    [Parallelizable]
     public class ShoppingCartFeature
     {
         private IWebDriver _driver;
         [Test]
-        public void ShouldOpenOnSafari()
+        public void ShouldBeAbleToCheckOutWithItems()
         {
             _driver = new WebDriverFactory().CreateSauceDriver(MethodBase.GetCurrentMethod().Name);
             var checkoutPage = new CheckoutPage(_driver);
