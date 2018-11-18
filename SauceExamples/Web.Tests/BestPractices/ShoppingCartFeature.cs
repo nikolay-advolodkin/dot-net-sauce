@@ -19,11 +19,11 @@ namespace Web.Tests.BestPractices
             _driver = new WebDriverFactory().CreateSauceDriver(MethodBase.GetCurrentMethod().Name);
             var checkoutPage = new CheckoutPage(_driver);
             checkoutPage.GoTo();
-            checkoutPage.SetCartState()
+            checkoutPage.Cart.SetCartState()
                 .HasItems.Should().BeTrue("The cart should have some items in it since they were injected.");
             checkoutPage
                 .Finish()
-                .IsSuccessful.Should().BeTrue("The checkout process should redirect us to the success page.");
+                .IsCheckedOut.Should().BeTrue("The checkout process should redirect us to the success page.");
         }
 
         [TearDown]
