@@ -10,11 +10,19 @@ namespace Common
     {
         private SauceLabsCapabilities _sauceCustomCapabilities;
         private DesiredCapabilities _desiredCapabilities;
+        private SauceLabsCapabilities sauceConfig;
+
         private string SauceHubUrl => new SauceLabsData().SauceHubUrl;
 
         public WebDriverFactory()
         {
             _sauceCustomCapabilities = new SauceLabsCapabilities();
+            _desiredCapabilities = new DesiredCapabilities();
+        }
+
+        public WebDriverFactory(SauceLabsCapabilities sauceConfig)
+        {
+            _sauceCustomCapabilities = sauceConfig;
             _desiredCapabilities = new DesiredCapabilities();
         }
 
@@ -58,6 +66,10 @@ namespace Common
             return driver;
         }
 
+        public IWebDriver CreateSauceDriver(string browser, string browserVersion, string osPlatform)
+        {
+            return CreateSauceDriver(browser, browserVersion, osPlatform, _sauceCustomCapabilities);
+        }
 
         private IWebDriver SetSauceCapabilities(DesiredCapabilities capabilities)
         {
@@ -133,6 +145,7 @@ namespace Common
             _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
             _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
             _desiredCapabilities.SetCapability("build", SauceLabsCapabilities.BuildName);
+            _desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             return GetSauceRemoteDriver();
         }
     }

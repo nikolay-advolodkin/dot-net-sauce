@@ -1,63 +1,49 @@
+using System;
 using FluentAssertions;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;
 
 namespace SeleniumNunit.SaucePerformance
 {
     //Use platform configurator - https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
-    //[Parallelizable]
     [Category("Cross browser performance tests")]
     [Category("withDebugging")]
-    [TestFixture("Chrome", "latest", "Windows 10")]
-    [TestFixture("Safari", "latest", "macOS 10.13")]
-    [TestFixture("MicrosoftEdge", "latest", "Windows 10")]
-    [TestFixture("Firefox", "latest", "Windows 10")]
-    [TestFixture("Chrome", "latest-1", "Windows 10")]
-    [TestFixture("Safari", "latest-1", "macOS 10.12")]
-    [TestFixture("MicrosoftEdge", "latest-1", "Windows 10")]
-    [TestFixture("Firefox", "latest-1", "Windows 10")]
-    [TestFixture("Chrome", "latest-2", "Windows 10")]
-    [TestFixture("Safari", "10.0", "OS X 10.11")]
-    [TestFixture("MicrosoftEdge", "latest-2", "Windows 10")]
-    [TestFixture("Firefox", "latest-2", "Windows 10")]
-    class WithDebugging : BaseCrossBrowserTest
+    [TestFixtureSource(typeof(CrossBrowserData), nameof(CrossBrowserData.LatestChrome))]
+    class NoSauceConnect : BaseCrossBrowserTest
     {
-        public WithDebugging(string browser, string browserVersion, string osPlatform) :
-            base(browser, browserVersion, osPlatform, true)
+        public NoSauceConnect(string browser, string browserVersion, string osPlatform) :
+            base(browser, browserVersion, osPlatform, true, "1-chrome-tunnel")
         {
         }
         [Test]
-        [Repeat(10)]
-        public void SaucePageOpens()
+        [Repeat(30)]
+        public void SauceDemoOneFindElement()
         {
-            new SauceLabsPage(Driver).Open().IsVisible.Should().BeTrue();
-        }
-    }
-    [Category("Cross browser performance tests")]
-    [Category("withoutDebugging")]
-    [TestFixture("Chrome", "latest", "Windows 10")]
-    [TestFixture("Safari", "latest", "macOS 10.13")]
-    [TestFixture("MicrosoftEdge", "latest", "Windows 10")]
-    [TestFixture("Firefox", "latest", "Windows 10")]
-    [TestFixture("Chrome", "latest-1", "Windows 10")]
-    [TestFixture("Safari", "latest-1", "macOS 10.12")]
-    [TestFixture("MicrosoftEdge", "latest-1", "Windows 10")]
-    [TestFixture("Firefox", "latest-1", "Windows 10")]
-    [TestFixture("Chrome", "latest-2", "Windows 10")]
-    [TestFixture("Safari", "10.0", "OS X 10.11")]
-    [TestFixture("MicrosoftEdge", "latest-2", "Windows 10")]
-    [TestFixture("Firefox", "latest-2", "Windows 10")]
-    class WithoutDebugging : BaseCrossBrowserTest
-    {
-        public WithoutDebugging(string browser, string browserVersion, string osPlatform) :
-            base(browser, browserVersion, osPlatform, false)
-        {
+            CallFindElement(1);
         }
         [Test]
         [Repeat(10)]
-        public void SaucePageOpens()
+        public void SauceDemo100FindElements()
         {
-            new SauceLabsPage(Driver).Open().IsVisible.Should().BeTrue();
+            CallFindElement(100);
+        }
+        [Test]
+        [Repeat(10)]
+        public void SauceDemo1000FindElements()
+        {
+            CallFindElement(1000);
+        }
+
+        private void CallFindElement(int numberOfTimes)
+        {
+            for (int j = 0; j < numberOfTimes; j++)
+            {
+                Driver.Navigate().GoToUrl("https://www.saucedemo.com");
+                Driver.FindElement(By.CssSelector("[type='text']"));
+                Driver.Navigate().Refresh();
+            }
         }
     }
 }

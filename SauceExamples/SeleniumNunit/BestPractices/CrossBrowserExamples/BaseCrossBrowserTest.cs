@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace SeleniumNunit.BestPractices.CrossBrowserExamples
 {
@@ -29,13 +30,22 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             _osPlatform = osPlatform;
             _isDebuggingOn = isDebuggingOn;
         }
+        protected BaseCrossBrowserTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn, string buildName)
+        {
+            _browser = browser;
+            _browserVersion = browserVersion;
+            _osPlatform = osPlatform;
+            _isDebuggingOn = isDebuggingOn;
+            _sauceBuildName = buildName;
+        }
 
         [SetUp]
         public void ExecuteBeforeEveryTestMethod()
         {
-            var sauceConfig = new SauceLabsCapabilities();
-            sauceConfig.IsDebuggingEnabled = true;
-            Driver = new WebDriverFactory().CreateSauceDriver(_browser, _browserVersion, _osPlatform, sauceConfig);
+            var sauceConfig = new SauceLabsCapabilities {IsDebuggingEnabled = true};
+            SauceLabsCapabilities.BuildName = _sauceBuildName;
+            Driver = new ChromeDriver();
+            //Driver = new WebDriverFactory(sauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
             _sauceReporter = new SauceJavaScriptExecutor(Driver);
             _sauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
         }

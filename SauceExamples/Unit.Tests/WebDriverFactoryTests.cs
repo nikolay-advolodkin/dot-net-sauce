@@ -38,7 +38,14 @@ namespace Unit.Tests
             driver.Capabilities.HasCapability("build").Should().BeTrue();
             driver.Capabilities.GetCapability("build").Should().BeEquivalentTo(_testBuildName);
         }
-
+        [TestMethod]
+        public void ShouldBeInitialized()
+        {
+            var sauceCapabilities = new SauceLabsCapabilities();
+            var factory = new WebDriverFactory(sauceCapabilities);
+            var driver = GetSauceDriver(factory, sauceCapabilities);
+            driver.Should().NotBeNull("the driver should be initialized");
+        }
         [TestMethod]
         public void ShouldReturnRemoteWebDriverWithBrowserOsAndVersion()
         {
