@@ -11,9 +11,9 @@ namespace SeleniumNunit.SaucePerformance
     [Category("Cross browser performance tests")]
     [Category("withDebugging")]
     [TestFixtureSource(typeof(CrossBrowserData), nameof(CrossBrowserData.LatestChrome))]
-    class NoSauceConnect : BaseCrossBrowserTest
+    public class SingleBrowserTests : BaseCrossBrowserTest
     {
-        public NoSauceConnect(string browser, string browserVersion, string osPlatform) :
+        public SingleBrowserTests(string browser, string browserVersion, string osPlatform) :
             base(browser, browserVersion, osPlatform, true, "1-chrome-tunnel")
         {
         }

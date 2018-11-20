@@ -145,7 +145,7 @@ namespace Common
             _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
             _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
             _desiredCapabilities.SetCapability("build", SauceLabsCapabilities.BuildName);
-            _desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
+            //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             return GetSauceRemoteDriver();
         }
     }
