@@ -4,6 +4,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using Web.Tests.BestPractices.Pages;
 
 namespace Web.Tests.BestPractices
 {
