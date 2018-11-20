@@ -11,13 +11,12 @@ namespace Web.Tests.BestPractices
             _driver = driver;
         }
 
-        public bool IsCheckedOut => _driver.Url.Contains("checkout-complete.html");
         public CartElement Cart => new CartElement(_driver);
 
-        public CheckoutPage Finish()
+        public CheckoutCompletePage Finish()
         {
             _driver.FindElement(By.ClassName("cart_checkout_link")).Click();
-            return this;
+            return new CheckoutCompletePage(_driver);
         }
 
         public void GoTo()

@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BestPractices\CartElement.cs" />
+    <Compile Include="BestPractices\CheckoutCompletePage.cs" />
     <Compile Include="BestPractices\LoginPage.cs" />
     <Compile Include="BestPractices\ShoppingCartFeature.cs" />
     <Compile Include="BestPractices\CheckoutPage.cs" />

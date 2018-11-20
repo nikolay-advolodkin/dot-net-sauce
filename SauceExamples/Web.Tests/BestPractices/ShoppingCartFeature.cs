@@ -21,9 +21,8 @@ namespace Web.Tests.BestPractices
             checkoutPage.GoTo();
             checkoutPage.Cart.SetCartState()
                 .HasItems.Should().BeTrue("The cart should have some items in it since they were injected.");
-            checkoutPage
-                .Finish()
-                .IsCheckedOut.Should().BeTrue("The checkout process should redirect us to the success page.");
+            var checkoutCompletePage = checkoutPage.Finish();
+            checkoutCompletePage.IsCheckedOut.Should().BeTrue("The checkout process should redirect us to the success page.");
         }
 
         [TearDown]
