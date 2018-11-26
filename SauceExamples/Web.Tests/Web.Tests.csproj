@@ -72,12 +72,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BestPractices\Pages\SauceDemoLoginPage.cs" />
     <Compile Include="BestPractices\CartElement.cs" />
     <Compile Include="BestPractices\Pages\CheckoutCompletePage.cs" />
     <Compile Include="BestPractices\Pages\LoginPage.cs" />
-    <Compile Include="BestPractices\ShoppingCartFeature.cs" />
+    <Compile Include="Antipatterns\PoorTests.cs" />
+    <Compile Include="BestPractices\Tests\ShoppingCartFeature.cs" />
     <Compile Include="BestPractices\Pages\CheckoutPage.cs" />
-    <Compile Include="BestPractices\TestUser.cs" />
     <Compile Include="InstantSauceTest4.cs" />
     <Compile Include="InstantSauceTest3.cs" />
     <Compile Include="InstantSauceTest2.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

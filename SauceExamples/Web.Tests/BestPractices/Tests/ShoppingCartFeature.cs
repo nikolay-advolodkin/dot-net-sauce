@@ -6,7 +6,7 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using Web.Tests.BestPractices.Pages;
 
-namespace Web.Tests.BestPractices
+namespace Web.Tests.BestPractices.Tests
 {
     [TestFixture]
     [Category("InstantSauceTest"), Category("NUnit"), Category("Instant")]
