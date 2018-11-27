@@ -15,13 +15,6 @@ namespace Web.Tests
         [Test]
         public void ShouldOpenOnDifferentBrowser()
         {
-            /*
-             * Best Practice
-             * Instead of using hardcoded username and access key, you should store
-             * the credentials in environment variables on your system. Not sure how to do this?
-             * This document will help:
-             * https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Environment+Variables+for+Authentication+Credentials
-             */
             var sauceUserName =
                 Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);       
             var sauceAccessKey = 

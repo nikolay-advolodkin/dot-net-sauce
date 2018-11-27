@@ -77,7 +77,7 @@
     <Compile Include="BestPractices\Pages\CheckoutCompletePage.cs" />
     <Compile Include="BestPractices\Pages\LoginPage.cs" />
     <Compile Include="Antipatterns\PoorTests.cs" />
-    <Compile Include="BestPractices\Pages\SwagLabsHomePage.cs" />
+    <Compile Include="BestPractices\Pages\ProductsPage.cs" />
     <Compile Include="BestPractices\Tests\ShoppingCartFeature.cs" />
     <Compile Include="BestPractices\Pages\CheckoutPage.cs" />
     <Compile Include="InstantSauceTest4.cs" />

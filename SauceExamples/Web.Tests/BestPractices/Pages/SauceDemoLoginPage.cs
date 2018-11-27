@@ -25,14 +25,14 @@ namespace Web.Tests.BestPractices.Pages
             return this;
         }
 
-        public SwagLabsHomePage Login(string username, string password)
+        public ProductsPage Login(string username, string password)
         {
             UsernameField.Clear();
             UsernameField.SendKeys(username);
             PasswordField.Clear();
             PasswordField.SendKeys(password);
             LoginButton.Click();
-            return new SwagLabsHomePage(_driver);
+            return new ProductsPage(_driver);
         }
     }
 }
