@@ -2,11 +2,9 @@ using System.Reflection;
 using Common;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using Web.Tests.BestPractices.Pages;
-using TestContext = NUnit.Framework.TestContext;
+
 
 namespace Web.Tests.Antipatterns
 {
@@ -14,6 +12,8 @@ namespace Web.Tests.Antipatterns
     public class PoorTests
     {
         private IWebDriver _driver;
+        public TestContext TestContext { get; set; }
+
         [TestMethod]
         public void EndToEndTest()
         {
@@ -39,22 +39,25 @@ namespace Web.Tests.Antipatterns
             homePage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
             homePage.Logout();
 
+            //test login with invalid username
+            homePage = loginPage.Login("fake_user_name", "secret_sauce");
+            homePage.IsLoaded.Should().BeFalse("we used a locked out user who should not be able to login.");
+
+            //test login with invalid password
+            homePage = loginPage.Login("standard_user", "fake_pass");
+            homePage.IsLoaded.Should().BeFalse("we used a locked out user who should not be able to login.");
+            
             //Add items to cart
-            homePage = loginPage.Login("standard_user", "secret_sauce");
-            homePage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
-            //var checkoutPage = new CheckoutPage(_driver);
-            //checkoutPage.GoTo();
-            //checkoutPage.Cart.SetCartState()
-            //    .HasItems.Should().BeTrue("The cart should have some items in it since they were injected.");
-            //var checkoutCompletePage = checkoutPage.Finish();
-            //checkoutCompletePage.IsCheckedOut.Should().BeTrue("The checkout process should redirect us to the success page.");
+            //homePage = loginPage.Login("standard_user", "secret_sauce");
+            //homePage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
+
         }
 
         [TestCleanup]
         public void CleanUpAfterEveryTestMethod()
         {
-            var passed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            ((IJavaScriptExecutor)_driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+            var passed = TestContext.CurrentTestOutcome == UnitTestOutcome.Passed;
+            new SauceJavaScriptExecutor(_driver).LogTestStatus(passed, TestContext.CurrentTestOutcome.ToString());
             _driver?.Quit();
         }
     }

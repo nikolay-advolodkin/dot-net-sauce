@@ -16,6 +16,13 @@ namespace Common
             ((IJavaScriptExecutor)_driver).
                 ExecuteScript("sauce:job-result=" + (isPassed ? "passed" : "failed"));
         }
+        public void LogTestStatus(bool isPassed, string message)
+        {
+
+            ((IJavaScriptExecutor)_driver).
+                ExecuteScript("sauce:job-result=" + (isPassed ? "passed" : "failed"));
+            LogMessage(message);
+        }
         public void LogMessage(string message)
         {
             ((IJavaScriptExecutor)_driver).
