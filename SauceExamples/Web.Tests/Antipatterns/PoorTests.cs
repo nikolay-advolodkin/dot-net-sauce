@@ -52,6 +52,10 @@ namespace Web.Tests.Antipatterns
             productsPage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
             productsPage.AllProductsPresent.Should().BeTrue("we logged in successfully and we should have 6 items on the page");
 
+            //validate that a product can be added to a cart
+            productsPage.AddToCart(Item.Backpack);
+            productsPage.Cart.HasItems.Should().BeTrue("we added a backpack to the cart");
+
             //Add items to cart
             //homePage = loginPage.Login("standard_user", "secret_sauce");
             //homePage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
@@ -65,5 +69,10 @@ namespace Web.Tests.Antipatterns
             new SauceJavaScriptExecutor(_driver).LogTestStatus(passed, TestContext.CurrentTestOutcome.ToString());
             _driver?.Quit();
         }
+    }
+
+    public enum Item
+    {
+        Backpack
     }
 }

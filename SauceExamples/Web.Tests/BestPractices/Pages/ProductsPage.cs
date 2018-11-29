@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using OpenQA.Selenium;
+using Web.Tests.Antipatterns;
 
 namespace Web.Tests.BestPractices.Pages
 {
@@ -25,5 +26,12 @@ namespace Web.Tests.BestPractices.Pages
         public IWebElement HamburgerElement => _driver.FindElement(By.ClassName("bm-burger-button"));
         public bool AllProductsPresent => 
             _driver.FindElements(By.ClassName("inventory_list")).Count == 6;
+
+        public CartElement Cart => new CartElement(_driver);
+
+        public void AddToCart(Item itemType)
+        {
+            
+        }
     }
 }
