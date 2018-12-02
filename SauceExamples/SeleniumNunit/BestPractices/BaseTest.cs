@@ -2,7 +2,6 @@ using Common;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using saucelabs.saucerest;
 
 namespace SeleniumNunit.BestPractices
 {

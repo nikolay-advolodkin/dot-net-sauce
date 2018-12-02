@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;_PUBLISH_CHROMEDRIVER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -74,8 +74,8 @@
     <Reference Include="TechTalk.SpecFlow, Version=2.3.2.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.2.3.2\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver, Version=3.14.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.3.14.0\lib\net45\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support, Version=3.14.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.Support.3.14.0\lib\net45\WebDriver.Support.dll</HintPath>
@@ -92,7 +92,9 @@
     <Compile Include="BestPractices\LocalWebApp\ParallelTestsOnLocalhostWithBestPractices.cs" />
     <Compile Include="BestPractices\UltimateQAHomePage.cs" />
     <Compile Include="BestPractices\ParallelTestsWithBestPractices.cs" />
-    <Compile Include="SaucePerformance\WithDebugging.cs" />
+    <Compile Include="SaucePerformance\LatestCrossBrowserTests.cs" />
+    <Compile Include="SaucePerformance\ImplicitVsExplicitTests.cs" />
+    <Compile Include="SaucePerformance\SingleBrowserTests.cs" />
     <Compile Include="SimpleExamples\SimpleSauceTest.cs" />
     <Compile Include="SimpleExamples\SauceConnectTests.cs" />
     <Compile Include="LoggingWithSauce.cs" />
@@ -149,5 +151,7 @@
     <Error Condition="!Exists('..\packages\SpecFlow.2.3.2\build\SpecFlow.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.2.3.2\build\SpecFlow.targets'))" />
     <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.11.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.11.0\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.43.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.43.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
+  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.43.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.43.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
 </Project>
