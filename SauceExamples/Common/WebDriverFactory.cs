@@ -136,7 +136,8 @@ namespace Common
             _sauceCustomCapabilities = new SauceLabsCapabilities { IsDebuggingEnabled = isDebuggingOn };
             return SetSauceCapabilities(_desiredCapabilities);
         }
-        public RemoteWebDriver CreateSauceDriver(string browser, string browserVersion, string osPlatform, SauceLabsCapabilities sauceConfiguration)
+        public RemoteWebDriver CreateSauceDriver(
+            string browser, string browserVersion, string osPlatform, SauceLabsCapabilities sauceConfiguration)
         {
             _desiredCapabilities.SetCapability("username", SauceUser.Name);
             _desiredCapabilities.SetCapability("accessKey", SauceUser.AccessKey);
