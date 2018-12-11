@@ -26,15 +26,20 @@ namespace Sandbox
         private bool _isDebuggingOn;
         private SauceJavaScriptExecutor _sauceLogger;
         private SauceLabsCapabilities _sauceCaps;
+        private WebDriverWait _wait;
         public static string SlowAnimationUrl => "http://awful-valentine.com/purchase-forms/slow-animation/";
 
         [SetUp]
         public void Setup()
         {
+
             _sauceCaps = new SauceLabsCapabilities();
-            SauceLabsCapabilities.BuildName = "explicitWait";
+            SauceLabsCapabilities.BuildName = "actWaitAct";
             _sauceCaps.IsDebuggingEnabled = true;
+            _driver = new WebDriverFactory(_sauceCaps).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
+
             _sauceLogger = new SauceJavaScriptExecutor(_driver);
+
         }
         [TearDown]
         public void Teardown()
@@ -43,17 +48,27 @@ namespace Sandbox
             _sauceLogger.LogTestStatus(isPassed, "Test finished execution");
             _driver?.Quit();
         }
+        //[Test]
+        //public void UsingExplicitWaits()
+        //{
+        //    _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(15))
+        //        { PollingInterval = TimeSpan.FromSeconds(3) };
+
+        //    _driver.Navigate().GoToUrl(SlowAnimationUrl);
+        //    FillOutCreditCardInfo();
+        //    _wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("go"))).Click();
+        //    Assert.IsTrue(IsPurchaseComplete(_wait));
+        //}
         [Test]
-        public void UsingExplicitWaits()
+        public void UsingActWaitAct()
         {
-            _driver = new WebDriverFactory(_sauceCaps).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
-            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(15))
+            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(15))
                 { PollingInterval = TimeSpan.FromSeconds(3) };
 
             _driver.Navigate().GoToUrl(SlowAnimationUrl);
             FillOutCreditCardInfo();
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("go"))).Click();
-            Assert.IsTrue(IsPurchaseComplete(wait));
+            _wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("go"))).Click();
+            Assert.IsTrue(IsPurchaseCompleteAct());
         }
         private bool IsPurchaseComplete(WebDriverWait wait)
         {
@@ -71,51 +86,39 @@ namespace Sandbox
             _sauceLogger.LogMessage("End of IsPurchaseComplete()");
             return isPurchaseMessageDisplayed && isInvisible;
         }
-        [Test]
-        public void UsingActWaitAct()
-        {
-            _driver = new WebDriverFactory(_sauceCaps).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
-            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(15))
-                { PollingInterval = TimeSpan.FromSeconds(3) };
 
-            _driver.Navigate().GoToUrl(SlowAnimationUrl);
-            FillOutCreditCardInfo();
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("go"))).Click();
-            Assert.IsTrue(IsPurchaseCompleteAct(wait));
-        }
-        private bool IsPurchaseCompleteAct(WebDriverWait wait)
+        private bool IsPurchaseCompleteAct()
         {
             _sauceLogger.LogMessage("Start of IsPurchaseComplete()");
 
-            _sauceLogger.LogMessage("Waiting for Purchase Complete message");
-            var locator = By.Id("success");
-            bool isPurchaseMessageDisplayed = false;
-            try
-            {
-                isPurchaseMessageDisplayed = _driver.FindElement(locator).Displayed;
-            }
-            catch (NoSuchElementException)
-            {
-                isPurchaseMessageDisplayed =
-                    wait.Until(ExpectedConditions.ElementIsVisible(locator)).Displayed;
-            }
-            _sauceLogger.LogMessage("Purchase Complete message finished");
+            var isPurchaseMessageDisplayed = 
+                ActWait(By.Id("success"), "Waiting for Purchase Complete message", true);
 
-            _sauceLogger.LogMessage("Waiting for spinner to dissapear.");
-            bool isInvisible = false;
-            try
-            {
-                isPurchaseMessageDisplayed = _driver.FindElement(locator).Displayed;
-            }
-            catch (NoSuchElementException)
-            {
-                isInvisible = wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("spinner")));
-            }             
-            _sauceLogger.LogMessage("End of waiting for spinner to dissapear.");
+            var isInvisible = ActWait(By.Id("spinner"), "Waiting for spinner to dissapear", false);
 
             _sauceLogger.LogMessage("End of IsPurchaseComplete()");
             return isPurchaseMessageDisplayed && isInvisible;
         }
+
+        private bool ActWait(By locator, string message, bool displayed)
+        {
+            _sauceLogger.LogMessage($"{message}.");
+            bool isTrue;
+            try
+            {
+                isTrue = _driver.FindElement(locator).Displayed;
+            }
+            catch (NoSuchElementException)
+            {
+                if (displayed)
+                    isTrue = _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("success"))).Displayed;
+                else
+                    isTrue = _wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("spinner")));
+            }
+            _sauceLogger.LogMessage($"End of {message}.");
+            return isTrue;
+        }
+
         private void FillOutCreditCardInfo()
         {
             _sauceLogger.LogMessage("Start credit card filling");
