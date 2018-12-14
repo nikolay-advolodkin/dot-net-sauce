@@ -54,9 +54,8 @@ namespace Web.Tests.Antipatterns
                 "we logged in successfully and we should have 6 items on the page");
 
             //validate that a product can be added to a cart
-            //TODO blocked until we add an id to the items
-            //productsPage.AddToCart(Item.Backpack);
-            //productsPage.Cart.ItemCount.Should().Be(1, "we added a backpack to the cart");
+            productsPage.AddToCart(Item.Backpack);
+            productsPage.Cart.ItemCount.Should().Be(1, "we added a backpack to the cart");
 
             //validate that user can checkout
             var cartPage = productsPage.Cart.Click();

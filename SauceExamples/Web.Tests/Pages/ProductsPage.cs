@@ -1,16 +1,12 @@
 ﻿using OpenQA.Selenium;
-using Web.Tests.Antipatterns;
 using Web.Tests.Elements;
 
 namespace Web.Tests.Pages
 {
-    public class ProductsPage
+    public class ProductsPage : BasePage
     {
-        private readonly IWebDriver _driver;
-
-        public ProductsPage(IWebDriver driver)
-        {
-            _driver = driver;      
+        public ProductsPage(IWebDriver driver) : base(driver)
+        {    
         }
 
         public bool IsLoaded => _driver.Url.Contains("/inventory.html");
