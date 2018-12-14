@@ -10,7 +10,7 @@ namespace Web.Tests.Pages
 
         public OrderConfirmationPage FinishCheckout()
         {
-            Wait.UntilIsVisible(By.ClassName("cart_checkout_link")).Click();
+            Wait.UntilIsVisibleByClass("cart_checkout_link").Click();
             return new OrderConfirmationPage(_driver);
         }
     }

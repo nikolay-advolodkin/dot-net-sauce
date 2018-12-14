@@ -75,9 +75,4 @@ namespace Web.Tests.Antipatterns
             _driver?.Quit();
         }
     }
-
-    public enum Item
-    {
-        Backpack
-    }
 }

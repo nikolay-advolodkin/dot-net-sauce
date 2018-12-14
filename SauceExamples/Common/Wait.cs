@@ -20,7 +20,10 @@ namespace Common
         {
             return _wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
-
+        public IWebElement UntilIsVisibleByClass(string className)
+        {
+            return _wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(className)));
+        }
         public Wait(IWebDriver driver, By locator)
         {
             _driver = driver;

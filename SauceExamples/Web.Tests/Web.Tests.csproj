@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Item.cs" />
     <Compile Include="Pages\CheckoutInformationPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CheckoutOverviewPage.cs" />
