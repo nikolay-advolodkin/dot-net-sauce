@@ -62,8 +62,9 @@ namespace Web.Tests.Antipatterns
             var cartPage = productsPage.Cart.Click();
             var checkoutOverviewPage = cartPage.Checkout().
                 FillOutPersonalInformation();
-            //checkoutOverviewPage.Finish().IsCheckoutSuccessful.Should().
-            //    BeTrue("we finished the checkout process");
+            checkoutOverviewPage.FinishCheckout().IsCheckoutComplete.
+                Should().
+                BeTrue("we finished the checkout process");
         }
 
         [TestCleanup]

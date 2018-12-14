@@ -8,7 +8,7 @@ namespace Web.Tests.Pages
         {
         }
 
-        public object FillOutPersonalInformation()
+        public CheckoutOverviewPage FillOutPersonalInformation()
         {
             Wait.UntilIsVisible(By.CssSelector("input[data-test='firstName']")).SendKeys("firstName");
             _driver.FindElement(By.CssSelector("input[data-test='lastName']")).SendKeys("lastName");

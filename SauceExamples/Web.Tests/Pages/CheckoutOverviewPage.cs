@@ -2,11 +2,16 @@
 
 namespace Web.Tests.Pages
 {
-    public class CheckoutOverviewPage
+    public class CheckoutOverviewPage : BasePage
     {
-        public CheckoutOverviewPage(IWebDriver driver)
+        public CheckoutOverviewPage(IWebDriver driver) : base(driver)
         {
-            throw new System.NotImplementedException();
+        }
+
+        public OrderConfirmationPage FinishCheckout()
+        {
+            Wait.UntilIsVisible(By.ClassName("cart_checkout_link")).Click();
+            return new OrderConfirmationPage(_driver);
         }
     }
 }
