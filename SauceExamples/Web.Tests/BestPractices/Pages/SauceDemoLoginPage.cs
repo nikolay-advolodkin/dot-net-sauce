@@ -3,13 +3,10 @@ using OpenQA.Selenium;
 
 namespace Web.Tests.BestPractices.Pages
 {
-    public class SauceDemoLoginPage
+    public class SauceDemoLoginPage : BasePage
     {
-        private readonly IWebDriver _driver;
-
-        public SauceDemoLoginPage(IWebDriver driver)
+        public SauceDemoLoginPage(IWebDriver driver) : base(driver)
         {
-            _driver = driver;
         }
 
         private readonly By _loginButtonLocator = By.ClassName("login-button");
@@ -27,6 +24,8 @@ namespace Web.Tests.BestPractices.Pages
 
         public ProductsPage Login(string username, string password)
         {
+            SauceJsExecutor.LogMessage(
+                $"Start login with user=>{username} and pass=>{password}");
             UsernameField.Clear();
             UsernameField.SendKeys(username);
             PasswordField.Clear();

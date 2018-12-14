@@ -50,14 +50,15 @@ namespace Web.Tests.Antipatterns
             //validate that all products are present
             productsPage = loginPage.Login("standard_user", "secret_sauce");
             productsPage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
-            productsPage.AllProductsPresent.Should().BeTrue("we logged in successfully and we should have 6 items on the page");
+            productsPage.ProductCount.Should().Be(6, 
+                "we logged in successfully and we should have 6 items on the page");
 
             //validate that a product can be added to a cart
             productsPage.AddToCart(Item.Backpack);
             productsPage.Cart.HasItems.Should().BeTrue("we added a backpack to the cart");
 
             //Add items to cart
-            //homePage = loginPage.Login("standard_user", "secret_sauce");
+            //var homePage = loginPage.Login("standard_user", "secret_sauce");
             //homePage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
 
         }

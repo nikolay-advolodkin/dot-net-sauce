@@ -24,8 +24,8 @@ namespace Web.Tests.BestPractices.Pages
         public IWebElement LogoutLink => _driver.FindElement(By.Id("logout_sidebar_link"));
 
         public IWebElement HamburgerElement => _driver.FindElement(By.ClassName("bm-burger-button"));
-        public bool AllProductsPresent => 
-            _driver.FindElements(By.ClassName("inventory_list")).Count == 6;
+        public int ProductCount => 
+            _driver.FindElements(By.ClassName("inventory_item")).Count;
 
         public CartElement Cart => new CartElement(_driver);
 
