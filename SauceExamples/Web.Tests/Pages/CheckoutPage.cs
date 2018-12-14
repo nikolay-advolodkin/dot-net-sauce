@@ -1,6 +1,7 @@
 using OpenQA.Selenium;
+using Web.Tests.Elements;
 
-namespace Web.Tests.BestPractices.Pages
+namespace Web.Tests.Pages
 {
     public class CheckoutPage
     {

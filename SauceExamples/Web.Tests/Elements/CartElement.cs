@@ -1,6 +1,7 @@
 using OpenQA.Selenium;
+using Web.Tests.Pages;
 
-namespace Web.Tests.BestPractices
+namespace Web.Tests.Elements
 {
     public class CartElement
     {
@@ -21,7 +22,7 @@ namespace Web.Tests.BestPractices
         }
         public bool HasItems => int.Parse(CartItemCounterText) > 0;
 
-        public int ItemCount => int.Parse(CartItemCounterText)
+        public int ItemCount => int.Parse(CartItemCounterText);
 
         public CartElement(IWebDriver driver)
         {
@@ -34,6 +35,12 @@ namespace Web.Tests.BestPractices
             ((IJavaScriptExecutor)_driver).ExecuteScript("window.sessionStorage.setItem('cart-contents', '[4,1]')");
             _driver.Navigate().Refresh();
             return this;
+        }
+
+        internal YourShoppingCartPage Click()
+        {
+            _driver.FindElement(By.Id("shopping_cart_container")).Click();
+            return new YourShoppingCartPage(_driver);
         }
     }
 }

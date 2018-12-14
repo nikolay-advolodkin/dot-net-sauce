@@ -1,8 +1,8 @@
+using System.Reflection;
 using Common;
 using OpenQA.Selenium;
-using System.Reflection;
 
-namespace Web.Tests.BestPractices.Pages
+namespace Web.Tests.Pages
 {
     public class SauceDemoLoginPage : BasePage
     {

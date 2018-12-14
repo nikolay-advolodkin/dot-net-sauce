@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using Web.Tests.Antipatterns;
+using Web.Tests.Elements;
 
-namespace Web.Tests.BestPractices.Pages
+namespace Web.Tests.Pages
 {
     public class ProductsPage
     {

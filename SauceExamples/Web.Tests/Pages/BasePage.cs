@@ -1,7 +1,7 @@
 ﻿using Common;
 using OpenQA.Selenium;
 
-namespace Web.Tests.BestPractices.Pages
+namespace Web.Tests.Pages
 {
     public class BasePage
     {
@@ -9,6 +9,8 @@ namespace Web.Tests.BestPractices.Pages
 
         public SauceJavaScriptExecutor SauceJsExecutor => 
             new SauceJavaScriptExecutor(_driver);
+
+        public Wait Wait => new Wait(_driver);
 
         public BasePage(IWebDriver driver)
         {

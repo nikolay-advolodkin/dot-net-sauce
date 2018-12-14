@@ -5,7 +5,7 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 
-namespace Web.Tests
+namespace Web.Tests.OnboardingTests
 {
     /*
      * These scripts are simply for demonstration purposes.
