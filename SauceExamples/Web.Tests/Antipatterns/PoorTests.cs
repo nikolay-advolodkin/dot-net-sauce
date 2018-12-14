@@ -60,8 +60,8 @@ namespace Web.Tests.Antipatterns
 
             //validate that user can checkout
             var cartPage = productsPage.Cart.Click();
-            //var checkoutOverviewPage = cartPage.Checkout().
-            //    FillOutPersonalInformation();
+            var checkoutOverviewPage = cartPage.Checkout().
+                FillOutPersonalInformation();
             //checkoutOverviewPage.Finish().IsCheckoutSuccessful.Should().
             //    BeTrue("we finished the checkout process");
         }

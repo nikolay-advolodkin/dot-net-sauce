@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Pages\CheckoutInformationPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\CheckoutOverviewPage.cs" />
     <Compile Include="Pages\SauceDemoLoginPage.cs" />
     <Compile Include="Elements\CartElement.cs" />
     <Compile Include="Pages\CheckoutCompletePage.cs" />
