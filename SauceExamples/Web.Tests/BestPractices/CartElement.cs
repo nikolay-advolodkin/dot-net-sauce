@@ -5,7 +5,7 @@ namespace Web.Tests.BestPractices
     public class CartElement
     {
         private readonly IWebDriver _driver;
-        public string CartItemCounterText
+        private string CartItemCounterText
         {
             get
             {
@@ -21,6 +21,7 @@ namespace Web.Tests.BestPractices
         }
         public bool HasItems => int.Parse(CartItemCounterText) > 0;
 
+        public int ItemCount => int.Parse(CartItemCounterText)
 
         public CartElement(IWebDriver driver)
         {

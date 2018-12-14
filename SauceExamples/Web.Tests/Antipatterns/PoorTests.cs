@@ -55,12 +55,14 @@ namespace Web.Tests.Antipatterns
 
             //validate that a product can be added to a cart
             productsPage.AddToCart(Item.Backpack);
-            productsPage.Cart.HasItems.Should().BeTrue("we added a backpack to the cart");
+            productsPage.Cart.ItemCount.Should().Be(1, "we added a backpack to the cart");
 
-            //Add items to cart
-            //var homePage = loginPage.Login("standard_user", "secret_sauce");
-            //homePage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
-
+            //validate that user can checkout
+            var cartPage = productsPage.Cart.Click();
+            var checkoutOverviewPage = cartPage.Checkout().
+                FillOutPersonalInformation();
+            checkoutOverviewPage.Finish().IsCheckoutSuccessful.Should().
+                BeTrue("we finished the checkout process");
         }
 
         [TestCleanup]

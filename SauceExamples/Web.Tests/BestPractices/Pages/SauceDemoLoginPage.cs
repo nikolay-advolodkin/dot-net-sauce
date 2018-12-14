@@ -1,5 +1,6 @@
 using Common;
 using OpenQA.Selenium;
+using System.Reflection;
 
 namespace Web.Tests.BestPractices.Pages
 {
@@ -31,6 +32,7 @@ namespace Web.Tests.BestPractices.Pages
             PasswordField.Clear();
             PasswordField.SendKeys(password);
             LoginButton.Click();
+            SauceJsExecutor.LogMessage($"{MethodBase.GetCurrentMethod().Name} success");
             return new ProductsPage(_driver);
         }
     }
