@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace Common
 {
@@ -8,12 +9,11 @@ namespace Common
     {
         private IWebDriver _driver;
         private WebDriverWait _wait => new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-        private By _locator;
-        private IWebDriver _driver1;
+        private readonly By _locator;
 
-        public Wait(IWebDriver driver1)
+        public Wait(IWebDriver driver)
         {
-            _driver1 = driver1;
+            _driver = driver;
         }
 
         public IWebElement UntilIsVisible(By locator)
