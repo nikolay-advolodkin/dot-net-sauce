@@ -27,7 +27,7 @@ namespace Web.Tests.Pages
 
         public void AddToCart(Item itemType)
         {
-            
+            Wait.UntilIsVisibleByClass("add-to-cart-button").Click();
         }
     }
 }
