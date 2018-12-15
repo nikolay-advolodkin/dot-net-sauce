@@ -74,4 +74,8 @@ namespace Web.Tests.Antipatterns
             _driver?.Quit();
         }
     }
+
+    public class MsTest
+    {
+    }
 }
