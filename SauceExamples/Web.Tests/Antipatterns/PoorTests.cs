@@ -1,9 +1,6 @@
-using System.Reflection;
 using Common;
 using FluentAssertions;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;
 using Web.Tests.Pages;
 
@@ -14,8 +11,6 @@ namespace Web.Tests.Antipatterns
     [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
     public class PoorTests : BaseCrossBrowserTest
     {
-        public TestContext TestContext { get; set; }
-
         public PoorTests(string browser, string version, string os) : 
             base(browser, version, os)
         {
@@ -24,6 +19,7 @@ namespace Web.Tests.Antipatterns
         [Test]
         public void EndToEndTest()
         {
+            SauceReporter.SetBuildName("AntiPatternTests");
             var loginPage = new SauceDemoLoginPage(Driver);
             //test loading of login page
             loginPage.Open().IsLoaded.Should().BeTrue("the login page should load successfully.");

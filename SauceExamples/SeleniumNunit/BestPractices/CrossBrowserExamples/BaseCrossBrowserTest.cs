@@ -12,7 +12,7 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         private string _browser;
         private string _browserVersion;
         private string _osPlatform;
-        private SauceJavaScriptExecutor _sauceReporter;
+        public SauceJavaScriptExecutor SauceReporter;
         private bool _isDebuggingOn;
         private static string _sauceBuildName;
         private bool _isUsingSauceLabs;
@@ -56,8 +56,8 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             else
             {
                 Driver = new WebDriverFactory(sauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
-                _sauceReporter = new SauceJavaScriptExecutor(Driver);
-                _sauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
+                SauceReporter = new SauceJavaScriptExecutor(Driver);
+                SauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
                 _isUsingSauceLabs = true;
             }
         }
@@ -70,9 +70,9 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             if (_isUsingSauceLabs)
             {
                 var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-                _sauceReporter.LogTestStatus(isPassed);
-                _sauceReporter.LogMessage("Test finished execution");
-                _sauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
+                SauceReporter.LogTestStatus(isPassed);
+                SauceReporter.LogMessage("Test finished execution");
+                SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
             }
             Driver?.Quit();
         }
