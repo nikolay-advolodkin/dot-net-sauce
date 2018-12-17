@@ -1,24 +1,30 @@
 using System.Reflection;
 using Common;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using SeleniumNunit.BestPractices.CrossBrowserExamples;
 using Web.Tests.Pages;
 
 
 namespace Web.Tests.Antipatterns
 {
-    [TestClass]
-    public class PoorTests
+    [TestFixture]
+    [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
+    public class PoorTests : BaseCrossBrowserTest
     {
-        private IWebDriver _driver;
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
+        public PoorTests(string browser, string version, string os) : 
+            base(browser, version, os)
+        {
+        }
+
+        [Test]
         public void EndToEndTest()
         {
-            _driver = new WebDriverFactory().CreateSauceDriver(MethodBase.GetCurrentMethod().Name);
-            var loginPage = new SauceDemoLoginPage(_driver);
+            var loginPage = new SauceDemoLoginPage(Driver);
             //test loading of login page
             loginPage.Open().IsLoaded.Should().BeTrue("the login page should load successfully.");
             loginPage.UsernameField.Displayed.Should().BeTrue("the page is loaded, so the username field should exist");
@@ -65,17 +71,5 @@ namespace Web.Tests.Antipatterns
                 Should().
                 BeTrue("we finished the checkout process");
         }
-
-        [TestCleanup]
-        public void CleanUpAfterEveryTestMethod()
-        {
-            var passed = TestContext.CurrentTestOutcome == UnitTestOutcome.Passed;
-            new SauceJavaScriptExecutor(_driver).LogTestStatus(passed, TestContext.CurrentTestOutcome.ToString());
-            _driver?.Quit();
-        }
-    }
-
-    public class MsTest
-    {
     }
 }
