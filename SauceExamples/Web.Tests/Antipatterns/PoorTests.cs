@@ -9,6 +9,7 @@ namespace Web.Tests.Antipatterns
 {
     [TestFixture]
     [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
+    [NonParallelizable]
     public class PoorTests : BaseCrossBrowserTest
     {
         public PoorTests(string browser, string version, string os) : 
