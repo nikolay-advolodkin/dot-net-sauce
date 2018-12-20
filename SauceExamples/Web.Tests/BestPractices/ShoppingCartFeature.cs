@@ -9,7 +9,6 @@ using Web.Tests.Pages;
 namespace Web.Tests.BestPractices.Tests
 {
     [TestFixture]
-    [Category("InstantSauceTest"), Category("NUnit"), Category("Instant")]
     [Parallelizable]
     public class ShoppingCartFeature
     {
