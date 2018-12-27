@@ -7,7 +7,7 @@ Describe "Get-KgpConnectionStatus" {
     $fakeResponse | Add-Member -MemberType NoteProperty -Name StatusCode -Value 200
 
     Mock ConvertFrom-Json {}
-    It "Should return true if tunnel is up" {
+    It "Should convert from json if tunnel is up" {
         $result = Get-KgpConnectionStatus $fakeResponse
         Assert-MockCalled ConvertFrom-Json -Times 1
         #Get-KgpConnectionStatus $fakeResponse.StatusCode | Should -Be $true
@@ -32,5 +32,17 @@ Describe "Test-SauceConnectStatus" {
     $result = Test-SauceConnectStatus -IsInfiniteLoop $false
     It "Should send notification" {
         Assert-MockCalled Start-Sleep -Times 1
+    }
+}
+
+Describe "Restart-SauceConnect"{
+    $SauceConnectFilePath = "c:/fake"
+    $UserName = "nikolay"
+    $AccessKey = "abc123"
+    $TunnelIdentifier = "testTunnel"
+    Mock Invoke-Expression{}
+    It "Should form a valid string to execute"{
+        [string]$Command = Restart-SauceConnect $SauceConnectFilePath $UserName $AccessKey $TunnelIdentifier
+        $Command | Should -Be "$($SauceConnectFilePath) -u $($UserName) -k $($AccessKey) -i $($TunnelIdentifier) --no-remove-colliding-tunnels -s"
     }
 }
