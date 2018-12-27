@@ -27,8 +27,7 @@ Describe "Test-SauceConnectStatus" {
     }
 
     Mock Get-KgpConnectionStatus {return $true}
-    Mock Start-Sleep {}
-    Mock Send-Notification {}
+    Mock Invoke-RestartOperations -IsConnected $false {}
     $result = Test-SauceConnectStatus -IsInfiniteLoop $false
     It "Should send notification" {
         Assert-MockCalled Start-Sleep -Times 1
@@ -43,6 +42,6 @@ Describe "Restart-SauceConnect"{
     Mock Invoke-Expression{}
     It "Should form a valid string to execute"{
         [string]$Command = Restart-SauceConnect $SauceConnectFilePath $UserName $AccessKey $TunnelIdentifier
-        $Command | Should -Be "$($SauceConnectFilePath) -u $($UserName) -k $($AccessKey) -i $($TunnelIdentifier) --no-remove-colliding-tunnels -s"
+        $Command | Should -Be "$($SauceConnectFilePath)\sc.exe -u $($UserName) -k $($AccessKey) -i $($TunnelIdentifier) --no-remove-colliding-tunnels -s"
     }
 }

@@ -33,7 +33,7 @@ function Invoke-RestartOperations($IsConnected) {
     Start-Sleep -Seconds 15
 }
 function Restart-SauceConnect($SauceConnectFilePath, $UserName, $AccessKey, $TunnelIdentifier) {
-    $startSauceCommand = "$($SauceConnectFilePath) -u $($UserName) -k $($AccessKey) -i $($TunnelIdentifier) --no-remove-colliding-tunnels -s"
+    $startSauceCommand = "$($SauceConnectFilePath)\sc.exe -u $($UserName) -k $($AccessKey) -i $($TunnelIdentifier) --no-remove-colliding-tunnels -s"
     Invoke-Expression $startSauceCommand
     return [string]$startSauceCommand
 }
