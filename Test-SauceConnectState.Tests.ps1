@@ -18,19 +18,14 @@ Describe "Get-KgpConnectionStatus" {
     }
 }
 Describe "Test-SauceConnectStatus" {
-    Mock Get-KgpConnectionStatus {return $false}
-    Mock Start-Sleep {}
-    Mock Send-Notification {}
-    $result = Test-SauceConnectStatus -IsInfiniteLoop $false
-    It "Should send notification" {
-        Assert-MockCalled Send-Notification -Times 1
-    }
-
     Mock Get-KgpConnectionStatus {return $true}
-    Mock Invoke-RestartOperations -IsConnected $false {}
+    Mock Invoke-RestartOperations {}
     $result = Test-SauceConnectStatus -IsInfiniteLoop $false
-    It "Should send notification" {
-        Assert-MockCalled Start-Sleep -Times 1
+    It "Should invoke restart operations when called" {
+        Assert-MockCalled Invoke-RestartOperations -Times 1
+    }
+    It "Should invoke Get-KgpConnectionStatus when called" {
+        Assert-MockCalled Get-KgpConnectionStatus -Times 1
     }
 }
 
