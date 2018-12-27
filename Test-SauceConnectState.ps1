@@ -1,5 +1,5 @@
 ﻿$IntervalForRestart = 120
-$SauceConnectFilePath = "C:\Source\SauceLabs\sc-4.5.2-win32"
+$SauceConnectFilePath = "C:\Source\SauceLabs\sc-4.5.2-win32\bin"
 $UserName = [Environment]::GetEnvironmentVariable("SAUCE_USERNAME", "User")
 $AccessKey = [Environment]::GetEnvironmentVariable("SAUCE_ACCESS_KEY", "User")
 $TunnelIdentifier = "NikolaysTunnel"

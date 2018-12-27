@@ -27,10 +27,10 @@ Describe "Test-SauceConnectStatus" {
     It "Should invoke Get-KgpConnectionStatus when called" {
         Assert-MockCalled Get-KgpConnectionStatus -Times 1
     }
-}
+}   
 
 Describe "Restart-SauceConnect"{
-    $SauceConnectFilePath = "c:/fake"
+    $SauceConnectFilePath = "c:/fake\bin"
     $UserName = "nikolay"
     $AccessKey = "abc123"
     $TunnelIdentifier = "testTunnel"
@@ -38,5 +38,9 @@ Describe "Restart-SauceConnect"{
     It "Should form a valid string to execute"{
         [string]$Command = Restart-SauceConnect $SauceConnectFilePath $UserName $AccessKey $TunnelIdentifier
         $Command | Should -Be "$($SauceConnectFilePath)\sc.exe -u $($UserName) -k $($AccessKey) -i $($TunnelIdentifier) --no-remove-colliding-tunnels -s"
+    }
+    It "Should contain bin folder in the path"{
+        [string]$Command = Restart-SauceConnect $SauceConnectFilePath $UserName $AccessKey $TunnelIdentifier
+        $Command | Should -BeLike "*bin\sc.exe -u $($UserName) -k $($AccessKey) -i $($TunnelIdentifier) --no-remove-colliding-tunnels -s"
     }
 }
