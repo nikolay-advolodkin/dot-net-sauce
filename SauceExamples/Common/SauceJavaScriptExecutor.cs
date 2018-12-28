@@ -33,5 +33,10 @@ namespace Common
         {
             ((IJavaScriptExecutor)_driver).ExecuteScript($"sauce:job-name={testName}");
         }
+
+        public void SetBuildName(string buildName)
+        {
+            ((IJavaScriptExecutor)_driver).ExecuteScript($"sauce:job-build={buildName}");
+        }
     }
 }

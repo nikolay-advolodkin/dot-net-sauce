@@ -3,8 +3,6 @@ using NUnit.Framework;
 
 namespace SeleniumNunit.BestPractices.CrossBrowserExamples
 {
-
-    //Use platform configurator - https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
     [Category("TestFixtureTests")]
     [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
     class CrossBrowserTests : BaseCrossBrowserTest

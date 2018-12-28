@@ -144,6 +144,8 @@ namespace Common
             _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
             _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
             _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
+            //an important flag to set for Edge and possibly Safari
+            _desiredCapabilities.SetCapability("avoidProxy", true);
             _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
             _desiredCapabilities.SetCapability("build", SauceLabsCapabilities.BuildName);
             //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
