@@ -16,10 +16,16 @@ namespace Unit.Tests
             sauce = new SauceLabs();
         }
         [TestMethod]
-        public void ShouldReturnRemoteWebDriver()
+        public void ShouldReturnSauceLabsObject()
         {
-            var desiredCaps = sauce.GetDesiredCaps();
-            desiredCaps.Should().BeOfType(typeof(DesiredCapabilities));
+            var desiredCaps = sauce.GetDesiredCapabilities();
+            desiredCaps.Should().BeOfType(typeof(SauceLabs));
+        }
+        [TestMethod]
+        public void ShouldSetDesiredCaps()
+        {
+            var desiredCaps = sauce.GetDesiredCapabilities();
+            desiredCaps.DesiredCaps.Should().NotBeNull();
         }
     }
 }

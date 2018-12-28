@@ -5,28 +5,25 @@ namespace Common
 {
     public class SauceLabs
     {
-        private DesiredCapabilities _desiredCaps;
+        private DesiredCapabilities desiredCaps;
 
         public SauceLabs()
         {
         }
 
-        public DesiredCapabilities GetDesiredCaps()
-        {
-            return new DesiredCapabilities();
-        }
+        public DesiredCapabilities DesiredCaps { get => desiredCaps; set => desiredCaps = value; }
 
-        public SauceLabs DesiredCaps()
+        public SauceLabs GetDesiredCapabilities()
         {
-            _desiredCaps = new DesiredCapabilities();
+            DesiredCaps = new DesiredCapabilities();
             return this;
         }
 
         public DesiredCapabilities WithCredentials()
         {
-            _desiredCaps.SetCapability("username", SauceUser.Name);
-            _desiredCaps.SetCapability("accessKey", SauceUser.AccessKey);
-            return _desiredCaps;
+            DesiredCaps.SetCapability("username", SauceUser.Name);
+            DesiredCaps.SetCapability("accessKey", SauceUser.AccessKey);
+            return DesiredCaps;
         }
     }
 }

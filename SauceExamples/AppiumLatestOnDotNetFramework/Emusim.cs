@@ -18,7 +18,7 @@ namespace AppiumLatestOnDotNetFramework
         [TestMethod]
         public void Android71()
         {
-            var capabilities = new SauceLabs().DesiredCaps().WithCredentials();
+            var capabilities = new SauceLabs().GetDesiredCapabilities().WithCredentials();
             capabilities.SetCapability("appiumVersion", "1.9.1");
             capabilities.SetCapability("deviceName", "Samsung Galaxy Tab A 10 GoogleAPI Emulator");
             capabilities.SetCapability("deviceOrientation", "portrait");
