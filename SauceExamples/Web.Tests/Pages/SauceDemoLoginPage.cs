@@ -1,15 +1,13 @@
+using System.Reflection;
 using Common;
 using OpenQA.Selenium;
 
-namespace Web.Tests.BestPractices.Pages
+namespace Web.Tests.Pages
 {
-    public class SauceDemoLoginPage
+    public class SauceDemoLoginPage : BasePage
     {
-        private readonly IWebDriver _driver;
-
-        public SauceDemoLoginPage(IWebDriver driver)
+        public SauceDemoLoginPage(IWebDriver driver) : base(driver)
         {
-            _driver = driver;
         }
 
         private readonly By _loginButtonLocator = By.ClassName("login-button");
@@ -21,17 +19,20 @@ namespace Web.Tests.BestPractices.Pages
 
         public SauceDemoLoginPage Open()
         {
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/");
+            _driver.Navigate().GoToUrl("http://www.saucedemo.com/");
             return this;
         }
 
         public ProductsPage Login(string username, string password)
         {
+            SauceJsExecutor.LogMessage(
+                $"Start login with user=>{username} and pass=>{password}");
             UsernameField.Clear();
             UsernameField.SendKeys(username);
             PasswordField.Clear();
             PasswordField.SendKeys(password);
             LoginButton.Click();
+            SauceJsExecutor.LogMessage($"{MethodBase.GetCurrentMethod().Name} success");
             return new ProductsPage(_driver);
         }
     }

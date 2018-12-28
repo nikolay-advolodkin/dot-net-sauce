@@ -1,24 +1,27 @@
-using System.Reflection;
 using Common;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using Web.Tests.BestPractices.Pages;
+using NUnit.Framework;
+using SeleniumNunit.BestPractices.CrossBrowserExamples;
+using Web.Tests.Pages;
 
 
 namespace Web.Tests.Antipatterns
 {
-    [TestClass]
-    public class PoorTests
+    [TestFixture]
+    [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
+    [NonParallelizable]
+    public class PoorTests : BaseCrossBrowserTest
     {
-        private IWebDriver _driver;
-        public TestContext TestContext { get; set; }
+        public PoorTests(string browser, string version, string os) : 
+            base(browser, version, os)
+        {
+        }
 
-        [TestMethod]
+        [Test]
         public void EndToEndTest()
         {
-            _driver = new WebDriverFactory().CreateSauceDriver(MethodBase.GetCurrentMethod().Name);
-            var loginPage = new SauceDemoLoginPage(_driver);
+            SauceReporter.SetBuildName("AntiPatternTests");
+            var loginPage = new SauceDemoLoginPage(Driver);
             //test loading of login page
             loginPage.Open().IsLoaded.Should().BeTrue("the login page should load successfully.");
             loginPage.UsernameField.Displayed.Should().BeTrue("the page is loaded, so the username field should exist");
@@ -50,29 +53,20 @@ namespace Web.Tests.Antipatterns
             //validate that all products are present
             productsPage = loginPage.Login("standard_user", "secret_sauce");
             productsPage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
-            productsPage.AllProductsPresent.Should().BeTrue("we logged in successfully and we should have 6 items on the page");
+            productsPage.ProductCount.Should().Be(6, 
+                "we logged in successfully and we should have 6 items on the page");
 
             //validate that a product can be added to a cart
             productsPage.AddToCart(Item.Backpack);
-            productsPage.Cart.HasItems.Should().BeTrue("we added a backpack to the cart");
+            productsPage.Cart.ItemCount.Should().Be(1, "we added a backpack to the cart");
 
-            //Add items to cart
-            //homePage = loginPage.Login("standard_user", "secret_sauce");
-            //homePage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
-
+            //validate that user can checkout
+            var cartPage = productsPage.Cart.Click();
+            var checkoutOverviewPage = cartPage.Checkout().
+                FillOutPersonalInformation();
+            checkoutOverviewPage.FinishCheckout().IsCheckoutComplete.
+                Should().
+                BeTrue("we finished the checkout process");
         }
-
-        [TestCleanup]
-        public void CleanUpAfterEveryTestMethod()
-        {
-            var passed = TestContext.CurrentTestOutcome == UnitTestOutcome.Passed;
-            new SauceJavaScriptExecutor(_driver).LogTestStatus(passed, TestContext.CurrentTestOutcome.ToString());
-            _driver?.Quit();
-        }
-    }
-
-    public enum Item
-    {
-        Backpack
     }
 }

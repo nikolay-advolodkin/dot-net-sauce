@@ -72,18 +72,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BestPractices\Pages\SauceDemoLoginPage.cs" />
-    <Compile Include="BestPractices\CartElement.cs" />
-    <Compile Include="BestPractices\Pages\CheckoutCompletePage.cs" />
-    <Compile Include="BestPractices\Pages\LoginPage.cs" />
+    <Compile Include="BestPractices\LoginFeature.cs" />
+    <Compile Include="Pages\Item.cs" />
+    <Compile Include="Pages\CheckoutInformationPage.cs" />
+    <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\CheckoutOverviewPage.cs" />
+    <Compile Include="Pages\OrderConfirmationPage.cs" />
+    <Compile Include="Pages\SauceDemoLoginPage.cs" />
+    <Compile Include="Elements\CartElement.cs" />
+    <Compile Include="Pages\CheckoutCompletePage.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Antipatterns\PoorTests.cs" />
-    <Compile Include="BestPractices\Pages\ProductsPage.cs" />
-    <Compile Include="BestPractices\Tests\ShoppingCartFeature.cs" />
-    <Compile Include="BestPractices\Pages\CheckoutPage.cs" />
-    <Compile Include="InstantSauceTest4.cs" />
-    <Compile Include="InstantSauceTest3.cs" />
-    <Compile Include="InstantSauceTest2.cs" />
-    <Compile Include="InstantSauceTest.cs" />
+    <Compile Include="Pages\ProductsPage.cs" />
+    <Compile Include="BestPractices\ShoppingCartFeature.cs" />
+    <Compile Include="Pages\CheckoutPage.cs" />
+    <Compile Include="Pages\YourShoppingCartPage.cs" />
+    <Compile Include="OnboardingTests\InstantSauceTest4.cs" />
+    <Compile Include="OnboardingTests\InstantSauceTest3.cs" />
+    <Compile Include="OnboardingTests\InstantSauceTest2.cs" />
+    <Compile Include="OnboardingTests\InstantSauceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +101,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeleniumNunit\SeleniumNunitTests.csproj">
+      <Project>{D0544BBB-85D0-4BD0-82E2-2AC1C6BBBCF5}</Project>
+      <Name>SeleniumNunitTests</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

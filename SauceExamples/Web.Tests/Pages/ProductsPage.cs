@@ -1,16 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using OpenQA.Selenium;
-using Web.Tests.Antipatterns;
+﻿using OpenQA.Selenium;
+using Web.Tests.Elements;
 
-namespace Web.Tests.BestPractices.Pages
+namespace Web.Tests.Pages
 {
-    public class ProductsPage
+    public class ProductsPage : BasePage
     {
-        private readonly IWebDriver _driver;
-
-        public ProductsPage(IWebDriver driver)
-        {
-            _driver = driver;      
+        public ProductsPage(IWebDriver driver) : base(driver)
+        {    
         }
 
         public bool IsLoaded => _driver.Url.Contains("/inventory.html");
@@ -24,14 +20,14 @@ namespace Web.Tests.BestPractices.Pages
         public IWebElement LogoutLink => _driver.FindElement(By.Id("logout_sidebar_link"));
 
         public IWebElement HamburgerElement => _driver.FindElement(By.ClassName("bm-burger-button"));
-        public bool AllProductsPresent => 
-            _driver.FindElements(By.ClassName("inventory_list")).Count == 6;
+        public int ProductCount => 
+            _driver.FindElements(By.ClassName("inventory_item")).Count;
 
         public CartElement Cart => new CartElement(_driver);
 
         public void AddToCart(Item itemType)
         {
-            
+            Wait.UntilIsVisibleByClass("add-to-cart-button").Click();
         }
     }
 }

@@ -6,7 +6,7 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace Web.Tests
+namespace Web.Tests.OnboardingTests
 {
     [TestFixture]
     [Category("InstantSauceTest"), Category("NUnit"), Category("Instant")]

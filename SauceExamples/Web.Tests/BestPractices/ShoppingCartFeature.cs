@@ -4,12 +4,11 @@ using FluentAssertions;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using Web.Tests.BestPractices.Pages;
+using Web.Tests.Pages;
 
 namespace Web.Tests.BestPractices.Tests
 {
     [TestFixture]
-    [Category("InstantSauceTest"), Category("NUnit"), Category("Instant")]
     [Parallelizable]
     public class ShoppingCartFeature
     {

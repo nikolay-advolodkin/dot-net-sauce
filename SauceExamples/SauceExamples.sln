@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumOnDotNetFramework", "AppiumOnDotNetFramework\AppiumOnDotNetFramework.csproj", "{44B81F22-100A-4DF4-9473-26582250CF25}"
 EndProject
@@ -29,7 +29,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumLatestOnDotNetFramewo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumMsTest", "SeleniumMsTest\SeleniumMsTest.csproj", "{8EAC3C5C-FDF4-4A85-BFE9-19EB8B30E989}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{00861077-CF66-4DAD-BD17-C93D0AC139FA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Posh", "Posh", "{B4AB832A-65EC-44FF-B136-197A2DA8E74B}"
+	ProjectSection(SolutionItems) = preProject
+		..\Test-SauceConnectState.ps1 = ..\Test-SauceConnectState.ps1
+		..\Test-SauceConnectState.Tests.ps1 = ..\Test-SauceConnectState.Tests.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7B1C4CE7-45E7-436A-96D2-79493B1274ED} = {E1AE3262-10C1-4643-A426-F963ECF8AC79}
+		{B4AB832A-65EC-44FF-B136-197A2DA8E74B} = {02D1155D-7E24-485D-84E5-043B79A04B74}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6019E59C-E9C4-4734-90C4-B49A0CCF0A59}
