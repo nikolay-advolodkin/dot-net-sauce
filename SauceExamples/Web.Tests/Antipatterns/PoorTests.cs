@@ -44,11 +44,11 @@ namespace Web.Tests.Antipatterns
 
             //test login with invalid username
             productsPage = loginPage.Login("fake_user_name", "secret_sauce");
-            productsPage.IsLoaded.Should().BeFalse("we used a locked out user who should not be able to login.");
+            productsPage.IsLoaded.Should().BeFalse("we used a invalid username who should not be able to login.");
 
             //test login with invalid password
             productsPage = loginPage.Login("standard_user", "fake_pass");
-            productsPage.IsLoaded.Should().BeFalse("we used a locked out user who should not be able to login.");
+            productsPage.IsLoaded.Should().BeFalse("we used an invalid password, so the user should not be able to login");
 
             //validate that all products are present
             productsPage = loginPage.Login("standard_user", "secret_sauce");
