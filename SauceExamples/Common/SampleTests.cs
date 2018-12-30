@@ -20,7 +20,6 @@ namespace Common
             var rdcUrl = "https://us1.appium.testobject.com/wd/hub";
             //TODO should be interchangeable to run on Windows/Mac
             var driver = new AndroidDriver<IWebElement>(new Uri(rdcUrl), capabilities);
-            //var logEntries = driver.Manage().Logs.GetLog("driver");
             driver.Navigate().GoToUrl("https://www.ultimateqa.com");
             Console.WriteLine("");
             driver.Quit();
