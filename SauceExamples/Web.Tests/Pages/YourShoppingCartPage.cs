@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
+using Web.Tests.Elements;
 
 namespace Web.Tests.Pages
 {
@@ -8,10 +10,18 @@ namespace Web.Tests.Pages
         {
         }
 
+        public CartElement Cart => new CartElement(_driver);
+
         internal CheckoutInformationPage Checkout()
         {
             Wait.UntilIsVisibleByClass("cart_checkout_link").Click();
             return new CheckoutInformationPage(_driver);
+        }
+
+        internal YourShoppingCartPage Open()
+        {
+            _driver.Navigate().GoToUrl($"{BaseUrl}/cart.html");
+            return this;
         }
     }
 }
