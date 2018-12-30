@@ -25,6 +25,17 @@ namespace Web.Tests.BestPractices.Tests
             checkoutCompletePage.IsCheckedOut.Should().BeTrue("The checkout process should redirect us to the success page.");
         }
 
+        ////validate that a product can be added to a cart
+        //productsPage.AddToCart(Item.Backpack);
+        //    productsPage.Cart.ItemCount.Should().Be(1, "we added a backpack to the cart");
+
+        ////validate that user can checkout
+        //var cartPage = productsPage.Cart.Click();
+        //var checkoutOverviewPage = cartPage.Checkout().
+        //    FillOutPersonalInformation();
+        //checkoutOverviewPage.FinishCheckout().IsCheckoutComplete.
+        //    Should().
+        //        BeTrue("we finished the checkout process");
         [TearDown]
         public void CleanUpAfterEveryTestMethod()
         {

@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BestPractices\ProductsPageFeature.cs" />
     <Compile Include="BestPractices\LoginFeature.cs" />
     <Compile Include="BestPractices\LogoutFeature.cs" />
     <Compile Include="Pages\Item.cs" />
