@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;
 using Web.Tests.Pages;
 
-namespace Web.Tests.BestPractices.Tests
+namespace Web.Tests.BestPractices
 {
     [TestFixture]
     [Parallelizable]
