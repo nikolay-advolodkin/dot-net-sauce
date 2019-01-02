@@ -1,4 +1,3 @@
-using Common;
 using FluentAssertions;
 using NUnit.Framework;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;

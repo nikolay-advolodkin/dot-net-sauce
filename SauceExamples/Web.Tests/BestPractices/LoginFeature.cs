@@ -1,4 +1,3 @@
-using Common;
 using FluentAssertions;
 using NUnit.Framework;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;
@@ -60,27 +59,9 @@ namespace Web.Tests.BestPractices
             productsPage.IsLoaded.Should().BeFalse("we used an invalid password, so the user should not be able to login");
         }
 
-        ////validate that all products are present
-        //productsPage = loginPage.Login("standard_user", "secret_sauce");
-        //    productsPage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
-        //productsPage.ProductCount.Should().Be(6,
-        //        "we logged in successfully and we should have 6 items on the page");
-
-        ////validate that a product can be added to a cart
-        //productsPage.AddToCart(Item.Backpack);
-        //    productsPage.Cart.ItemCount.Should().Be(1, "we added a backpack to the cart");
-
-        ////validate that user can checkout
-        //var cartPage = productsPage.Cart.Click();
-        //var checkoutOverviewPage = cartPage.Checkout().
-        //    FillOutPersonalInformation();
-        //checkoutOverviewPage.FinishCheckout().IsCheckoutComplete.
-        //    Should().
-        //        BeTrue("we finished the checkout process");
         [SetUp]
         public void RunBeforeEveryTest()
         {
-            SauceReporter.SetBuildName("BestPracticesTests");
             _loginPage = new SauceDemoLoginPage(Driver);
         }
     }

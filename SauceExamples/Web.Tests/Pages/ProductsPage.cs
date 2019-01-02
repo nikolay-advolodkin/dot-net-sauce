@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using Web.Tests.Elements;
 
 namespace Web.Tests.Pages

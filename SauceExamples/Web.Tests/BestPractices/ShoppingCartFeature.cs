@@ -1,9 +1,5 @@
-using System.Reflection;
-using Common;
 using FluentAssertions;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;
 using Web.Tests.Pages;
 
@@ -44,12 +40,6 @@ namespace Web.Tests.BestPractices
             productsPage.AddToCart(Item.Backpack);
             //Assert
             productsPage.Cart.ItemCount.Should().Be(1, "we added a backpack to the cart");
-        }
-
-        [SetUp]
-        public void RunBeforeEveryTest()
-        {
-            SauceReporter.SetBuildName("BestPracticesTests");
         }
     }
 }

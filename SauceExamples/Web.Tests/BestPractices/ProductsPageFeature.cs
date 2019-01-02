@@ -1,4 +1,3 @@
-using Common;
 using FluentAssertions;
 using NUnit.Framework;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;
@@ -23,12 +22,6 @@ namespace Web.Tests.BestPractices
             var productsPage = new ProductsPage(Driver).Open();
             productsPage.ProductCount.Should().Be(6,
                     "we logged in successfully and we should have 6 items on the page");
-        }
-
-        [SetUp]
-        public void RunBeforeEveryTest()
-        {
-            SauceReporter.SetBuildName("BestPracticesTests");
         }
     }
 }

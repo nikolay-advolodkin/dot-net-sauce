@@ -1,4 +1,3 @@
-using Common;
 using FluentAssertions;
 using NUnit.Framework;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;
@@ -25,11 +24,6 @@ namespace Web.Tests.BestPractices
             productsPage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
             productsPage.Logout();
             loginPage.IsLoaded.Should().BeTrue("we successfully logged out, so the login page should be visible");
-        }
-        [SetUp]
-        public void RunBeforeEveryTest()
-        {
-            SauceReporter.SetBuildName("BestPracticesTests");
         }
     }
 }
