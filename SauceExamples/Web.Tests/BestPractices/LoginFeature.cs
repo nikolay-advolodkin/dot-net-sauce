@@ -9,7 +9,7 @@ namespace Web.Tests.BestPractices
     [TestFixture]
     [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
     [Parallelizable]
-    public class LoginFeature : BaseCrossBrowserTest
+    public class LoginFeature : BaseTest
     {
         private SauceDemoLoginPage _loginPage;
 

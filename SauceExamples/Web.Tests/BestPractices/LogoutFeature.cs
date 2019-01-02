@@ -9,7 +9,7 @@ namespace Web.Tests.BestPractices
     [TestFixture]
     [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
     [Parallelizable]
-    public class LogoutFeature : BaseCrossBrowserTest
+    public class LogoutFeature : BaseTest
     {
         public LogoutFeature(string browser, string version, string os) : 
             base(browser, version, os)

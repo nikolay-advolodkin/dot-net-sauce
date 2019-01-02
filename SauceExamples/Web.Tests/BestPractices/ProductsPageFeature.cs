@@ -9,7 +9,7 @@ namespace Web.Tests.BestPractices
     [TestFixture]
     [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
     [Parallelizable]
-    public class ProductsPageFeature : BaseCrossBrowserTest
+    public class ProductsPageFeature : BaseTest
     {
         public ProductsPageFeature(string browser, string version, string os) : 
             base(browser, version, os)

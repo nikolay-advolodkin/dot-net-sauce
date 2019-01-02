@@ -8,7 +8,7 @@ namespace Web.Tests.BestPractices
     [TestFixture]
     [Parallelizable]
     [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
-    public class ShoppingCartFeature : BaseCrossBrowserTest
+    public class ShoppingCartFeature : BaseTest
     {
         public ShoppingCartFeature(string browser, string browserVersion, string osPlatform) : 
             base(browser, browserVersion, osPlatform)

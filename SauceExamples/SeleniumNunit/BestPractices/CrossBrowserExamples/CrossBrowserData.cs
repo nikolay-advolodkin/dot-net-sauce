@@ -9,10 +9,20 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         {
             get
             {
-                //chrome
+                //chrome on Mac
                 yield return new TestFixtureData("Chrome", "latest", "macOS 10.13");
                 yield return new TestFixtureData("Chrome", "latest-1", "macOS 10.13");
                 yield return new TestFixtureData("Chrome", "latest-2", "macOS 10.13");
+
+                //chrome on Windows(#1 platform as of 2019)
+                yield return new TestFixtureData("Chrome", "latest", "Windows 10");
+                yield return new TestFixtureData("Chrome", "latest-1", "Windows 10");
+                yield return new TestFixtureData("Chrome", "latest-2", "Windows 10");
+
+                //chrome on Windows 7(#3 platform as of 2019)
+                yield return new TestFixtureData("Chrome", "latest", "Windows 7");
+                yield return new TestFixtureData("Chrome", "latest-1", "Windows 7");
+                yield return new TestFixtureData("Chrome", "latest-2", "Windows 7");
 
                 //safari
                 yield return new TestFixtureData("Safari", "latest", "macOS 10.13");
