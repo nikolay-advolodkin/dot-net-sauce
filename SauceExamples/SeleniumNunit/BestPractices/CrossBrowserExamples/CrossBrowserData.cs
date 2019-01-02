@@ -16,8 +16,8 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
 
                 //safari
                 yield return new TestFixtureData("Safari", "latest", "macOS 10.13");
-                yield return new TestFixtureData("Safari", "latest-1", "macOS 10.12");
-                yield return new TestFixtureData("Safari", "10.0", "OS X 10.11");
+                //yield return new TestFixtureData("Safari", "latest-1", "macOS 10.12");
+                //yield return new TestFixtureData("Safari", "10.0", "OS X 10.11");
 
                 //firefox
                 yield return new TestFixtureData("Firefox", "latest", "macOS 10.13");
