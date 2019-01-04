@@ -40,6 +40,8 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
                 yield return new TestFixtureData("MicrosoftEdge", "latest-2", "Windows 10");
 
                 //IE
+                yield return new TestFixtureData("Internet Explorer", "latest", "Windows 10");
+                yield return new TestFixtureData("Internet Explorer", "latest", "Windows 7");
             }
         }
 

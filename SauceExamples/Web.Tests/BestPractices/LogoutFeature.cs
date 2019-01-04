@@ -19,9 +19,8 @@ namespace Web.Tests.BestPractices
         public void ShouldBeAbleToLogOut()
         {
             var loginPage = new SauceDemoLoginPage(Driver);
-            loginPage.Open().IsLoaded.Should().BeTrue("the login page should load successfully.");
+            loginPage.Open();
             var productsPage = loginPage.Login("standard_user", "secret_sauce");
-            productsPage.IsLoaded.Should().BeTrue("we successfully logged in and the home page should load.");
             productsPage.Logout();
             loginPage.IsLoaded.Should().BeTrue("we successfully logged out, so the login page should be visible");
         }
