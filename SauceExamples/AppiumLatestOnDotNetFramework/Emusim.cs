@@ -1,10 +1,8 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Remote;
 
 namespace AppiumLatestOnDotNetFramework
 {
@@ -29,7 +27,6 @@ namespace AppiumLatestOnDotNetFramework
             capabilities.SetCapability("newCommandTimeout", 90);
 
             var driver = new AndroidDriver<IWebElement>(new SauceLabsData().SauceHubUri, capabilities);
-            //var logEntries = driver.Manage().Logs.GetLog("driver");
             driver.Navigate().GoToUrl("https://www.saucedemo.com");
             Assert.IsTrue(true);
             driver.Quit();

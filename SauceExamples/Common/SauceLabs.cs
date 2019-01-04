@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium.Remote;
-using System;
 
 namespace Common
 {

@@ -24,7 +24,6 @@ namespace AppiumOnDotNetFramework
 
             appiumOptions.AddAdditionalCapability(MobileCapabilityType.FullReset, true);
             appiumOptions.AddAdditionalCapability(MobileCapabilityType.NewCommandTimeout, 60);
-            //appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "7.1.1");
 
             appiumOptions.AddAdditionalCapability("testobject_api_key", "0D6C044F19D0442BA1E11C3FF087F6A6");
             appiumOptions.AddAdditionalCapability("username", SauceUser.Name);
@@ -33,7 +32,6 @@ namespace AppiumOnDotNetFramework
 
             var rdcUrl = "https://us1.appium.testobject.com/wd/hub";
             var driver = new AndroidDriver<IWebElement>(new Uri(rdcUrl), appiumOptions);
-            //var logEntries = driver.Manage().Logs.GetLog("driver");
             driver.Navigate().GoToUrl("https://www.ultimateqa.com");
             Console.WriteLine("");
             driver.Quit();

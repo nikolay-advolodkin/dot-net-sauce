@@ -1,36 +1,45 @@
-using System.Reflection;
-using Common;
 using FluentAssertions;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
+using SeleniumNunit.BestPractices.CrossBrowserExamples;
 using Web.Tests.Pages;
 
-namespace Web.Tests.BestPractices.Tests
+namespace Web.Tests.BestPractices
 {
     [TestFixture]
     [Parallelizable]
-    public class ShoppingCartFeature
+    [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
+    public class ShoppingCartFeature : BaseTest
     {
-        private IWebDriver _driver;
+        public ShoppingCartFeature(string browser, string browserVersion, string osPlatform) : 
+            base(browser, browserVersion, osPlatform)
+        {
+        }
+
         [Test]
         public void ShouldBeAbleToCheckOutWithItems()
         {
-            _driver = new WebDriverFactory().CreateSauceDriver(MethodBase.GetCurrentMethod().Name);
-            var checkoutPage = new CheckoutPage(_driver);
-            checkoutPage.GoTo();
-            checkoutPage.Cart.SetCartState()
-                .HasItems.Should().BeTrue("The cart should have some items in it since they were injected.");
-            var checkoutCompletePage = checkoutPage.Finish();
-            checkoutCompletePage.IsCheckedOut.Should().BeTrue("The checkout process should redirect us to the success page.");
+            //Arrange
+            var shoppingCartPage = new YourShoppingCartPage(Driver).Open();
+            //We don't need to actually use th UI to add items to the cart. 
+            //I'm injecting Javascript to control the state of the cart
+            shoppingCartPage.Cart.SetCartState();
+            //Act
+            var checkoutOverviewPage = shoppingCartPage.Checkout().
+                FillOutPersonalInformation();    
+            //Assert
+            checkoutOverviewPage.FinishCheckout().
+                IsCheckoutComplete.Should().BeTrue("we finished the checkout process");
         }
-
-        [TearDown]
-        public void CleanUpAfterEveryTestMethod()
+        [Test]
+        public void ShouldBeAbleToAddItemToCart()
         {
-            var passed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            ((IJavaScriptExecutor)_driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
-            _driver?.Quit();
+            //Arrange
+            var productsPage = new ProductsPage(Driver);
+            //Act
+            productsPage.Open();
+            productsPage.AddToCart(Item.Backpack);
+            //Assert
+            productsPage.Cart.ItemCount.Should().Be(1, "we added a backpack to the cart");
         }
     }
 }
