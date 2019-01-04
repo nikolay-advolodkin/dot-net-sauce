@@ -37,7 +37,7 @@ namespace AppiumLatestOnDotNetFramework
                 TimeSpan.FromSeconds(300));
             _sessionId = _driver.SessionId;
 
-            _driver.Navigate().GoToUrl("https://www.ultimateqa.com");
+            _driver.Navigate().GoToUrl("https://www.saucedemo.com");
             Assert.IsTrue(false);
 
         }
