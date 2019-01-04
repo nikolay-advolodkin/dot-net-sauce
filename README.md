@@ -1,4 +1,5 @@
 # demonstration-scripts-C#/dot-net-sauce
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d73359469c54f01a0ba96a175514ad3)](https://app.codacy.com/app/nadvolod/demo-csharp?utm_source=github.com&utm_medium=referral&utm_content=nadvolod/demo-csharp&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://dev.azure.com/nikolayadvolodkin/SauceExamples/_apis/build/status/nikolay-advolodkin.dot-net-sauce)](https://dev.azure.com/nikolayadvolodkin/SauceExamples/_build/latest?definitionId=1)
 
 This directory contains example scripts and dependencies for running automated Selenium tests on Sauce Labs using C#. You can use these scripts to test your Sauce Labs authentication credentials, the setup of your automated testing environment, and try out Sauce Labs features, like cross-browser testing. Feel free to copy these files or clone the entire directory to your local environment to experiment with creating your own automated Selenium tests!
