@@ -10,7 +10,6 @@ namespace Common
     {
         private SauceLabsCapabilities _sauceCustomCapabilities;
         private DesiredCapabilities _desiredCapabilities;
-        private SauceLabsCapabilities sauceConfig;
 
         private string SauceHubUrl => new SauceLabsData().SauceHubUrl;
 

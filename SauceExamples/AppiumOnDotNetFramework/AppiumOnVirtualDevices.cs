@@ -25,7 +25,6 @@ namespace AppiumOnDotNetFramework
             caps.SetCapability("newCommandTimeout", 90);
 
             var driver = new RemoteWebDriver(new Uri(new SauceLabsData().SauceHubUrl), caps);
-            //var logEntries = driver.Manage().Logs.GetLog("driver");
             driver.Navigate().GoToUrl("https://www.ultimateqa.com");
             Console.WriteLine("");
             driver.Quit();

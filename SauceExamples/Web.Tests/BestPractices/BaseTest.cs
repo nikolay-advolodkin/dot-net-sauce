@@ -2,12 +2,19 @@
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
-namespace SeleniumNunit.BestPractices.CrossBrowserExamples
+namespace Web.Tests.BestPractices
 {
+    //TODO this whole class is a duplication of BaseCrossBrowserTEst.cs
+    //The reason why it was duplicated was because I needed to be able to configure
+    //the [Setup] methods. Some needed to be able to set the Build Name and do some actions,
+    //other tests didn't need to set the build name, and others, only needed to set
+    //the build name. It seems as though maybe a Strategy pattern might solve these problems
+    //It might make sense to create a ISetupStrategy that is defined in the constructor
+    //of every single feature file. That feature file will define the setup Strategy.
+    //Then, those operations will be performed int the [Setup] of the BaseTest
     [TestFixture]
-    public class BaseCrossBrowserTest
+    public class BaseTest
     {
         [SetUp]
         public void ExecuteBeforeEveryTestMethod()
@@ -16,19 +23,12 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             SauceLabsCapabilities.BuildName = _sauceBuildName;
             //TODO move into external config
             //TODO add a factory method to create this driver easily
-            var localExecution = false;
-            if (localExecution)
-            {
-                Driver = new ChromeDriver();
-                _isUsingSauceLabs = false;
-            }
-            else
-            {
-                Driver = new WebDriverFactory(sauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
-                SauceReporter = new SauceJavaScriptExecutor(Driver);
-                SauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
-                _isUsingSauceLabs = true;
-            }
+ 
+            Driver = new WebDriverFactory(sauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
+            SauceReporter = new SauceJavaScriptExecutor(Driver);
+            SauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
+            SauceReporter.SetBuildName("BestPracticesTests5");
+            _isUsingSauceLabs = true;
         }
 
         [TearDown]
@@ -53,14 +53,14 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
         private static string _sauceBuildName;
         private bool _isUsingSauceLabs;
 
-        public BaseCrossBrowserTest(string browser, string browserVersion, string osPlatform)
+        public BaseTest(string browser, string browserVersion, string osPlatform)
         {
             _browser = browser;
             _browserVersion = browserVersion;
             _osPlatform = osPlatform;
         }
 
-        protected BaseCrossBrowserTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn)
+        protected BaseTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn)
         {
             _browser = browser;
             _browserVersion = browserVersion;
@@ -68,7 +68,7 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             _isDebuggingOn = isDebuggingOn;
         }
 
-        protected BaseCrossBrowserTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn,
+        protected BaseTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn,
             string buildName)
         {
             _browser = browser;

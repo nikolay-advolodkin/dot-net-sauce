@@ -19,7 +19,7 @@ namespace Web.Tests.Pages
 
         public SauceDemoLoginPage Open()
         {
-            _driver.Navigate().GoToUrl("http://www.saucedemo.com/");
+            _driver.Navigate().GoToUrl(BaseUrl);
             return this;
         }
 

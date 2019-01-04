@@ -1,8 +1,5 @@
-using System;
-using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using SeleniumNunit.BestPractices.CrossBrowserExamples;
 
 namespace SeleniumNunit.SaucePerformance
