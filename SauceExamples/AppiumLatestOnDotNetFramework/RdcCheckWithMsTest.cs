@@ -44,11 +44,11 @@ namespace AppiumLatestOnDotNetFramework
         [TestCleanup]
         public void Teardown()
         {
-            var client = new RestClient("https://app.testobject.com/api/rest");
-            var request = new RestRequest($"/v2/appium/session/{_sessionId}/test", Method.PUT);
-
             var isPassed = TestContext.CurrentTestOutcome == UnitTestOutcome.Passed;
             var jsonBody = "{\"passed\":\"" + isPassed + "\"}";
+
+            var client = new RestClient("https://app.testobject.com/api/rest");
+            var request = new RestRequest($"/v2/appium/session/{_sessionId}/test", Method.PUT);
             request.AddParameter("application/json", jsonBody, ParameterType.RequestBody);
             client.Execute(request);
             _driver.Quit();
