@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Remote;
 
@@ -12,9 +13,9 @@ namespace SeleniumNunit.SimpleExamples
     [Category("Selenium 4 tests")]
     public class Selenium4
     {
-        IWebDriver Driver;
+        IWebDriver _driver;
         [Test]
-        public void SimpleSelenium4Example()
+        public void W3CEdge()
         {
 
             //TODO please supply your Sauce Labs user name in an environment variable
@@ -26,18 +27,49 @@ namespace SeleniumNunit.SimpleExamples
             {
                 BrowserVersion = "latest",
                 PlatformName = "Windows 10"
+                
             };
 
-            var sauceOptions = new Dictionary<string, object>();
-            sauceOptions["username"] = sauceUserName;
-            sauceOptions["accessKey"] = sauceAccessKey;
-            sauceOptions["name"] = TestContext.CurrentContext.Test.Name;
+            var sauceOptions = new Dictionary<string, object>
+            {
+                ["username"] = sauceUserName,
+                ["accessKey"] = sauceAccessKey,
+                ["name"] = TestContext.CurrentContext.Test.Name
+            };
 
             options.AddAdditionalCapability("sauce:options", sauceOptions);
 
-            Driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), options.ToCapabilities(),
+            _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));
-            Driver.Navigate().GoToUrl("https://www.google.com");
+            _driver.Navigate().GoToUrl("https://www.google.com");
+            Assert.Pass();
+        }
+
+        [Test]
+        public void W3CChrome()
+        {
+            //TODO please supply your Sauce Labs user name in an environment variable
+            var sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
+            //TODO please supply your own Sauce Labs access Key in an environment variable
+            var sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
+
+            var chromeOptions = new ChromeOptions()
+            {
+                BrowserVersion = "latest",
+                PlatformName = "Windows 10",
+                UseSpecCompliantProtocol = true
+            };
+            var sauceOptions = new Dictionary<string, object>
+            {
+                ["username"] = sauceUserName,
+                ["accessKey"] = sauceAccessKey,
+                ["name"] = TestContext.CurrentContext.Test.Name
+            };
+            chromeOptions.AddAdditionalCapability("sauce:options", sauceOptions);
+
+            _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), 
+                chromeOptions.ToCapabilities(), TimeSpan.FromSeconds(600));
+            _driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
         }
 
@@ -45,8 +77,8 @@ namespace SeleniumNunit.SimpleExamples
         public void CleanUpAfterEveryTestMethod()
         {
             var passed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
-            Driver?.Quit();
+            ((IJavaScriptExecutor)_driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+            _driver?.Quit();
         }
     }
 }
