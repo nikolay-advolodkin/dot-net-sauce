@@ -65,7 +65,7 @@ namespace SeleniumNunit.SimpleExamples
                 ["accessKey"] = sauceAccessKey,
                 ["name"] = TestContext.CurrentContext.Test.Name
             };
-            chromeOptions.AddAdditionalCapability("sauce:options", sauceOptions);
+            chromeOptions.AddAdditionalCapability("sauce:options", sauceOptions, true);
 
             _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), 
                 chromeOptions.ToCapabilities(), TimeSpan.FromSeconds(600));
