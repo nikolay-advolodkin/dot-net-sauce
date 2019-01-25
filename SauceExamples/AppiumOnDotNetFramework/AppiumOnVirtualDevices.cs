@@ -4,7 +4,7 @@ using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Remote;
 
-namespace AppiumOnDotNetFramework
+namespace AppiumBetaMSTest
 {
     [TestClass]
     [TestCategory("AppiumTest")]

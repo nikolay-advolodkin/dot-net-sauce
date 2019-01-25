@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumOnDotNetFramework", "AppiumOnDotNetFramework\AppiumOnDotNetFramework.csproj", "{44B81F22-100A-4DF4-9473-26582250CF25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumBetaMSTest", "AppiumOnDotNetFramework\AppiumBetaMSTest.csproj", "{44B81F22-100A-4DF4-9473-26582250CF25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}"
 EndProject
