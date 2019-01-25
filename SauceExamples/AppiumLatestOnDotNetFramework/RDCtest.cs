@@ -39,7 +39,7 @@ namespace AppiumMsTest
             _driver.Navigate().GoToUrl("https://www.saucedemo.com");
             Assert.IsTrue(false);
 
-        }
+        }   
         [TestCleanup]
         public void Teardown()
         {

@@ -20,5 +20,7 @@ namespace Common
         }
 
         public static string BuildName { get; set; }
+
+
     }
 }
