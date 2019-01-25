@@ -24,7 +24,7 @@ namespace Unit.Tests
         public void ShouldSetDesiredCaps()
         {
             var desiredCaps = sauce.GetDesiredCapabilities();
-            desiredCaps.DesiredCaps.Should().NotBeNull();
+            desiredCaps.Should().NotBeNull();
         }
     }
 }
