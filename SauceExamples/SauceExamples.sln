@@ -1,14 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28407.52
+# Visual Studio 15
+VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumOnDotNetFramework", "AppiumOnDotNetFramework\AppiumOnDotNetFramework.csproj", "{44B81F22-100A-4DF4-9473-26582250CF25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BE3EF376-360B-4B9C-BB24-E6C3B9545E4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumNunitTests", "SeleniumNunit\SeleniumNunitTests.csproj", "{D0544BBB-85D0-4BD0-82E2-2AC1C6BBBCF5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelTestMethods", "ParallelTestMethods\ParallelTestMethods.csproj", "{41B877D5-F778-46B1-AE39-2AE2C86D000D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{0744708F-410B-468C-9AE4-856AC986F091}"
 EndProject
@@ -53,10 +51,6 @@ Global
 		{D0544BBB-85D0-4BD0-82E2-2AC1C6BBBCF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0544BBB-85D0-4BD0-82E2-2AC1C6BBBCF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0544BBB-85D0-4BD0-82E2-2AC1C6BBBCF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41B877D5-F778-46B1-AE39-2AE2C86D000D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41B877D5-F778-46B1-AE39-2AE2C86D000D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41B877D5-F778-46B1-AE39-2AE2C86D000D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41B877D5-F778-46B1-AE39-2AE2C86D000D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0744708F-410B-468C-9AE4-856AC986F091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0744708F-410B-468C-9AE4-856AC986F091}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0744708F-410B-468C-9AE4-856AC986F091}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,10 +75,6 @@ Global
 		{8EAC3C5C-FDF4-4A85-BFE9-19EB8B30E989}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EAC3C5C-FDF4-4A85-BFE9-19EB8B30E989}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EAC3C5C-FDF4-4A85-BFE9-19EB8B30E989}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00861077-CF66-4DAD-BD17-C93D0AC139FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00861077-CF66-4DAD-BD17-C93D0AC139FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00861077-CF66-4DAD-BD17-C93D0AC139FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00861077-CF66-4DAD-BD17-C93D0AC139FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
