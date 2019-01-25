@@ -69,7 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppiumOnVirtualDevices.cs" />
     <Compile Include="Rdc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

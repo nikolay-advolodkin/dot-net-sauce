@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Tests", "Web.Tests\Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit.Tests", "Unit.Tests\Unit.Tests.csproj", "{A3915017-BB6F-42E9-8363-4E2A189F90A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumLatestOnDotNetFrameworkWithMsTest", "AppiumLatestOnDotNetFramework\AppiumLatestOnDotNetFrameworkWithMsTest.csproj", "{99F99E3A-B9A8-46D8-AC32-FC40552D04CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumMsTest", "AppiumLatestOnDotNetFramework\AppiumMsTest.csproj", "{99F99E3A-B9A8-46D8-AC32-FC40552D04CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumMsTest", "SeleniumMsTest\SeleniumMsTest.csproj", "{8EAC3C5C-FDF4-4A85-BFE9-19EB8B30E989}"
 EndProject
