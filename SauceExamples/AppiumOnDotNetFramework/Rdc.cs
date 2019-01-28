@@ -7,7 +7,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 
-namespace AppiumOnDotNetFramework
+namespace AppiumBetaMSTest
 {
     [TestClass]
     [TestCategory("AppiumTest")]
@@ -35,13 +35,6 @@ namespace AppiumOnDotNetFramework
             driver.Navigate().GoToUrl("https://www.ultimateqa.com");
             Console.WriteLine("");
             driver.Quit();
-        }
-
-        [TestMethod]
-        [TestCategory("UsingDesiredCapabilities")]
-        public void RdcTestUsingDesiredCaps()
-        {
-            new SampleTests().TestNativeAndroidApp(MethodBase.GetCurrentMethod().Name);
         }
     }
 }

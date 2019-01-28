@@ -12,7 +12,6 @@ namespace Common
         }
         public void LogTestStatus(bool isPassed)
         {
-
             ((IJavaScriptExecutor)_driver).
                 ExecuteScript("sauce:job-result=" + (isPassed ? "passed" : "failed"));
         }

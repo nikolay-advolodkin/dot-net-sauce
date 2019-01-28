@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Reflection;
-using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Remote;
 using RestSharp;
 
-namespace AppiumLatestOnDotNetFramework
+namespace AppiumMsTest
 {
     [TestClass]
     [TestCategory("MsTest")]
     [TestCategory("Rdc")]
     [TestCategory("Android")]
 
-    public class RdcCheckWithMsTest
+    public class RDCtest
     {
         private SessionId _sessionId;
         private AndroidDriver<IWebElement> _driver;
@@ -40,7 +39,7 @@ namespace AppiumLatestOnDotNetFramework
             _driver.Navigate().GoToUrl("https://www.saucedemo.com");
             Assert.IsTrue(false);
 
-        }
+        }   
         [TestCleanup]
         public void Teardown()
         {
