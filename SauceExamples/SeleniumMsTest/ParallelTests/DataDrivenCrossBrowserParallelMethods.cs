@@ -32,38 +32,10 @@ namespace SeleniumMsTest.ParallelTests
             //initialize driver
         }
         [TestMethod]
-        [DynamicData(nameof(MsTestCrossBrowserData.LatestConfigurations))]
+        [DynamicData("LatestConfigurations", typeof(MsTestCrossBrowserData),
+            DynamicDataDisplayName = "GetCustomDynamicDataDisplayName", 
+            DynamicDataDisplayNameDeclaringType = typeof(MsTestCrossBrowserData))]
         public void SeleniumTest1(string browser, string version, string osVersion)
-        {
-            SimpleTest(MethodBase.GetCurrentMethod().Name);
-        }
-        [TestMethod]
-        public void SeleniumTest2()
-        {
-            SimpleTest(MethodBase.GetCurrentMethod().Name);
-        }
-        [TestMethod]
-        public void SeleniumTest3()
-        {
-            SimpleTest(MethodBase.GetCurrentMethod().Name);
-        }
-        [TestMethod]
-        public void SeleniumTest4()
-        {
-            SimpleTest(MethodBase.GetCurrentMethod().Name);
-        }
-        [TestMethod]
-        public void SeleniumTest5()
-        {
-            SimpleTest(MethodBase.GetCurrentMethod().Name);
-        }
-        [TestMethod]
-        public void SeleniumTest6()
-        {
-            SimpleTest(MethodBase.GetCurrentMethod().Name);
-        }
-        [TestMethod]
-        public void SeleniumTest7()
         {
             SimpleTest(MethodBase.GetCurrentMethod().Name);
         }

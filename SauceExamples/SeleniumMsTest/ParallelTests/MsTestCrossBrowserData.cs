@@ -1,50 +1,20 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SeleniumMsTest.ParallelTests
 {
     public class MsTestCrossBrowserData
     {
-        public static IEnumerable LatestConfigurations
+        public static IEnumerable<object[]> LatestConfigurations => new[]
         {
-            get
-            {
-                //chrome on Mac
-                yield return new[]{ "Chrome", "latest", "macOS 10.13" };
-                yield return new[] { "Chrome", "latest-1", "macOS 10.13" };
-
-                //yield return new TestFixtureData("Chrome", "latest-1", "macOS 10.13");
-                //yield return new TestFixtureData("Chrome", "latest-2", "macOS 10.13");
-
-                ////chrome on Windows(#1 platform as of 2019)
-                //yield return new TestFixtureData("Chrome", "latest", "Windows 10");
-                //yield return new TestFixtureData("Chrome", "latest-1", "Windows 10");
-                //yield return new TestFixtureData("Chrome", "latest-2", "Windows 10");
-
-                ////chrome on Windows 7(#3 platform as of 2019)
-                //yield return new TestFixtureData("Chrome", "latest", "Windows 7");
-                //yield return new TestFixtureData("Chrome", "latest-1", "Windows 7");
-                //yield return new TestFixtureData("Chrome", "latest-2", "Windows 7");
-
-                ////safari
-                //yield return new TestFixtureData("Safari", "latest", "macOS 10.13");
-                ////yield return new TestFixtureData("Safari", "latest-1", "macOS 10.12");
-                ////yield return new TestFixtureData("Safari", "10.0", "OS X 10.11");
-
-                ////firefox
-                //yield return new TestFixtureData("Firefox", "latest", "macOS 10.13");
-                //yield return new TestFixtureData("Firefox", "latest-1", "macOS 10.13");
-                //yield return new TestFixtureData("Firefox", "latest-2", "macOS 10.13");
-
-                ////edge
-                //yield return new TestFixtureData("MicrosoftEdge", "latest", "Windows 10");
-                //yield return new TestFixtureData("MicrosoftEdge", "latest-1", "Windows 10");
-                //yield return new TestFixtureData("MicrosoftEdge", "latest-2", "Windows 10");
-
-                ////IE
-                //yield return new TestFixtureData("Internet Explorer", "latest", "Windows 10");
-                //yield return new TestFixtureData("Internet Explorer", "latest", "Windows 7");
-            }
+            new object[] {"Chrome", "latest", "macOS 10.13"},
+            new object[] {"Chrome", "latest-1", "macOS 10.13" }
+        };
+        public static string GetCustomDynamicDataDisplayName(MethodInfo methodInfo, object[] data)
+        {
+            return string.Format("DynamicDataTestMethod {0} with {1} parameters", methodInfo.Name, data.Length);
         }
     }
 }
