@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SeleniumMsTest.ParallelTests
+namespace SeleniumMsTest.ParallelTests.DataDriven
 {
     public class MsTestCrossBrowserData
     {
