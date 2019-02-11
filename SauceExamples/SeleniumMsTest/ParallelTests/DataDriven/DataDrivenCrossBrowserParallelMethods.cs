@@ -50,6 +50,27 @@ namespace SeleniumMsTest.ParallelTests.DataDriven
             SetupTest(browser, version, osVersion);
             SimpleTest(MethodBase.GetCurrentMethod().Name);
         }
+        [TestMethod]
+        [DynamicData(nameof(MsTestCrossBrowserData.LatestConfigurations), typeof(MsTestCrossBrowserData))]
+        public void SeleniumTest3(string browser, string version, string osVersion)
+        {
+            SetupTest(browser, version, osVersion);
+            SimpleTest(MethodBase.GetCurrentMethod().Name);
+        }
+        [TestMethod]
+        [DynamicData(nameof(MsTestCrossBrowserData.LatestConfigurations), typeof(MsTestCrossBrowserData))]
+        public void SeleniumTest4(string browser, string version, string osVersion)
+        {
+            SetupTest(browser, version, osVersion);
+            SimpleTest(MethodBase.GetCurrentMethod().Name);
+        }
+        [TestMethod]
+        [DynamicData(nameof(MsTestCrossBrowserData.LatestConfigurations), typeof(MsTestCrossBrowserData))]
+        public void SeleniumTest5(string browser, string version, string osVersion)
+        {
+            SetupTest(browser, version, osVersion);
+            SimpleTest(MethodBase.GetCurrentMethod().Name);
+        }
         private void SetupTest(string browser, string version, string osVersion)
         {
             var sauceConfig = new SauceLabsCapabilities {IsDebuggingEnabled = true};
