@@ -41,7 +41,6 @@ namespace Web.Tests.BestPractices
                 SauceReporter.LogMessage("Test finished execution");
                 SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
             }
-
             Driver?.Quit();
         }
 

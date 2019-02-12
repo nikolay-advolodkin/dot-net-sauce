@@ -19,7 +19,7 @@ namespace Web.Tests.Antipatterns
         [Test]
         public void EndToEndTest()
         {
-            SauceReporter.SetBuildName("AntiPatternTests3");
+            SauceReporter.SetBuildName("SCAntiPattern1");
             var loginPage = new SauceDemoLoginPage(Driver);
             //test loading of login page
             loginPage.Open().IsLoaded.Should().BeTrue("the login page should load successfully.");
