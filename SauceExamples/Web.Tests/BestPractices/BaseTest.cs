@@ -27,7 +27,7 @@ namespace Web.Tests.BestPractices
             Driver = new WebDriverFactory(sauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
             SauceReporter = new SauceJavaScriptExecutor(Driver);
             SauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
-            SauceReporter.SetBuildName("BestPracticesTests5");
+            SauceReporter.SetBuildName("parallel-noSC");
             _isUsingSauceLabs = true;
         }
 
@@ -41,7 +41,6 @@ namespace Web.Tests.BestPractices
                 SauceReporter.LogMessage("Test finished execution");
                 SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
             }
-
             Driver?.Quit();
         }
 

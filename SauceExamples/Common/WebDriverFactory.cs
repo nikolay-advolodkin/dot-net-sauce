@@ -54,12 +54,7 @@ namespace Common
             //capabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
 
             //SAUCE TIMEOUT CAPABILITIES
-            //How long is a test allowed to run?
-            _desiredCapabilities.SetCapability("maxDuration", 3600);
-            //Selenium crash might hang a command, this is the max time allowed to wait for a Selenium command
-            _desiredCapabilities.SetCapability("commandTimeout", 600);
-            //How long can the browser wait before a new command?
-            _desiredCapabilities.SetCapability("idleTimeout", 1000);
+            SetSauceTimeouts();
             var driver = GetSauceRemoteDriver();
             new SauceJavaScriptExecutor(driver).SetTestName(testCaseName);
             return driver;
@@ -69,26 +64,6 @@ namespace Common
         {
             return CreateSauceDriver(browser, browserVersion, osPlatform, _sauceCustomCapabilities);
         }
-
-        private IWebDriver SetSauceCapabilities(DesiredCapabilities capabilities)
-        {
-            _desiredCapabilities = capabilities;
-            _desiredCapabilities.SetCapability("username", SauceUser.Name);
-            _desiredCapabilities.SetCapability("accessKey", SauceUser.AccessKey);
-
-            //CUSTOM SAUCE CAPABILITIES
-            _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
-            _desiredCapabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
-            //_desiredCapabilities.SetCapability("build", $"SauceExamples-{_sauceCustomCapabilities.Tags[0]}");
-            _desiredCapabilities.SetCapability("tags", _sauceCustomCapabilities.Tags);
-            //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
-
-            //SAUCE TIMEOUT CAPABILITIES
-            SetSauceTimeouts();
-            var driver = GetSauceRemoteDriver();
-            return driver;
-        }
-
         private RemoteWebDriver GetSauceRemoteDriver()
         {
             return new RemoteWebDriver(new Uri(SauceHubUrl),
@@ -126,15 +101,6 @@ namespace Common
             _sauceCustomCapabilities.Tags.Add("withDebuggingDisabled");
             return capabilities;
         }
-        public IWebDriver CreateSauceDriver(string browser, string browserVersion, string osPlatform, bool isDebuggingOn)
-        {
-            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
-            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
-            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
-
-            _sauceCustomCapabilities = new SauceLabsCapabilities { IsDebuggingEnabled = isDebuggingOn };
-            return SetSauceCapabilities(_desiredCapabilities);
-        }
         public RemoteWebDriver CreateSauceDriver(
             string browser, string browserVersion, string osPlatform, SauceLabsCapabilities sauceConfiguration)
         {
@@ -143,6 +109,7 @@ namespace Common
             _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
             _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
             _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
+            //_desiredCapabilities.SetCapability(SauceLabsCapabilities.TunnelIdentifier, "453");
             //an important flag to set for Edge and possibly Safari
             _desiredCapabilities.SetCapability("avoidProxy", true);
             _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);

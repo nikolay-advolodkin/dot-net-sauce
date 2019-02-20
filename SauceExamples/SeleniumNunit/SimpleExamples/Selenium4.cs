@@ -26,8 +26,7 @@ namespace SeleniumNunit.SimpleExamples
             var options = new EdgeOptions()
             {
                 BrowserVersion = "latest",
-                PlatformName = "Windows 10"
-                
+                PlatformName = "Windows 10"             
             };
 
             var sauceOptions = new Dictionary<string, object>

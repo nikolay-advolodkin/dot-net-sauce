@@ -20,7 +20,6 @@ namespace Common
         }
 
         public static string BuildName { get; set; }
-
-
+        public static string TunnelIdentifier => "tunnelIdentifier";
     }
 }
