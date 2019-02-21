@@ -17,7 +17,7 @@ namespace AppiumMsTest
     {
         private SessionId _sessionId;
         private AndroidDriver<IWebElement> _driver;
-        private static readonly string USurl = "https://us1.appium.testobject.com/wd/hub";
+        private static string USurl => "https://us1.appium.testobject.com/wd/hub";
 
         private static readonly string TestObjectApiKey =
             Environment.GetEnvironmentVariable("TESTOBJECT_API_KEY", EnvironmentVariableTarget.User);
@@ -51,20 +51,44 @@ namespace AppiumMsTest
         }
 
         [TestMethod]
-        public void DynamicAllocation2()
+        [ExpectedException(typeof(InvalidOperationException))]
+
+        public void DynamicAllocationForAnyPlatformAndVersion()
         {
             var capabilities = new DesiredCapabilities();
             /*
-             * This will execute a test on any Android Galaxy device
+             * This will execute a test on any available device
              */
-            capabilities.SetCapability("platformName", "*");
-            capabilities.SetCapability("platformVersion", "*");
+            capabilities.SetCapability("platformName", ".*");
+            capabilities.SetCapability("platformVersion", ".*");
 
             capabilities.SetCapability("testobject_api_key", TestObjectApiKey);
             capabilities.SetCapability("name", MethodBase.GetCurrentMethod().Name);
             capabilities.SetCapability("newCommandTimeout", 90);
 
             _driver = new AndroidDriver<IWebElement>(new Uri(USurl), capabilities, 
+                TimeSpan.FromSeconds(300));
+            _sessionId = _driver.SessionId;
+
+            _driver.Navigate().GoToUrl("https://www.saucedemo.com");
+            AssertTitle();
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void DynamicAllocationForAnyGalaxyDevice()
+        {
+            var capabilities = new DesiredCapabilities();
+            /*
+             * This will execute a test on any Galaxy device
+             */
+            capabilities.SetCapability("platformName", ".*");
+            capabilities.SetCapability("platformVersion", ".*Galaxy.*");
+
+            capabilities.SetCapability("testobject_api_key", TestObjectApiKey);
+            capabilities.SetCapability("name", MethodBase.GetCurrentMethod().Name);
+            capabilities.SetCapability("newCommandTimeout", 90);
+
+            _driver = new AndroidDriver<IWebElement>(new Uri(USurl), capabilities,
                 TimeSpan.FromSeconds(300));
             _sessionId = _driver.SessionId;
 
@@ -110,7 +134,7 @@ namespace AppiumMsTest
             var request = new RestRequest($"/v2/appium/session/{_sessionId}/test", Method.PUT);
             request.AddParameter("application/json", jsonBody, ParameterType.RequestBody);
             client.Execute(request);
-            _driver.Quit();
+            _driver?.Quit();
         }
     }
 }
