@@ -1,0 +1,1 @@
+﻿#error (16:1): Feature file already contains a scenario with name 'Cross browser'

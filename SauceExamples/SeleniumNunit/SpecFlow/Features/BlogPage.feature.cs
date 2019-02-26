@@ -71,11 +71,11 @@ namespace SeleniumNunit.SpecFlow.Features
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Open Blog page", new string[] {
                         "mytag"});
-#line 6
+#line 11
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 12
  testRunner.When("the user opens Ultimate QA blog page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
+#line 13
  testRunner.Then("the blog page loads successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
