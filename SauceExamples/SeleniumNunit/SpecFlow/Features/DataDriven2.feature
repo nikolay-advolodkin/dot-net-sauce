@@ -1,8 +1,7 @@
-﻿Feature: DataDriven
+﻿Feature: DataDriven2
 	In order to to test several browsers
 	As an automation engineer
 	I want to data drive a scenario across many browsers
-
 
 Scenario Outline: Cross browser
 	Given I have an OS <os> with browser <browser> and browser version <version> opened
