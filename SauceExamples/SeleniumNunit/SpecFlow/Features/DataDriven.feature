@@ -13,7 +13,7 @@ Scenario Outline: Cross browser
 	| macOS 10.13 | chrome  | latest   |
 	| macOS 10.13 | chrome  | latest-1 |
 
-Scenario Outline: Cross browser
+Scenario Outline: Cross browser 2
 	Given I have an OS <os> with browser <browser> and browser version <version> opened
 	When I open the SauceDemo home page
 	Then it loads successfully
