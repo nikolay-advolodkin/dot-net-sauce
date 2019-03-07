@@ -48,7 +48,6 @@ namespace Web.Tests.BestPractices
         private readonly string _browserVersion;
         private readonly string _osPlatform;
         public SauceJavaScriptExecutor SauceReporter;
-        private bool _isDebuggingOn;
         private static string _sauceBuildName;
         private bool _isUsingSauceLabs;
 
@@ -64,7 +63,6 @@ namespace Web.Tests.BestPractices
             _browser = browser;
             _browserVersion = browserVersion;
             _osPlatform = osPlatform;
-            _isDebuggingOn = isDebuggingOn;
         }
 
         protected BaseTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn,
@@ -73,10 +71,9 @@ namespace Web.Tests.BestPractices
             _browser = browser;
             _browserVersion = browserVersion;
             _osPlatform = osPlatform;
-            _isDebuggingOn = isDebuggingOn;
             _sauceBuildName = buildName;
         }
-
         public IWebDriver Driver { get; set; }
+
     }
 }

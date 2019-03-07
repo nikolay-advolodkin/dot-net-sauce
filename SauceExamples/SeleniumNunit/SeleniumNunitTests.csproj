@@ -101,6 +101,19 @@
     <Compile Include="ParallelTestsAtClassLevel.cs" />
     <Compile Include="ReusableTests.cs" />
     <Compile Include="SimpleExamples\Selenium4.cs" />
+    <Compile Include="SpecFlow\Features\DataDriven.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataDriven.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SpecFlow\Features\DataDriven2.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataDriven2.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SpecFlow\Pages\BasePage.cs" />
+    <Compile Include="SpecFlow\Pages\SauceDemoLoginPage.cs" />
+    <Compile Include="SpecFlow\Steps\BaseSteps.cs" />
     <Compile Include="SpecFlow\Steps\BlogPageSteps.cs" />
     <Compile Include="SpecFlow\Features\BlogPage.feature.cs">
       <AutoGen>True</AutoGen>
@@ -113,6 +126,7 @@
       <DependentUpon>HomePage.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecFlow\Steps\DataDrivenSteps.cs" />
     <Compile Include="SpecFlow\Steps\HomePageSteps.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +136,14 @@
     <None Include="SpecFlow\Features\BlogPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BlogPage.feature.cs</LastGenOutput>
+    </None>
+    <None Include="SpecFlow\Features\DataDriven.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DataDriven.feature.cs</LastGenOutput>
+    </None>
+    <None Include="SpecFlow\Features\DataDriven2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DataDriven2.feature.cs</LastGenOutput>
     </None>
     <None Include="SpecFlow\Features\HomePage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
