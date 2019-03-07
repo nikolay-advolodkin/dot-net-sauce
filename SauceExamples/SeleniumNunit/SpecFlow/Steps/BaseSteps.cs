@@ -4,6 +4,6 @@ namespace SeleniumNunit.SpecFlow.Steps
 {
     public class BaseSteps
     {
-        public IWebDriver Driver;
+        public IWebDriver Driver { get; set; }
     }
 }
