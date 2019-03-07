@@ -11,12 +11,12 @@ namespace SeleniumNunit.SpecFlow.Pages
         }
 
         private readonly By _loginButtonLocator = By.ClassName("login-button");
-        public bool IsLoaded => new Wait(_driver, _loginButtonLocator).IsVisible();
+        public bool IsLoaded => new Wait(Driver, _loginButtonLocator).IsVisible();
 
 
         public SauceDemoLoginPage Open()
         {
-            _driver.Navigate().GoToUrl(BaseUrl);
+            Driver.Navigate().GoToUrl(BaseUrl);
             return this;
         }
     }
