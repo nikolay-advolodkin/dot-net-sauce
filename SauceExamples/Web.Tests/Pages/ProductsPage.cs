@@ -5,7 +5,7 @@ namespace Web.Tests.Pages
 {
     public class ProductsPage : BasePage
     {
-        private string _pageUrlPart;
+        private readonly string _pageUrlPart;
 
         public ProductsPage(IWebDriver driver) : base(driver)
         {
@@ -14,21 +14,20 @@ namespace Web.Tests.Pages
 
         public bool IsLoaded => _driver.Url.Contains($"/{_pageUrlPart}");
 
+        public IWebElement LogoutLink => _driver.FindElement(By.Id("logout_sidebar_link"));
+
+        public IWebElement HamburgerElement => _driver.FindElement(By.ClassName("bm-burger-button"));
+
+        public int ProductCount =>
+            _driver.FindElements(By.ClassName("inventory_item")).Count;
+
+        public CartElement Cart => new CartElement(_driver);
+
         public void Logout()
         {
             HamburgerElement.Click();
             LogoutLink.Click();
         }
-
-        public IWebElement LogoutLink => _driver.FindElement(By.Id("logout_sidebar_link"));
-
-        public IWebElement HamburgerElement => _driver.FindElement(By.ClassName("bm-burger-button"));
-        public int ProductCount => 
-            _driver.FindElements(By.ClassName("inventory_item")).Count;
-
-        private By AddToCartButtonLocator => By.CssSelector("button[class='btn_primary btn_inventory']");
-
-        public CartElement Cart => new CartElement(_driver);
 
         internal ProductsPage Open()
         {
@@ -38,7 +37,7 @@ namespace Web.Tests.Pages
 
         public void AddToCart(Item itemType)
         {
-            Wait.UntilIsVisible(AddToCartButtonLocator).Click();
+            Wait.UntilIsVisibleByCss("button[class='btn_primary btn_inventory']").Click();
         }
     }
 }

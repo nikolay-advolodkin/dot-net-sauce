@@ -10,13 +10,10 @@ namespace Web.Tests.Pages
         }
 
         public CartElement Cart => new CartElement(_driver);
-        //TODO duplication. Can be turned into UntilIsVisibleByCss(string cssLocator);
-        private By CheckoutButtonLocator => By.CssSelector("a[class='btn_action checkout_button']");
-
 
         internal CheckoutInformationPage Checkout()
         {
-            Wait.UntilIsVisible(CheckoutButtonLocator).Click();
+            Wait.UntilIsVisibleByCss("a[class='btn_action checkout_button']").Click();
             return new CheckoutInformationPage(_driver);
         }
 
