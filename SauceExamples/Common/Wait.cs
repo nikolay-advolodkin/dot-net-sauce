@@ -22,7 +22,7 @@ namespace Common
         }
         public IWebElement UntilIsVisibleByClass(string className)
         {
-            return _wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(className)));
+            return UntilIsVisible(By.ClassName(className));
         }
         public Wait(IWebDriver driver, By locator)
         {
@@ -33,6 +33,16 @@ namespace Common
         public bool IsVisible()
         {
             return _wait.Until(ExpectedConditions.ElementIsVisible(_locator)).Displayed;
+        }
+
+        public IWebElement UntilIsVisibleById(string id)
+        {
+            return UntilIsVisible(By.Id(id));
+        }
+
+        public IWebElement UntilIsVisibleByCss(string css)
+        {
+            return UntilIsVisible(By.CssSelector(css));
         }
     }
 }

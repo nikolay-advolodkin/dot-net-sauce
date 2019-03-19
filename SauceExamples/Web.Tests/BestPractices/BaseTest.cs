@@ -14,6 +14,7 @@ namespace Web.Tests.BestPractices
     //of every single feature file. That feature file will define the setup Strategy.
     //Then, those operations will be performed int the [Setup] of the BaseTest
     [TestFixture]
+    [Category("AcceptanceTests"), Category("CrossBrowser"), Category("NUnit"), Category("BestPractices") ]
     public class BaseTest
     {
         [SetUp]

@@ -13,7 +13,7 @@ namespace Web.Tests.Pages
 
         internal CheckoutInformationPage Checkout()
         {
-            Wait.UntilIsVisibleByClass("cart_checkout_link").Click();
+            Wait.UntilIsVisibleByCss("a[class='btn_action checkout_button']").Click();
             return new CheckoutInformationPage(_driver);
         }
 

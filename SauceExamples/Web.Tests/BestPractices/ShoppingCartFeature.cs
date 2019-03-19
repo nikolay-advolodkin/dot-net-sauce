@@ -19,16 +19,14 @@ namespace Web.Tests.BestPractices
         public void ShouldBeAbleToCheckOutWithItems()
         {
             //Arrange
-            var shoppingCartPage = new YourShoppingCartPage(Driver).Open();
+            var overviewPage = new CheckoutOverviewPage(Driver);
+            overviewPage.Open();
             //We don't need to actually use th UI to add items to the cart. 
             //I'm injecting Javascript to control the state of the cart
-            shoppingCartPage.Cart.SetCartState();
-            //Act
-            var checkoutOverviewPage = shoppingCartPage.Checkout().
-                FillOutPersonalInformation();    
-            //Assert
-            checkoutOverviewPage.FinishCheckout().
-                IsCheckoutComplete.Should().BeTrue("we finished the checkout process");
+            overviewPage.Cart.SetCartState();
+            //Act - very few UI interactions
+            overviewPage.FinishCheckout().
+                IsCheckoutComplete.Should().BeTrue("we finished the checkout process"); //Assert
         }
         [Test]
         public void ShouldBeAbleToAddItemToCart()
