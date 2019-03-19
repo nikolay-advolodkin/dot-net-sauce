@@ -13,8 +13,10 @@ namespace Web.Tests.Pages
         private readonly By _loginButtonLocator = By.ClassName("btn_action");
         public bool IsLoaded => new Wait(_driver, _loginButtonLocator).IsVisible();
         private IWebElement _usernameField;
-        private IWebElement PasswordField => _driver.FindElement(By.Id("password"));
-        private IWebElement LoginButton => _driver.FindElement(_loginButtonLocator);
+        public IWebElement PasswordField => _driver.FindElement(By.Id("password"));
+        public IWebElement LoginButton => _driver.FindElement(_loginButtonLocator);
+        private readonly By _usernameLocator = By.Id("user-name");
+        public IWebElement UsernameField => _driver.FindElement(_usernameLocator);
 
         public SauceDemoLoginPage Open()
         {
@@ -26,7 +28,7 @@ namespace Web.Tests.Pages
         {
             SauceJsExecutor.LogMessage(
                 $"Start login with user=>{username} and pass=>{password}");
-            _usernameField = Wait.UntilIsVisible(By.Id("user-name"));
+            _usernameField = Wait.UntilIsVisible(_usernameLocator);
             _usernameField.SendKeys(username);
             PasswordField.SendKeys(password);
             LoginButton.Click();
