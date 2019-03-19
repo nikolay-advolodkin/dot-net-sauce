@@ -106,6 +106,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataDriven.feature</DependentUpon>
     </Compile>
+    <Compile Include="SpecFlow\Features\DataDriven2.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataDriven2.feature</DependentUpon>
+    </Compile>
     <Compile Include="SpecFlow\Pages\BasePage.cs" />
     <Compile Include="SpecFlow\Pages\SauceDemoLoginPage.cs" />
     <Compile Include="SpecFlow\Steps\BaseSteps.cs" />
@@ -135,6 +140,10 @@
     <None Include="SpecFlow\Features\DataDriven.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DataDriven.feature.cs</LastGenOutput>
+    </None>
+    <None Include="SpecFlow\Features\DataDriven2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DataDriven2.feature.cs</LastGenOutput>
     </None>
     <None Include="SpecFlow\Features\HomePage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
