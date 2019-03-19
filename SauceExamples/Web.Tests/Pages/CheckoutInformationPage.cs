@@ -8,12 +8,14 @@ namespace Web.Tests.Pages
         {
         }
 
+        private By CartCheckoutButtonLocator => By.CssSelector("[class='btn_primary cart_button']");
+
         public CheckoutOverviewPage FillOutPersonalInformation()
         {
-            Wait.UntilIsVisible(By.CssSelector("input[data-test='firstName']")).SendKeys("firstName");
-            _driver.FindElement(By.CssSelector("input[data-test='lastName']")).SendKeys("lastName");
-            _driver.FindElement(By.CssSelector("input[data-test='postalCode']")).SendKeys("zip");
-            _driver.FindElement(By.ClassName("cart_checkout_link")).Click();
+            Wait.UntilIsVisibleById("first-name").SendKeys("firstName");
+            _driver.FindElement(By.Id("last-name")).SendKeys("lastName");
+            _driver.FindElement(By.Id("postal-code")).SendKeys("zip");
+            _driver.FindElement(CartCheckoutButtonLocator).Click();
             return new CheckoutOverviewPage(_driver);
         }
     }

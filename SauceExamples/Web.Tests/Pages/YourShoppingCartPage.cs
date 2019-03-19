@@ -10,7 +10,8 @@ namespace Web.Tests.Pages
         }
 
         public CartElement Cart => new CartElement(_driver);
-        private By CheckoutButtonLocator => By.CssSelector("button[class='btn_primary btn_inventory']");
+        //TODO duplication. Can be turned into UntilIsVisibleByCss(string cssLocator);
+        private By CheckoutButtonLocator => By.CssSelector("a[class='btn_action checkout_button']");
 
 
         internal CheckoutInformationPage Checkout()

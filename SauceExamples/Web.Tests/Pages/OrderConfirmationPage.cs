@@ -9,6 +9,6 @@ namespace Web.Tests.Pages
         }
 
         public bool IsCheckoutComplete =>
-            Wait.UntilIsVisibleByClass("subheader_label").Text == "Checkout: Complete!";
+            Wait.UntilIsVisibleByClass("complete-header").Text == "THANK YOU FOR YOUR ORDER";
     }
 }

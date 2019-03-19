@@ -34,5 +34,15 @@ namespace Common
         {
             return _wait.Until(ExpectedConditions.ElementIsVisible(_locator)).Displayed;
         }
+
+        public IWebElement UntilIsVisibleById(string id)
+        {
+            return UntilIsVisible(By.Id(id));
+        }
+
+        public IWebElement UntilIsVisibleByCss(string css)
+        {
+            return UntilIsVisible(By.CssSelector(css));
+        }
     }
 }
