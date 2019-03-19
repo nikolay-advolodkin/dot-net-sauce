@@ -26,6 +26,8 @@ namespace Web.Tests.Pages
         public int ProductCount => 
             _driver.FindElements(By.ClassName("inventory_item")).Count;
 
+        private By AddToCartButtonLocator => By.CssSelector("button[class='btn_primary btn_inventory']");
+
         public CartElement Cart => new CartElement(_driver);
 
         internal ProductsPage Open()
@@ -36,7 +38,7 @@ namespace Web.Tests.Pages
 
         public void AddToCart(Item itemType)
         {
-            Wait.UntilIsVisibleByClass("add-to-cart-button").Click();
+            Wait.UntilIsVisible(AddToCartButtonLocator).Click();
         }
     }
 }

@@ -10,10 +10,12 @@ namespace Web.Tests.Pages
         }
 
         public CartElement Cart => new CartElement(_driver);
+        private By CheckoutButtonLocator => By.CssSelector("button[class='btn_primary btn_inventory']");
+
 
         internal CheckoutInformationPage Checkout()
         {
-            Wait.UntilIsVisibleByClass("cart_checkout_link").Click();
+            Wait.UntilIsVisible(CheckoutButtonLocator).Click();
             return new CheckoutInformationPage(_driver);
         }
 

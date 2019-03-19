@@ -10,10 +10,10 @@ namespace Web.Tests.Pages
         {
         }
 
-        private readonly By _loginButtonLocator = By.ClassName("login-button");
+        private readonly By _loginButtonLocator = By.ClassName("btn_action");
         public bool IsLoaded => new Wait(_driver, _loginButtonLocator).IsVisible();
-        public IWebElement UsernameField => _driver.FindElement(By.ClassName("login-input"));
-        public IWebElement PasswordField => _driver.FindElement(By.CssSelector("[type='password']"));
+        public IWebElement UsernameField => _driver.FindElement(By.Id("user-name"));
+        public IWebElement PasswordField => _driver.FindElement(By.Id("password"));
         public IWebElement LoginButton => _driver.FindElement(_loginButtonLocator);
 
 
