@@ -44,22 +44,15 @@ namespace SeleniumNunit.SaucePerformance
         {
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Passed;
             new SauceJavaScriptExecutor(Driver).LogTestStatus(isPassed);
-
-            //var logType = new Dictionary<string, object>();
-            //logType.Add("type", "sauce:performance");
-
-            //var performanceMetrics = ((IJavaScriptExecutor) driver).ExecuteScript("sauce:performance", logType);
             Driver.Quit();
         }
         [Test]
-        [Repeat(5)]
         public void W3CTestForSauceDemo()
         {
             Driver.Navigate().GoToUrl("https://www.saucedemo.com");
         }
 
         [Test]
-        [Repeat(6)]
         public void W3CTestForUltimateQA()
         {
             Driver.Navigate().GoToUrl("https://www.ultimateqa.com");
