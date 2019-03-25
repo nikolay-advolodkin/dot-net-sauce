@@ -94,6 +94,7 @@
     <Compile Include="BestPractices\ParallelTestsWithBestPractices.cs" />
     <Compile Include="SaucePerformance\LatestCrossBrowserTests.cs" />
     <Compile Include="SaucePerformance\ImplicitVsExplicitTests.cs" />
+    <Compile Include="SaucePerformance\PerformanceDemo.cs" />
     <Compile Include="SaucePerformance\SingleBrowserTests.cs" />
     <Compile Include="SimpleExamples\SimpleSauceTest.cs" />
     <Compile Include="SimpleExamples\SauceConnectTests.cs" />
