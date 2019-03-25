@@ -11,9 +11,10 @@ namespace SeleniumNunit.SaucePerformance
     [TestFixture]
     public class PerformanceDemo
     {
-        [Test]
-        [Repeat(5)]
-        public void PerformanceTest()
+        public RemoteWebDriver Driver { get; set; }
+
+        [SetUp]
+        public void RunBeforeEveryTest()
         {
             var sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
             var sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
@@ -34,18 +35,34 @@ namespace SeleniumNunit.SaucePerformance
             };
             chromeOptions.AddAdditionalCapability("sauce:options", sauceOptions, true);
 
-            var driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"),
+            Driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"),
                 chromeOptions.ToCapabilities(), TimeSpan.FromSeconds(600));
-            driver.Navigate().GoToUrl("https://www.saucedemo.com");
+        }
 
+        [TearDown]
+        public void CleanUp()
+        {
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Passed;
-            new SauceJavaScriptExecutor(driver).LogTestStatus(isPassed);
+            new SauceJavaScriptExecutor(Driver).LogTestStatus(isPassed);
 
             //var logType = new Dictionary<string, object>();
             //logType.Add("type", "sauce:performance");
 
             //var performanceMetrics = ((IJavaScriptExecutor) driver).ExecuteScript("sauce:performance", logType);
-            driver.Quit();
+            Driver.Quit();
+        }
+        [Test]
+        [Repeat(5)]
+        public void W3CTestForSauceDemo()
+        {
+            Driver.Navigate().GoToUrl("https://www.saucedemo.com");
+        }
+
+        [Test]
+        [Repeat(6)]
+        public void W3CTestForUltimateQA()
+        {
+            Driver.Navigate().GoToUrl("https://www.ultimateqa.com");
         }
     }
 }
