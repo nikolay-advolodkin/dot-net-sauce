@@ -7,7 +7,7 @@ using Web.Tests.Pages;
 namespace Web.Tests.BestPractices
 {
     [TestFixture]
-    [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
+    [TestFixtureSource(typeof(CrossBrowserData), "LastTwoOnLinuxFirefoxChrome")]
     [Parallelizable]
     public class LoginFeature : BaseTest
     {

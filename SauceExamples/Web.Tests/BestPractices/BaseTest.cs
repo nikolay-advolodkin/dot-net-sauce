@@ -20,7 +20,10 @@ namespace Web.Tests.BestPractices
         [SetUp]
         public void ExecuteBeforeEveryTestMethod()
         {
-            var sauceConfig = new SauceLabsCapabilities {IsDebuggingEnabled = true};
+            var sauceConfig = new SauceLabsCapabilities {
+                IsDebuggingEnabled = false,
+                IsHeadlessBrowsers = true
+            };
             SauceLabsCapabilities.BuildName = _sauceBuildName;
             //TODO move into external config
             //TODO add a factory method to create this driver easily
@@ -28,7 +31,7 @@ namespace Web.Tests.BestPractices
             Driver = new WebDriverFactory(sauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
             SauceReporter = new SauceJavaScriptExecutor(Driver);
             SauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
-            SauceReporter.SetBuildName("parallel-noSC");
+            SauceReporter.SetBuildName("headless2");
             _isUsingSauceLabs = true;
         }
 

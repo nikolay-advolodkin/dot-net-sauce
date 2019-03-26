@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HeadlessSauceUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SauceJavaScriptExecutor.cs" />
     <Compile Include="SauceLabs.cs" />

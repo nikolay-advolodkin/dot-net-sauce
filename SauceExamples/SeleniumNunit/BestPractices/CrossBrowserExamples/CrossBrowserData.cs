@@ -45,6 +45,20 @@ namespace SeleniumNunit.BestPractices.CrossBrowserExamples
             }
         }
 
+        public static IEnumerable LastTwoOnLinuxFirefoxChrome
+        {
+            get
+            {
+                yield return new TestFixtureData("Chrome", "latest", "Linux");
+                yield return new TestFixtureData("Chrome", "latest-1", "Linux");
+                yield return new TestFixtureData("Chrome", "latest-2", "Linux");
+
+                yield return new TestFixtureData("Firefox", "latest", "Linux");
+                yield return new TestFixtureData("Firefox", "latest-1", "Linux");
+                yield return new TestFixtureData("Firefox", "latest-2", "Linux");
+            }
+        }
+
         public static IEnumerable LatestChrome
         {
             get

@@ -10,8 +10,19 @@ namespace Common
     {
         private SauceLabsCapabilities _sauceCustomCapabilities;
         private DesiredCapabilities _desiredCapabilities;
+        private string sauceHubUrl = new SauceLabsData().SauceHubUrl;
 
-        private string SauceHubUrl => new SauceLabsData().SauceHubUrl;
+        public string SauceHubUrl
+        {
+            get
+            {
+                return sauceHubUrl; 
+            }
+            set
+            {
+                sauceHubUrl = value;
+            }
+        }
 
         public WebDriverFactory()
         {
@@ -104,8 +115,16 @@ namespace Common
         public RemoteWebDriver CreateSauceDriver(
             string browser, string browserVersion, string osPlatform, SauceLabsCapabilities sauceConfiguration)
         {
-            _desiredCapabilities.SetCapability("username", SauceUser.Name);
-            _desiredCapabilities.SetCapability("accessKey", SauceUser.AccessKey);
+            var userName = SauceUser.Name;
+            var accessKey = SauceUser.AccessKey;
+            if(sauceConfiguration.IsHeadlessBrowsers)
+            {
+                userName = SauceUser.Headless.UserName;
+                accessKey = SauceUser.Headless.AccessKey;
+                SauceHubUrl = new SauceLabsData().HeadlessUrl;
+            }
+            _desiredCapabilities.SetCapability("username", userName);
+            _desiredCapabilities.SetCapability("accessKey", accessKey);
             _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
             _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
             _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
