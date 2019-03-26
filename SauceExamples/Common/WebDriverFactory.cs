@@ -119,9 +119,7 @@ namespace Common
             var accessKey = SauceUser.AccessKey;
             if(sauceConfiguration.IsHeadlessBrowsers)
             {
-                userName = SauceUser.Headless.UserName;
-                accessKey = SauceUser.Headless.AccessKey;
-                SauceHubUrl = new SauceLabsData().HeadlessUrl;
+                SetPropertiesForHeadless(out userName, out accessKey);
             }
             _desiredCapabilities.SetCapability("username", userName);
             _desiredCapabilities.SetCapability("accessKey", accessKey);
@@ -135,6 +133,13 @@ namespace Common
             _desiredCapabilities.SetCapability("build", SauceLabsCapabilities.BuildName);
             //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             return GetSauceRemoteDriver();
+        }
+
+        private void SetPropertiesForHeadless(out string userName, out string accessKey)
+        {
+            userName = SauceUser.Headless.UserName;
+            accessKey = SauceUser.Headless.AccessKey;
+            SauceHubUrl = new SauceLabsData().HeadlessUrl;
         }
     }
 }
