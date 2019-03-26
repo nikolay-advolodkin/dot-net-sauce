@@ -35,22 +35,50 @@ namespace Common
             _sauceCustomCapabilities = sauceConfig;
             _desiredCapabilities = new DesiredCapabilities();
         }
-
-        public IWebDriver CreateSauceDriver(string testCaseName)
+        public RemoteWebDriver CreateSauceDriver(
+            string browser, string browserVersion, string osPlatform, SauceLabsCapabilities sauceConfiguration)
         {
-            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, "chrome");
-            //will run on the latest browserVersion of the browser
-            _desiredCapabilities.SetCapability(CapabilityType.Version, "latest");
-            _desiredCapabilities.SetCapability(CapabilityType.Platform, "Windows 10");
-
-            return SetSauceCapabilities(testCaseName, _desiredCapabilities);
+            var userName = SauceUser.Name;
+            var accessKey = SauceUser.AccessKey;
+            if (sauceConfiguration.IsHeadlessBrowsers)
+            {
+                SetPropertiesForHeadless(out userName, out accessKey);
+            }
+            SetUserAndKey(userName, accessKey);
+            SetVMCapabilities(browser, browserVersion, osPlatform);
+            //an important flag to set for Edge and possibly Safari
+            _desiredCapabilities.SetCapability("avoidProxy", true);
+            _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
+            _desiredCapabilities.SetCapability("build", SauceLabsCapabilities.BuildName);
+            //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
+            return GetSauceRemoteDriver();
         }
 
+        private void SetPropertiesForHeadless(out string userName, out string accessKey)
+        {
+            userName = SauceUser.Headless.UserName;
+            accessKey = SauceUser.Headless.AccessKey;
+            SauceHubUrl = new SauceLabsData().HeadlessUrl;
+        }
+        private void SetUserAndKey(string userName, string accessKey)
+        {
+            _desiredCapabilities.SetCapability("username", userName);
+            _desiredCapabilities.SetCapability("accessKey", accessKey);
+        }
+        public IWebDriver CreateSauceDriver(string testCaseName)
+        {
+            SetVMCapabilities("chrome", "latest", "Windows 10");
+            return SetSauceCapabilities(testCaseName, _desiredCapabilities);
+        }
+        private RemoteWebDriver GetSauceRemoteDriver()
+        {
+            return new RemoteWebDriver(new Uri(SauceHubUrl),
+                _desiredCapabilities, TimeSpan.FromSeconds(600));
+        }
         private IWebDriver SetSauceCapabilities(string testCaseName, DesiredCapabilities capabilities)
         {
             _desiredCapabilities = capabilities;
-            _desiredCapabilities.SetCapability("username", SauceUser.Name);
-            _desiredCapabilities.SetCapability("accessKey", SauceUser.AccessKey);
+            SetUserAndKey(SauceUser.Name, SauceUser.AccessKey);
 
             //CUSTOM SAUCE CAPABILITIES
             //These capabilities are excellent for debugging and make it much easier.
@@ -75,11 +103,7 @@ namespace Common
         {
             return CreateSauceDriver(browser, browserVersion, osPlatform, _sauceCustomCapabilities);
         }
-        private RemoteWebDriver GetSauceRemoteDriver()
-        {
-            return new RemoteWebDriver(new Uri(SauceHubUrl),
-                _desiredCapabilities, TimeSpan.FromSeconds(600));
-        }
+
 
         private void SetSauceTimeouts()
         {
@@ -112,24 +136,7 @@ namespace Common
             _sauceCustomCapabilities.Tags.Add("withDebuggingDisabled");
             return capabilities;
         }
-        public RemoteWebDriver CreateSauceDriver(
-            string browser, string browserVersion, string osPlatform, SauceLabsCapabilities sauceConfiguration)
-        {
-            var userName = SauceUser.Name;
-            var accessKey = SauceUser.AccessKey;
-            if (sauceConfiguration.IsHeadlessBrowsers)
-            {
-                SetPropertiesForHeadless(out userName, out accessKey);
-            }
-            SetUserAndKey(userName, accessKey);
-            SetVMCapabilities(browser, browserVersion, osPlatform);
-            //an important flag to set for Edge and possibly Safari
-            _desiredCapabilities.SetCapability("avoidProxy", true);
-            _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
-            _desiredCapabilities.SetCapability("build", SauceLabsCapabilities.BuildName);
-            //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
-            return GetSauceRemoteDriver();
-        }
+
 
         private void SetVMCapabilities(string browser, string browserVersion, string osPlatform)
         {
@@ -138,17 +145,8 @@ namespace Common
             _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
         }
 
-        private void SetUserAndKey(string userName, string accessKey)
-        {
-            _desiredCapabilities.SetCapability("username", userName);
-            _desiredCapabilities.SetCapability("accessKey", accessKey);
-        }
 
-        private void SetPropertiesForHeadless(out string userName, out string accessKey)
-        {
-            userName = SauceUser.Headless.UserName;
-            accessKey = SauceUser.Headless.AccessKey;
-            SauceHubUrl = new SauceLabsData().HeadlessUrl;
-        }
+
+
     }
 }
