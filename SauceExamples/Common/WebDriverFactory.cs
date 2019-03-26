@@ -117,22 +117,31 @@ namespace Common
         {
             var userName = SauceUser.Name;
             var accessKey = SauceUser.AccessKey;
-            if(sauceConfiguration.IsHeadlessBrowsers)
+            if (sauceConfiguration.IsHeadlessBrowsers)
             {
                 SetPropertiesForHeadless(out userName, out accessKey);
             }
-            _desiredCapabilities.SetCapability("username", userName);
-            _desiredCapabilities.SetCapability("accessKey", accessKey);
-            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
-            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
-            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
-            //_desiredCapabilities.SetCapability(SauceLabsCapabilities.TunnelIdentifier, "453");
+            SetUserAndKey(userName, accessKey);
+            SetVMCapabilities(browser, browserVersion, osPlatform);
             //an important flag to set for Edge and possibly Safari
             _desiredCapabilities.SetCapability("avoidProxy", true);
             _desiredCapabilities = SetDebuggingCapabilities(_desiredCapabilities);
             _desiredCapabilities.SetCapability("build", SauceLabsCapabilities.BuildName);
             //_desiredCapabilities.SetCapability("tunnelIdentifier", "NikolaysTunnel");
             return GetSauceRemoteDriver();
+        }
+
+        private void SetVMCapabilities(string browser, string browserVersion, string osPlatform)
+        {
+            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
+            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
+            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
+        }
+
+        private void SetUserAndKey(string userName, string accessKey)
+        {
+            _desiredCapabilities.SetCapability("username", userName);
+            _desiredCapabilities.SetCapability("accessKey", accessKey);
         }
 
         private void SetPropertiesForHeadless(out string userName, out string accessKey)
