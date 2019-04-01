@@ -40,7 +40,7 @@ namespace Common
         {
             var userName = SauceUser.Name;
             var accessKey = SauceUser.AccessKey;
-            if (sauceConfiguration.IsHeadlessBrowsers)
+            if (sauceConfiguration.IsHeadless)
             {
                 SetPropertiesForHeadless(out userName, out accessKey);
             }

@@ -22,6 +22,6 @@ namespace Common
         public static string BuildName { get; set; }
         public static string TunnelIdentifier => "tunnelIdentifier";
 
-        public bool IsHeadlessBrowsers { get; set; }
+        public bool IsHeadless { get; set; }
     }
 }

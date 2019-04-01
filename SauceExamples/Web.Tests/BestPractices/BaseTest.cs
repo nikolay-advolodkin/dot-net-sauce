@@ -22,7 +22,7 @@ namespace Web.Tests.BestPractices
         {
             var sauceConfig = new SauceLabsCapabilities {
                 IsDebuggingEnabled = false,
-                IsHeadlessBrowsers = true
+                IsHeadless = true
             };
             SauceLabsCapabilities.BuildName = _sauceBuildName;
             //TODO move into external config
