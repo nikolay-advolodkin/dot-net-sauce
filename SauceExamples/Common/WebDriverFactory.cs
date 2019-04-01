@@ -65,6 +65,12 @@ namespace Common
             _desiredCapabilities.SetCapability("username", userName);
             _desiredCapabilities.SetCapability("accessKey", accessKey);
         }
+        private void SetVMCapabilities(string browser, string browserVersion, string osPlatform)
+        {
+            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
+            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
+            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
+        }
         public IWebDriver CreateSauceDriver(string testCaseName)
         {
             SetVMCapabilities("chrome", "latest", "Windows 10");
@@ -103,8 +109,6 @@ namespace Common
         {
             return CreateSauceDriver(browser, browserVersion, osPlatform, _sauceCustomCapabilities);
         }
-
-
         private void SetSauceTimeouts()
         {
             //How long is a test allowed to run?
@@ -136,17 +140,5 @@ namespace Common
             _sauceCustomCapabilities.Tags.Add("withDebuggingDisabled");
             return capabilities;
         }
-
-
-        private void SetVMCapabilities(string browser, string browserVersion, string osPlatform)
-        {
-            _desiredCapabilities.SetCapability(CapabilityType.BrowserName, browser);
-            _desiredCapabilities.SetCapability(CapabilityType.Version, browserVersion);
-            _desiredCapabilities.SetCapability(CapabilityType.Platform, osPlatform);
-        }
-
-
-
-
     }
 }
