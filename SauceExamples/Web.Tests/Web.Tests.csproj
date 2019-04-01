@@ -76,6 +76,7 @@
     <Compile Include="BestPractices\ProductsPageFeature.cs" />
     <Compile Include="BestPractices\LoginFeature.cs" />
     <Compile Include="BestPractices\LogoutFeature.cs" />
+    <Compile Include="CrossBrowserData.cs" />
     <Compile Include="Pages\Item.cs" />
     <Compile Include="Pages\CheckoutInformationPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
@@ -104,7 +105,7 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\SeleniumNunit\SeleniumNunitTests.csproj">
-      <Project>{D0544BBB-85D0-4BD0-82E2-2AC1C6BBBCF5}</Project>
+      <Project>{d0544bbb-85d0-4bd0-82e2-2ac1c6bbbcf5}</Project>
       <Name>SeleniumNunitTests</Name>
     </ProjectReference>
   </ItemGroup>
