@@ -112,7 +112,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
 </p>
 <ol>
   <li style="list-style-type: decimal;">
-    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/InstantSauceTest.cs">https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/InstantSauceTest.cs</a>
+    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/OnboardingTests/InstantSauceTest.cs">Instant Sauce Test</a>
     </p>
   </li>
   <li style="list-style-type: decimal;">
