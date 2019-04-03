@@ -8,6 +8,18 @@ This directory contains example scripts and dependencies for running automated S
 
 The code in these scripts is provided on an "AS-IS” basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are provided for educational and demonstration purposes only, and should not be used in production. Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by the Technical Services team at Sauce Labs.
 
+## Solution Outline
+If you are looking for tests that can help you quickly and easily get started with Sauce Labs, those are here: https://github.com/saucelabs-training/demo-csharp/tree/master/SauceExamples/Web.Tests/OnboardingTests
+
+If you are looking for advanced tests that use test automation best practices on Sauce Labs, those are here:
+https://github.com/saucelabs-training/demo-csharp/tree/master/SauceExamples/Web.Tests/BestPractices
+
+If you are looking for W3C examples using Sauce Labs:
+https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/SeleniumNunit/SimpleExamples/Selenium4.cs
+
+Examples of tests using MsTest are here:
+https://github.com/saucelabs-training/demo-csharp/tree/master/SauceExamples/SeleniumMsTest
+
 ## Setting Up a Selenium Project in Visual Studio 
 
 <p>This procedure shows you how to set up a Selenium project in Visual Studio (VS).  Once you set up a project, you'll run a test script written in C#, which we provide, on Sauce Labs. In the future, you can use this script as a template for your own automated tests.</p>
