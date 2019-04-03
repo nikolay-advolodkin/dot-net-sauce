@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;

@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.UI;
 using RestSharp;
 
 namespace AppiumMsTest
