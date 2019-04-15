@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Safari;
 
 namespace SeleniumNunit.SimpleExamples
 {
@@ -14,27 +15,22 @@ namespace SeleniumNunit.SimpleExamples
     public class Selenium4
     {
         IWebDriver _driver;
+        private string sauceUserName;
+        private string sauceAccessKey;
+        private Dictionary<string, object> sauceOptions;
+
         [Test]
         public void W3CEdge()
         {
-
-            //TODO please supply your Sauce Labs user name in an environment variable
-            var sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
-            //TODO please supply your own Sauce Labs access Key in an environment variable
-            var sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
-
             var options = new EdgeOptions()
             {
                 BrowserVersion = "latest",
-                PlatformName = "Windows 10"             
+                PlatformName = "Windows 10",
+                AcceptInsecureCertificates = true
             };
 
-            var sauceOptions = new Dictionary<string, object>
-            {
-                ["username"] = sauceUserName,
-                ["accessKey"] = sauceAccessKey,
-                ["name"] = TestContext.CurrentContext.Test.Name
-            };
+            sauceOptions.Add("name", TestContext.CurrentContext.Test.Name);
+            //sauceOptions.Add("avoidProxy", true);
 
             options.AddAdditionalCapability("sauce:options", sauceOptions);
 
@@ -47,23 +43,13 @@ namespace SeleniumNunit.SimpleExamples
         [Test]
         public void W3CChrome()
         {
-            //TODO please supply your Sauce Labs user name in an environment variable
-            var sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
-            //TODO please supply your own Sauce Labs access Key in an environment variable
-            var sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
-
             var chromeOptions = new ChromeOptions()
             {
                 BrowserVersion = "latest",
                 PlatformName = "Windows 10",
                 UseSpecCompliantProtocol = true
             };
-            var sauceOptions = new Dictionary<string, object>
-            {
-                ["username"] = sauceUserName,
-                ["accessKey"] = sauceAccessKey,
-                ["name"] = TestContext.CurrentContext.Test.Name
-            };
+            sauceOptions.Add("name", TestContext.CurrentContext.Test.Name);
             chromeOptions.AddAdditionalCapability("sauce:options", sauceOptions, true);
 
             _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), 
@@ -71,12 +57,43 @@ namespace SeleniumNunit.SimpleExamples
             _driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
         }
+        [Test]
+        public void W3CSafari()
+        {
+            SafariOptions safariOptions = new SafariOptions
+            {
+                BrowserVersion = "12.0",
+                PlatformName = "macOS 10.13",
+                AcceptInsecureCertificates = true
+            };
+            sauceOptions.Add("name", TestContext.CurrentContext.Test.Name);
 
+            safariOptions.AddAdditionalCapability("sauce:options", sauceOptions);
+
+            _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"),
+                safariOptions.ToCapabilities(), TimeSpan.FromSeconds(600));
+            _driver.Navigate().GoToUrl("https://www.saucedemo.com");
+            Assert.Pass();
+        }
+        [SetUp]
+        public void SetupTests()
+        {
+            //TODO please supply your Sauce Labs user name in an environment variable
+            sauceUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME", EnvironmentVariableTarget.User);
+            //TODO please supply your own Sauce Labs access Key in an environment variable
+            sauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY", EnvironmentVariableTarget.User);
+            sauceOptions = new Dictionary<string, object>
+            {
+                ["username"] = sauceUserName,
+                ["accessKey"] = sauceAccessKey
+            };
+        }
         [TearDown]
         public void CleanUpAfterEveryTestMethod()
         {
             var passed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            ((IJavaScriptExecutor)_driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+            if(_driver != null)
+                ((IJavaScriptExecutor)_driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
             _driver?.Quit();
         }
     }
