@@ -1,4 +1,4 @@
-# demonstration-scripts-C#/dot-net-sauce
+# C# Sauce Labs Demo Scripts and Frameworks
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d73359469c54f01a0ba96a175514ad3)](https://app.codacy.com/app/nadvolod/demo-csharp?utm_source=github.com&utm_medium=referral&utm_content=nadvolod/demo-csharp&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://dev.azure.com/nikolayadvolodkin/SauceExamples/_apis/build/status/nikolay-advolodkin.dot-net-sauce)](https://dev.azure.com/nikolayadvolodkin/SauceExamples/_build/latest?definitionId=1)
 
@@ -7,6 +7,18 @@ This directory contains example scripts and dependencies for running automated S
 **For Demonstration Purposes Only**
 
 The code in these scripts is provided on an "AS-IS” basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are provided for educational and demonstration purposes only, and should not be used in production. Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by the Technical Services team at Sauce Labs.
+
+## Solution Outline
+If you are looking for tests that can help you quickly and easily get started with Sauce Labs, those are here: https://github.com/saucelabs-training/demo-csharp/tree/master/SauceExamples/Web.Tests/OnboardingTests
+
+If you are looking for advanced tests that use test automation best practices on Sauce Labs, those are here:
+https://github.com/saucelabs-training/demo-csharp/tree/master/SauceExamples/Web.Tests/BestPractices
+
+If you are looking for W3C examples using Sauce Labs:
+https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/SeleniumNunit/SimpleExamples/Selenium4.cs
+
+Examples of tests using MsTest are here:
+https://github.com/saucelabs-training/demo-csharp/tree/master/SauceExamples/SeleniumMsTest
 
 ## Setting Up a Selenium Project in Visual Studio 
 
@@ -112,7 +124,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
 </p>
 <ol>
   <li style="list-style-type: decimal;">
-    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/InstantSauceTest.cs">https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/InstantSauceTest.cs</a>
+    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-csharp/blob/master/SauceExamples/Web.Tests/OnboardingTests/InstantSauceTest.cs">Instant Sauce Test</a>
     </p>
   </li>
   <li style="list-style-type: decimal;">
