@@ -7,6 +7,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Safari;
+using OpenQA.Selenium.IE;
+
 
 namespace SeleniumNunit.SimpleExamples
 {
@@ -20,18 +22,16 @@ namespace SeleniumNunit.SimpleExamples
         private Dictionary<string, object> sauceOptions;
 
         [Test]
-        public void W3CEdge()
+        public void EdgeW3C()
         {
             var options = new EdgeOptions()
             {
                 BrowserVersion = "latest",
-                PlatformName = "Windows 10",
-                AcceptInsecureCertificates = true
+                PlatformName = "Windows 10"
+                //AcceptInsecureCertificates = true //Insecure Certs are Not supported by Edge
             };
 
             sauceOptions.Add("name", TestContext.CurrentContext.Test.Name);
-            //sauceOptions.Add("avoidProxy", true);
-
             options.AddAdditionalCapability("sauce:options", sauceOptions);
 
             _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), options.ToCapabilities(),
@@ -39,9 +39,26 @@ namespace SeleniumNunit.SimpleExamples
             _driver.Navigate().GoToUrl("https://www.google.com");
             Assert.Pass();
         }
-
         [Test]
-        public void W3CChrome()
+        public void IEW3C()
+        {
+            var options = new InternetExplorerOptions()
+            {
+                BrowserVersion = "latest",
+                PlatformName = "Windows 10"
+                //AcceptInsecureCertificates = true //Insecure Certs are Not supported by Edge
+            };
+
+            sauceOptions.Add("name", TestContext.CurrentContext.Test.Name);
+            options.AddAdditionalCapability("sauce:options", sauceOptions);
+
+            _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), options.ToCapabilities(),
+                TimeSpan.FromSeconds(600));
+            _driver.Navigate().GoToUrl("https://www.google.com");
+            Assert.Pass();
+        }
+        [Test]
+        public void ChromeW3C()
         {
             var chromeOptions = new ChromeOptions()
             {
@@ -58,7 +75,7 @@ namespace SeleniumNunit.SimpleExamples
             Assert.Pass();
         }
         [Test]
-        public void W3CSafari()
+        public void SafariW3C()
         {
             SafariOptions safariOptions = new SafariOptions
             {
