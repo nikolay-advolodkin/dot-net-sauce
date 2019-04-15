@@ -24,7 +24,7 @@ namespace SeleniumNunit.SimpleExamples
         [Test]
         public void EdgeW3C()
         {
-            var options = new EdgeOptions()
+            var options = new EdgeOptions
             {
                 BrowserVersion = "latest",
                 PlatformName = "Windows 10"
@@ -42,7 +42,7 @@ namespace SeleniumNunit.SimpleExamples
         [Test]
         public void IEW3C()
         {
-            var options = new InternetExplorerOptions()
+            var options = new InternetExplorerOptions
             {
                 BrowserVersion = "latest",
                 PlatformName = "Windows 10"
@@ -60,7 +60,7 @@ namespace SeleniumNunit.SimpleExamples
         [Test]
         public void ChromeW3C()
         {
-            var chromeOptions = new ChromeOptions()
+            var chromeOptions = new ChromeOptions
             {
                 BrowserVersion = "latest",
                 PlatformName = "Windows 10",
