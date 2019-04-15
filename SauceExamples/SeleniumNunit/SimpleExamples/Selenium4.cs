@@ -63,8 +63,8 @@ namespace SeleniumNunit.SimpleExamples
             SafariOptions safariOptions = new SafariOptions
             {
                 BrowserVersion = "12.0",
-                PlatformName = "macOS 10.13",
-                AcceptInsecureCertificates = true
+                PlatformName = "macOS 10.13"                
+                //AcceptInsecureCertificates = true Don't use this as Safari doesn't support Insecure certs
             };
             sauceOptions.Add("name", TestContext.CurrentContext.Test.Name);
 
