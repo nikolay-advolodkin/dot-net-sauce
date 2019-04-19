@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28306.52
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppiumBetaMSTest", "AppiumOnDotNetFramework\AppiumBetaMSTest.csproj", "{44B81F22-100A-4DF4-9473-26582250CF25}"
 EndProject
@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Posh", "Posh", "{B4AB832A-6
 		..\Test-SauceConnectState.ps1 = ..\Test-SauceConnectState.ps1
 		..\Test-SauceConnectState.Tests.ps1 = ..\Test-SauceConnectState.Tests.ps1
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selenium4DotNetFramework", "Selenium4DotNetFramework\Selenium4DotNetFramework.csproj", "{0D11C201-3FCF-4836-9B1F-A45F461A7B02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{8EAC3C5C-FDF4-4A85-BFE9-19EB8B30E989}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EAC3C5C-FDF4-4A85-BFE9-19EB8B30E989}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EAC3C5C-FDF4-4A85-BFE9-19EB8B30E989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D11C201-3FCF-4836-9B1F-A45F461A7B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D11C201-3FCF-4836-9B1F-A45F461A7B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D11C201-3FCF-4836-9B1F-A45F461A7B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D11C201-3FCF-4836-9B1F-A45F461A7B02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
