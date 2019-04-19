@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Safari;
@@ -13,15 +14,14 @@ using OpenQA.Selenium.Safari;
 namespace Selenium4DotNetFramework
 {
     [TestClass]
-    [TestCategory("Selenium 4 tests")]
-    public class Selenium4
+    [TestCategory("WebDriver 4 tests on Sauce")]
+    public class Selenium4Sauce
     {
         IWebDriver _driver;
         private string sauceUserName;
         private string sauceAccessKey;
         private Dictionary<string, object> sauceOptions;
         public TestContext TestContext { get; set; }
-
 
         [TestMethod]
         public void EdgeW3C()
@@ -94,6 +94,23 @@ namespace Selenium4DotNetFramework
 
             _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"),
                 safariOptions.ToCapabilities(), TimeSpan.FromSeconds(600));
+            _driver.Navigate().GoToUrl("https://www.saucedemo.com");
+            GoToThenAssert();
+        }
+        [TestMethod]
+        [ExpectedException(typeof(AssertFailedException), "Possible bug in Sauce Labs")]
+        public void FirefoxW3C()
+        {
+            var browserOptions = new FirefoxOptions
+            {
+                BrowserVersion = "latest",
+                PlatformName = "Windows 10"
+            };
+            sauceOptions.Add("name", MethodBase.GetCurrentMethod().Name);
+            browserOptions.AddAdditionalOption("sauce:options", sauceOptions);
+
+            _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"),
+                browserOptions.ToCapabilities(), TimeSpan.FromSeconds(600));
             _driver.Navigate().GoToUrl("https://www.saucedemo.com");
             GoToThenAssert();
         }
