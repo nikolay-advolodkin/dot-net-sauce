@@ -29,18 +29,19 @@ namespace Selenium4DotNetFramework
             var options = new EdgeOptions
             {
                 BrowserVersion = "latest",
-                PlatformName = "Windows 10"
+                PlatformName = "Windows 10"                
                 //AcceptInsecureCertificates = true //Insecure Certs are Not supported by Edge
             };
 
             sauceOptions.Add("name", MethodBase.GetCurrentMethod().Name);
-            options.AddAdditionalCapability("sauce:options", sauceOptions);
+            options.AddAdditionalOption("sauce:options", sauceOptions);
 
             _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));
             _driver.Navigate().GoToUrl("https://www.google.com");
         }
         [TestMethod]
+        [ExpectedException(typeof(AssertFailedException), "There is a bug on Sauce Labs")]
         public void IEW3C()
         {
             var options = new InternetExplorerOptions
@@ -51,7 +52,7 @@ namespace Selenium4DotNetFramework
             };
 
             sauceOptions.Add("name", MethodBase.GetCurrentMethod().Name);
-            options.AddAdditionalCapability("sauce:options", sauceOptions);
+            options.AddAdditionalOption("sauce:options", sauceOptions);
 
             _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"), options.ToCapabilities(),
                 TimeSpan.FromSeconds(600));
@@ -70,8 +71,7 @@ namespace Selenium4DotNetFramework
             var chromeOptions = new ChromeOptions
             {
                 BrowserVersion = "latest",
-                PlatformName = "Windows 10",
-                UseSpecCompliantProtocol = true
+                PlatformName = "Windows 10"
             };
             sauceOptions.Add("name", MethodBase.GetCurrentMethod().Name);
             chromeOptions.AddAdditionalOption("sauce:options", sauceOptions);
@@ -90,8 +90,7 @@ namespace Selenium4DotNetFramework
                 //AcceptInsecureCertificates = true Don't use this as Safari doesn't support Insecure certs
             };
             sauceOptions.Add("name", MethodBase.GetCurrentMethod().Name);
-
-            safariOptions.AddAdditionalCapability("sauce:options", sauceOptions);
+            safariOptions.AddAdditionalOption("sauce:options", sauceOptions);
 
             _driver = new RemoteWebDriver(new Uri("https://ondemand.saucelabs.com/wd/hub"),
                 safariOptions.ToCapabilities(), TimeSpan.FromSeconds(600));
