@@ -6,9 +6,12 @@ namespace Common
     {
         private List<string> _tags;
 
+        public bool IsUsingSauceLabs { get; }
+
         public SauceLabsCapabilities()
         {
             _tags = new List<string>();
+            IsUsingSauceLabs = true;
         }
 
         public bool IsDebuggingEnabled { get; set; }

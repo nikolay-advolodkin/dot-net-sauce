@@ -20,7 +20,7 @@ namespace Web.Tests.BestPractices
         [SetUp]
         public void ExecuteBeforeEveryTestMethod()
         {
-            var sauceConfig = new SauceLabsCapabilities {
+            SauceConfig = new SauceLabsCapabilities {
                 IsDebuggingEnabled = false,
                 IsHeadless = false
             };
@@ -28,24 +28,28 @@ namespace Web.Tests.BestPractices
             //TODO move into external config
             //TODO add a factory method to create this driver easily
  
-            Driver = new WebDriverFactory(sauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
+            Driver = new WebDriverFactory(SauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
             SauceReporter = new SauceJavaScriptExecutor(Driver);
             SauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
             SauceReporter.SetBuildName("headless2");
-            _isUsingSauceLabs = true;
         }
 
         [TearDown]
         public void CleanUpAfterEveryTestMethod()
         {
-            if (_isUsingSauceLabs)
+            if (SauceConfig.IsUsingSauceLabs)
             {
-                var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-                SauceReporter.LogTestStatus(isPassed);
-                SauceReporter.LogMessage("Test finished execution");
-                SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
+                ExecuteSauceCleanupSteps();
             }
             Driver?.Quit();
+        }
+
+        private void ExecuteSauceCleanupSteps()
+        {
+            var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
+            SauceReporter.LogTestStatus(isPassed);
+            SauceReporter.LogMessage("Test finished execution");
+            SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
         }
 
         private readonly string _browser;
@@ -53,7 +57,7 @@ namespace Web.Tests.BestPractices
         private readonly string _osPlatform;
         public SauceJavaScriptExecutor SauceReporter;
         private static string _sauceBuildName;
-        private bool _isUsingSauceLabs;
+        private SauceLabsCapabilities SauceConfig { get; set; }
 
         public BaseTest(string browser, string browserVersion, string osPlatform)
         {
