@@ -6,7 +6,7 @@ namespace Web.Tests.BestPractices
 {
     [TestFixture]
     [Parallelizable]
-    [TestFixtureSource(typeof(CrossBrowserData), "LastTwoOnLinuxFirefoxChrome")]
+    [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
     public class ShoppingCartFeature : BaseTest
     {
         public ShoppingCartFeature(string browser, string browserVersion, string osPlatform) : 

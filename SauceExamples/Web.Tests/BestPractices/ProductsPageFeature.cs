@@ -6,7 +6,7 @@ using Web.Tests.Pages;
 namespace Web.Tests.BestPractices
 {
     [TestFixture]
-    [TestFixtureSource(typeof(CrossBrowserData), "LastTwoOnLinuxFirefoxChrome")]
+    [TestFixtureSource(typeof(CrossBrowserData), "LatestConfigurations")]
     [Parallelizable]
     public class ProductsPageFeature : BaseTest
     {
