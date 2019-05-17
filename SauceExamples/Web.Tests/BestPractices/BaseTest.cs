@@ -1,7 +1,14 @@
-﻿using Common;
+﻿using System.Collections.Generic;
+using Common;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+using RestSharp;
+using RestSharp.Authenticators;
+using RestSharp.Serialization.Json;
+using TestContext = NUnit.Framework.TestContext;
 
 namespace Web.Tests.BestPractices
 {
@@ -47,9 +54,22 @@ namespace Web.Tests.BestPractices
         private void ExecuteSauceCleanupSteps()
         {
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            SauceReporter.LogTestStatus(isPassed);
+            SetTestStatusUsingApi(isPassed);
             SauceReporter.LogMessage("Test finished execution");
             SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
+        }
+
+        private void SetTestStatusUsingApi(bool isPassed)
+        {
+            var sessionId = ((RemoteWebDriver) Driver).SessionId;
+            var client = new RestClient($"https://saucelabs.com/rest/")
+            {
+                Authenticator = new HttpBasicAuthenticator(SauceUser.Name, SauceUser.AccessKey)
+            };
+            var request = new RestRequest($"/v1/{SauceUser.Name}/jobs/{sessionId}",
+                Method.PUT) {RequestFormat = DataFormat.Json};
+            request.AddJsonBody(new { passed = isPassed });
+            client.Execute(request);
         }
 
         private readonly string _browser;

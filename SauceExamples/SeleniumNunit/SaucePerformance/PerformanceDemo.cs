@@ -31,7 +31,8 @@ namespace SeleniumNunit.SaucePerformance
                 ["accessKey"] = sauceAccessKey,
                 ["name"] = TestContext.CurrentContext.Test.Name,
                 ["extendedDebugging"] = true,
-                ["capturePerformance"] = true
+                ["capturePerformance"] = true,
+                ["crmuxdriverVersion"] = "beta"
             };
             chromeOptions.AddAdditionalCapability("sauce:options", sauceOptions, true);
 
