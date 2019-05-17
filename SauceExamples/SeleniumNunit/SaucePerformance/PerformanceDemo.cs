@@ -8,6 +8,7 @@ using System.Collections.Generic;
 namespace SeleniumNunit.SaucePerformance
 {
     [TestFixture]
+    [Category("performance")]
     public class PerformanceDemo
     {
         public RemoteWebDriver Driver { get; set; }
@@ -46,12 +47,14 @@ namespace SeleniumNunit.SaucePerformance
             Driver.Quit();
         }
         [Test]
+        [Repeat(6)]
         public void W3CTestForSauceDemo()
         {
             Driver.Navigate().GoToUrl("https://www.saucedemo.com");
         }
 
         [Test]
+        [Repeat(6)]
         public void W3CTestForUltimateQA()
         {
             Driver.Navigate().GoToUrl("https://www.ultimateqa.com");
