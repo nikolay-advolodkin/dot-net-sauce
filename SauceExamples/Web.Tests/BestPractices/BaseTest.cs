@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Configuration;
 using Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using RestSharp;
 using RestSharp.Authenticators;
-using RestSharp.Serialization.Json;
 using TestContext = NUnit.Framework.TestContext;
 
 namespace Web.Tests.BestPractices
@@ -29,7 +27,7 @@ namespace Web.Tests.BestPractices
         {
             SauceConfig = new SauceLabsCapabilities {
                 IsDebuggingEnabled = false,
-                IsHeadless = false
+                IsHeadless = bool.Parse(ConfigurationManager.AppSettings["sauceHeadless"])
             };
             SauceLabsCapabilities.BuildName = _sauceBuildName;
             //TODO move into external config
@@ -113,7 +111,7 @@ namespace Web.Tests.BestPractices
             _browser = browser;
             _browserVersion = browserVersion;
             _osPlatform = osPlatform;
-            _sauceBuildName = buildName;
+            _sauceBuildName = ConfigurationManager.AppSettings["buildName"];
         }
         public IWebDriver Driver { get; set; }
 
