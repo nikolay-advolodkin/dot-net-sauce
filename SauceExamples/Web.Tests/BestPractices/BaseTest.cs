@@ -54,17 +54,31 @@ namespace Web.Tests.BestPractices
         private void ExecuteSauceCleanupSteps()
         {
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            SetTestStatusUsingApi(isPassed);
+            SauceReporter.LogTestStatus(isPassed);
+            //SetTestStatusUsingApi(isPassed);
             SauceReporter.LogMessage("Test finished execution");
             SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
         }
 
         private void SetTestStatusUsingApi(bool isPassed)
         {
-            var sessionId = ((RemoteWebDriver) Driver).SessionId;
-            var client = new RestClient($"https://saucelabs.com/rest/")
+            string userName;
+            string accessKey;
+            //Todo cleanup later
+            if (SauceConfig.IsHeadless)
             {
-                Authenticator = new HttpBasicAuthenticator(SauceUser.Name, SauceUser.AccessKey)
+                userName = SauceUser.Headless.UserName;
+                accessKey = SauceUser.Headless.AccessKey;
+            }
+            else
+            {
+                userName = SauceUser.Name;
+                accessKey = SauceUser.AccessKey;
+            }
+            var sessionId = ((RemoteWebDriver) Driver).SessionId;
+            var client = new RestClient("https://saucelabs.com/rest/")
+            {
+                Authenticator = new HttpBasicAuthenticator(userName, accessKey)
             };
             var request = new RestRequest($"/v1/{SauceUser.Name}/jobs/{sessionId}",
                 Method.PUT) {RequestFormat = DataFormat.Json};
