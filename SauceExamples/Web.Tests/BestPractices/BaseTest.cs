@@ -29,14 +29,14 @@ namespace Web.Tests.BestPractices
                 IsDebuggingEnabled = false,
                 IsHeadless = bool.Parse(ConfigurationManager.AppSettings["sauceHeadless"])
             };
-            SauceLabsCapabilities.BuildName = _sauceBuildName;
+            SauceLabsCapabilities.BuildName = ConfigurationManager.AppSettings["buildName"];
             //TODO move into external config
             //TODO add a factory method to create this driver easily
- 
+
             Driver = new WebDriverFactory(SauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
             SauceReporter = new SauceJavaScriptExecutor(Driver);
             SauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
-            SauceReporter.SetBuildName("headless2");
+            SauceReporter.SetBuildName(SauceLabsCapabilities.BuildName);
         }
 
         [TearDown]
