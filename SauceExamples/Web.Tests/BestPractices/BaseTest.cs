@@ -30,10 +30,9 @@ namespace Web.Tests.BestPractices
                 IsHeadless = bool.Parse(ConfigurationManager.AppSettings["sauceHeadless"])
             };
             SauceLabsCapabilities.BuildName = ConfigurationManager.AppSettings["buildName"];
-            //TODO move into external config
-            //TODO add a factory method to create this driver easily
 
-            Driver = new WebDriverFactory(SauceConfig).CreateSauceDriver(_browser, _browserVersion, _osPlatform);
+            Driver = new WebDriverFactory(SauceConfig).
+                CreateSauceDriver(_browser, _browserVersion, _osPlatform);
             SauceReporter = new SauceJavaScriptExecutor(Driver);
             SauceReporter.SetTestName(TestContext.CurrentContext.Test.Name);
             SauceReporter.SetBuildName(SauceLabsCapabilities.BuildName);
@@ -52,8 +51,8 @@ namespace Web.Tests.BestPractices
         private void ExecuteSauceCleanupSteps()
         {
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            //SauceReporter.LogTestStatus(isPassed);
-            SetTestStatusUsingApi(isPassed);
+            SauceReporter.LogTestStatus(isPassed);
+            //SetTestStatusUsingApi(isPassed);
             SauceReporter.LogMessage("Test finished execution");
             SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
         }
@@ -88,7 +87,6 @@ namespace Web.Tests.BestPractices
         private readonly string _browserVersion;
         private readonly string _osPlatform;
         public SauceJavaScriptExecutor SauceReporter;
-        private static string _sauceBuildName;
         private SauceLabsCapabilities SauceConfig { get; set; }
 
         public BaseTest(string browser, string browserVersion, string osPlatform)
