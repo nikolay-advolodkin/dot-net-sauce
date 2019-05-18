@@ -52,8 +52,8 @@ namespace Web.Tests.BestPractices
         private void ExecuteSauceCleanupSteps()
         {
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            SauceReporter.LogTestStatus(isPassed);
-            //SetTestStatusUsingApi(isPassed);
+            //SauceReporter.LogTestStatus(isPassed);
+            SetTestStatusUsingApi(isPassed);
             SauceReporter.LogMessage("Test finished execution");
             SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
         }
@@ -98,22 +98,6 @@ namespace Web.Tests.BestPractices
             _osPlatform = osPlatform;
         }
 
-        protected BaseTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn)
-        {
-            _browser = browser;
-            _browserVersion = browserVersion;
-            _osPlatform = osPlatform;
-        }
-
-        protected BaseTest(string browser, string browserVersion, string osPlatform, bool isDebuggingOn,
-            string buildName)
-        {
-            _browser = browser;
-            _browserVersion = browserVersion;
-            _osPlatform = osPlatform;
-            _sauceBuildName = ConfigurationManager.AppSettings["buildName"];
-        }
         public IWebDriver Driver { get; set; }
-
     }
 }
