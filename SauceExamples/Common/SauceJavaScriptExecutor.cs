@@ -12,29 +12,36 @@ namespace Common
         }
         public void LogTestStatus(bool isPassed)
         {
-            ((IJavaScriptExecutor)_driver).
-                ExecuteScript("sauce:job-result=" + (isPassed ? "passed" : "failed"));
+            var script = "sauce:job-result=" + (isPassed ? "passed" : "failed");
+            TryToExecuteScript(script);
         }
-        public void LogTestStatus(bool isPassed, string message)
+
+        private void TryToExecuteScript(string script)
         {
-            ((IJavaScriptExecutor)_driver).
-                ExecuteScript("sauce:job-result=" + (isPassed ? "passed" : "failed"));
-            LogMessage(message);
+            try
+            {
+                ((IJavaScriptExecutor)_driver).ExecuteScript(script);
+            }
+            catch (System.Exception)
+            {
+                //This is a poor practice to catch a generic Exception
+                //However, I temporarily did this for headless implementation
+            }
         }
+
         public void LogMessage(string message)
         {
-            ((IJavaScriptExecutor)_driver).
-                ExecuteScript($"sauce:context={message}");
+            TryToExecuteScript($"sauce:context={message}");
         }
 
         public void SetTestName(string testName)
         {
-            ((IJavaScriptExecutor)_driver).ExecuteScript($"sauce:job-name={testName}");
+            TryToExecuteScript($"sauce:job-name={testName}");
         }
 
         public void SetBuildName(string buildName)
         {
-            ((IJavaScriptExecutor)_driver).ExecuteScript($"sauce:job-build={buildName}");
+            TryToExecuteScript($"sauce:job-build={buildName}");
         }
     }
 }

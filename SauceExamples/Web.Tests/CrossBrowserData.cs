@@ -45,7 +45,7 @@ namespace Web.Tests
             }
         }
 
-        public static IEnumerable LastTwoOnLinuxFirefoxChrome
+        public static IEnumerable LastThreeOnLinuxFirefoxChrome
         {
             get
             {

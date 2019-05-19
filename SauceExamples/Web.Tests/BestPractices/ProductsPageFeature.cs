@@ -7,7 +7,7 @@ namespace Web.Tests.BestPractices
 {
     [TestFixture]
     [TestFixtureSource(typeof(CrossBrowserData),
-        nameof(CrossBrowserData.LastTwoOnLinuxFirefoxChrome))]
+        nameof(CrossBrowserData.LastThreeOnLinuxFirefoxChrome))]
     [Parallelizable]
     public class ProductsPageFeature : BaseTest
     {
