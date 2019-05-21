@@ -8,7 +8,5 @@ namespace SeleniumMsTest.ParallelTests.DataDriven
         public SauceJavaScriptExecutor SauceReporter { get; set; }
 
         public IWebDriver Driver { get; set; }
-
-
     }
 }

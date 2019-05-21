@@ -10,9 +10,9 @@ namespace Common
     {
         private SauceLabsCapabilities _sauceCustomCapabilities;
         private DesiredCapabilities _desiredCapabilities;
-        private string sauceHubUrl = new SauceLabsData().SauceHubUrl;
+        private string sauceHubUrl = new SauceLabsEndpoint().SauceHubUrl;
 
-        public string SauceHubUrl
+        public string SeleniumHubUrl
         {
             get
             {
@@ -58,7 +58,7 @@ namespace Common
         {
             userName = SauceUser.Headless.UserName;
             accessKey = SauceUser.Headless.AccessKey;
-            SauceHubUrl = new SauceLabsData().HeadlessUrl;
+            SeleniumHubUrl = new SauceLabsEndpoint().HeadlessSeleniumUrl;
         }
         private void SetUserAndKey(string userName, string accessKey)
         {
@@ -78,7 +78,7 @@ namespace Common
         }
         private RemoteWebDriver GetSauceRemoteDriver()
         {
-            return new RemoteWebDriver(new Uri(SauceHubUrl),
+            return new RemoteWebDriver(new Uri(SeleniumHubUrl),
                 _desiredCapabilities, TimeSpan.FromSeconds(600));
         }
         private IWebDriver SetSauceCapabilities(string testCaseName, DesiredCapabilities capabilities)

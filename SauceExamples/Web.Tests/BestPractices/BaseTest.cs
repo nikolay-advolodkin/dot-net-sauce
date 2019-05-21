@@ -62,25 +62,22 @@ namespace Web.Tests.BestPractices
         {
             string userName;
             string accessKey;
-            string rootUrl;
             //Todo cleanup later
             if (SauceConfig.IsHeadless)
             {
                 userName = SauceUser.Headless.UserName;
                 accessKey = SauceUser.Headless.AccessKey;
-                rootUrl = "https://us-east-1.saucelabs.com/rest/v1";
             }
             else
             {
                 userName = SauceUser.Name;
                 accessKey = SauceUser.AccessKey;
-                rootUrl = "https://saucelabs.com/rest/v1";
             }
             var sessionId = ((RemoteWebDriver) Driver).SessionId;
             var client = new RestClient()
             {
                 Authenticator = new HttpBasicAuthenticator(userName, accessKey),
-                BaseUrl = new Uri(rootUrl)
+                BaseUrl = new Uri(new SauceLabsEndpoint().HeadlessRestApiUrl)
             };
             var request = new RestRequest($"/{userName}/jobs/{sessionId}",
                 Method.PUT) {RequestFormat = DataFormat.Json};

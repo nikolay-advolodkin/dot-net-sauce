@@ -25,7 +25,7 @@ namespace SeleniumNunit.SpecFlow.Steps
             _desiredCapabilities.SetCapability("build", $"SauceExamples-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
             var tags = new List<string> { "BDD", "Specflow" };
             _desiredCapabilities.SetCapability("tags", tags);
-            Driver = new RemoteWebDriver(new Uri(new SauceLabsData().SauceHubUrl),
+            Driver = new RemoteWebDriver(new Uri(new SauceLabsEndpoint().SauceHubUrl),
                 _desiredCapabilities, TimeSpan.FromSeconds(600));
         }
         

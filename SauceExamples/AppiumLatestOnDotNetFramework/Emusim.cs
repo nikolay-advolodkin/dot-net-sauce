@@ -26,7 +26,7 @@ namespace AppiumMsTest
             capabilities.SetCapability("name", MethodBase.GetCurrentMethod().Name);
             capabilities.SetCapability("newCommandTimeout", 90);
 
-            var driver = new AndroidDriver<IWebElement>(new SauceLabsData().SauceHubUri, capabilities);
+            var driver = new AndroidDriver<IWebElement>(new SauceLabsEndpoint().SauceHubUri, capabilities);
             driver.Navigate().GoToUrl("https://www.saucedemo.com");
             Assert.IsTrue(true);
             driver.Quit();

@@ -65,7 +65,7 @@
     <Compile Include="SauceJavaScriptExecutor.cs" />
     <Compile Include="SauceLabs.cs" />
     <Compile Include="SauceLabsCapabilities.cs" />
-    <Compile Include="SauceLabsData.cs" />
+    <Compile Include="SauceLabsEndpoint.cs" />
     <Compile Include="SauceUser.cs" />
     <Compile Include="Wait.cs" />
     <Compile Include="WebDriverFactory.cs" />
