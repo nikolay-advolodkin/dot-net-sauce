@@ -52,7 +52,6 @@ namespace Web.Tests.BestPractices
         private void ExecuteSauceCleanupSteps()
         {
             var isPassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
-            SauceReporter.LogTestStatus(isPassed);
             SetTestStatusUsingApi(isPassed);
             SauceReporter.LogMessage("Test finished execution");
             SauceReporter.LogMessage(TestContext.CurrentContext.Result.Message);
@@ -82,7 +81,7 @@ namespace Web.Tests.BestPractices
             var request = new RestRequest($"/{userName}/jobs/{sessionId}",
                 Method.PUT) {RequestFormat = DataFormat.Json};
             request.AddJsonBody(new { passed = isPassed });
-            var statusCode = client.Execute(request);
+            client.Execute(request);
         }
 
         private readonly string _browser;
