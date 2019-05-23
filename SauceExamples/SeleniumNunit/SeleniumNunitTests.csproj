@@ -95,6 +95,7 @@
     <Compile Include="SaucePerformance\LatestCrossBrowserTests.cs" />
     <Compile Include="SaucePerformance\PerformanceDemo.cs" />
     <Compile Include="SaucePerformance\SingleBrowserTests.cs" />
+    <Compile Include="SimpleExamples\SimpleHeadlessTest.cs" />
     <Compile Include="SimpleExamples\SimpleSauceTest.cs" />
     <Compile Include="SimpleExamples\SauceConnectTests.cs" />
     <Compile Include="LoggingWithSauce.cs" />
