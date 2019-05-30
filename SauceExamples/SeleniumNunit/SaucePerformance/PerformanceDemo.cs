@@ -48,14 +48,16 @@ namespace SeleniumNunit.SaucePerformance
             Driver.Quit();
         }
         [Test]
-        [Repeat(6)]
+        [Ignore("Currently not working with Sauce W3c")]
+
         public void W3CTestForSauceDemo()
         {
+            //Login steps here
             Driver.Navigate().GoToUrl("https://www.saucedemo.com");
         }
 
         [Test]
-        [Repeat(6)]
+        [Ignore("Currently not working with Sauce W3c")]
         public void W3CTestForUltimateQA()
         {
             Driver.Navigate().GoToUrl("https://www.ultimateqa.com");
