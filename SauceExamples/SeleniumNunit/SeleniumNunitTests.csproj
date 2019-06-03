@@ -84,7 +84,6 @@
   <ItemGroup>
     <Compile Include="BestPractices\BaseTest.cs" />
     <Compile Include="BestPractices\CrossBrowserExamples\BaseCrossBrowserTest.cs" />
-    <Compile Include="BestPractices\CrossBrowserExamples\CrossBrowserData.cs" />
     <Compile Include="BestPractices\CrossBrowserExamples\CrossBrowserTests.cs" />
     <Compile Include="BestPractices\CrossBrowserExamples\NamespaceSetup.cs" />
     <Compile Include="BestPractices\CrossBrowserExamples\SauceLabsPage.cs" />
